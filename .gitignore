@@ -1,4 +1,4 @@
 .clone.sh
-/.quarto/
+.quarto
 docs
 Makefile

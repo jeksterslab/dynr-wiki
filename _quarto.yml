@@ -27,6 +27,9 @@ book:
     - part: content/posit-cloud/posit-cloud.qmd
       chapters: 
       - content/posit-cloud/posit-cloud-install.qmd
+    - part: "Examples"
+      chapters: 
+      - content/examples/var.qmd
     - content/references/references.qmd
 
 bibliography: content/references/references.bib
