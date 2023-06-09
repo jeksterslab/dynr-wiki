@@ -1,0 +1,4 @@
+.clone.sh
+/.quarto/
+docs
+Makefile

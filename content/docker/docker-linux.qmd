@@ -1,0 +1,30 @@
+---
+title: Linux
+author: Ivan Jacob Agaloos Pesigan
+---
+
+## Installing Docker
+
+Installing Docker depends on ypur Linux distribution. See [https://docs.docker.com/desktop/install/linux-install/](https://docs.docker.com/desktop/install/linux-install/) for more details.
+
+- For `Ubuntu` you can install the necessary packages by running the following:
+
+```bash
+sudo apt update && sudo apt upgrade
+sudo apt install -y wget
+wget https://raw.githubusercontent.com/jeksterslab/dynr-wiki/main/src/build-docker.sh | bash
+```
+
+## Running the dynr Docker Container
+
+-   Type the following to launch `Rstudio Server`[^docker-linux-1] on the terminal:
+
+[^docker-linux-1]: Replace `jeksterslab/dynr-rocker` with `jeksterslab/dynr-arma-rocker` to use the `arma` branch.
+
+```bash
+sudo docker run --rm -ti -e PASSWORD=yourpassword -p 8787:8787 jeksterslab/dynr-rocker
+```
+
+-   Open http://localhost:8787 on your web browser to launch `Rstudio Server`.
+    -   username: rstudio
+    -   password: yourpassword

@@ -1,0 +1,5 @@
+---
+title: dynr on Posit Cloud
+---
+
+[Posit Cloud](https://posit.cloud/) provides users an RStudio IDE in the cloud. The [free option](https://posit.cloud/plans/free) provides 25 free compute hours per month. See [https://posit.cloud/plans](https://posit.cloud/plans) information on the other plans.

@@ -1,0 +1,6 @@
+---
+title: dynr on a Local Computer
+author: Ivan Jacob Agaloos Pesigan
+---
+
+In this section we provide instructions on how to install `dynr` on your local machine.
