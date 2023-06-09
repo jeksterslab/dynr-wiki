@@ -35,7 +35,8 @@ Rscript -e "                                         \
             'Ryacas',                                \
             'testthat',                              \
             'knitr',                                 \
-            'rmarkdown'                              \
+            'rmarkdown',                             \
+            'dynr'                                   \
         ),                                           \
         repos = c(REPO_NAME = 'https://packagemanager.rstudio.com/all/__linux__/jammy/latest') \
     )                                                \
@@ -45,7 +46,6 @@ Rscript -e "                                         \
     remotes::install_version(                        \
         package = 'roxygen2',                        \
         version = '5.0.1',                           \
-        lib = .libPaths(),                           \
         repos = c(CRAN = 'https://cran.rstudio.com') \
     )                                                \
 "
