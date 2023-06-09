@@ -23,6 +23,7 @@ Rscript -e "                                         \
             'plyr',                                  \
             'mice',                                  \
             'magrittr',                              \
+            'fds',                                   \
             'fda',                                   \
             'car',                                   \
             'stringi',                               \
