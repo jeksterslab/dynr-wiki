@@ -36,7 +36,7 @@ Rscript -e "                                         \
             'testthat',                              \
             'knitr',                                 \
             'rmarkdown'                              \
-        )                                            \
+        )                                           \
     )                                                \
 "
 
@@ -52,3 +52,12 @@ Rscript -e "                                         \
 Rscript -e "                                         \
     try(tinytex::install_tinytex())                  \
 "
+
+# build dynr -------------------------------------------------------------------
+git clone https://github.com/mhunter1/dynr.git
+cd dynr
+./configure
+make clean install
+cd ..
+rm -rf dynr
+rm -rf build.sh
