@@ -23,7 +23,6 @@ Rscript -e "                                         \
             'plyr',                                  \
             'mice',                                  \
             'magrittr',                              \
-            'fds',                                   \
             'fda',                                   \
             'car',                                   \
             'stringi',                               \
@@ -38,7 +37,7 @@ Rscript -e "                                         \
             'knitr',                                 \
             'rmarkdown'                              \
         ),                                           \
-        repos = c(REPO_NAME = "https://packagemanager.rstudio.com/all/__linux__/jammy/latest") \
+        repos = c(REPO_NAME = 'https://packagemanager.rstudio.com/all/__linux__/jammy/latest') \
     )                                                \
 "
 
