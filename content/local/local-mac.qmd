@@ -1,6 +1,0 @@
----
-title: macOS
-author: Ivan Jacob Agaloos Pesigan
----
-
-TODO

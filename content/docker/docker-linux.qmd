@@ -13,6 +13,7 @@ Installing Docker depends on ypur Linux distribution. See [https://docs.docker.c
 sudo apt update && sudo apt upgrade
 sudo apt install -y wget
 wget https://raw.githubusercontent.com/jeksterslab/dynr-wiki/main/src/build-docker.sh | bash
+rm build-docker.sh
 ```
 
 ## Running the dynr Docker Container

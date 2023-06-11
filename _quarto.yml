@@ -9,24 +9,11 @@ book:
   chapters:
     - index.qmd
     - content/intro/intro.qmd
-    - part: content/local/local.qmd
-      chapters: 
-      - content/local/local-win.qmd
-      - content/local/local-mac.qmd
-      - content/local/local-linux.qmd
     - part: content/docker/docker.qmd
       chapters: 
       - content/docker/docker-win.qmd
       - content/docker/docker-mac.qmd
       - content/docker/docker-linux.qmd
-    - part: content/apptainer/apptainer.qmd
-      chapters: 
-      - content/apptainer/apptainer-win.qmd
-      - content/apptainer/apptainer-mac.qmd
-      - content/apptainer/apptainer-linux.qmd
-    - part: content/posit-cloud/posit-cloud.qmd
-      chapters: 
-      - content/posit-cloud/posit-cloud-install.qmd
     - part: "Examples"
       chapters: 
       - content/examples/var.qmd

@@ -1,8 +1,0 @@
----
-title: dynr Apptainer/Singularity Images
-author: Ivan Jacob Agaloos Pesigan
----
-
-In this tutorial, we provide information on building Apptainer/Singularity images with the `dynr` package pre-installed. The [Apptainer website](https://apptainer.org/) describes the project as follows:
-
-> Apptainer/Singularity is the most widely used container system for HPC. It is designed to execute applications at bare-metal performance while being secure, portable, and 100% reproducible.
