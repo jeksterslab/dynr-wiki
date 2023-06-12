@@ -13,7 +13,6 @@ book:
       chapters: 
       - content/docker/docker-win.qmd
       - content/docker/docker-mac.qmd
-      - content/docker/docker-linux.qmd
     - part: "Examples"
       chapters: 
       - content/examples/var.qmd

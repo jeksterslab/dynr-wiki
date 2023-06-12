@@ -41,7 +41,7 @@ This example is inspired by a published study aimed at exploring the dynamics of
 $$wp(t) = a \times wp(t-1) + b \times hp(t-1) + c \times ca(t) + d \times cn(t) + we(t) $$
 $$hp(t) = a_1 \times hp(t-1) + b_1 \times wp(t-1) + c_1 \times ca(t) + d_1 \times cn(t) + he(t)$$
 
-where $wp$and $hp$ are two dependent variables representing the emotional ratings of wife and husband respectively; $ca$ is a covariate representing an aggregate measure of the child's agentic behavior (e.g. helping out, taking sides, and comforting the parents); $cn$ is a covariate representing an aggregate measure of the child's negative emotions and dysregulated behaviors (e.g., anger, sadness, and fear).
+where $wp$ and $hp$ are two dependent variables representing the emotional ratings of wife and husband respectively; $ca$ is a covariate representing an aggregate measure of the child's agentic behavior (e.g. helping out, taking sides, and comforting the parents); $cn$ is a covariate representing an aggregate measure of the child's negative emotions and dysregulated behaviors (e.g., anger, sadness, and fear).
 
 The simulated data were generated from the above model. The data contain 100 subjects (N = 100) and 30 time points (T = 30) for each subject.
 
