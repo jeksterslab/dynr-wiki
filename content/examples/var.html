@@ -290,7 +290,7 @@ div.csl-indent {
 <p>This example is inspired by a published study aimed at exploring the dynamics of inter-parental emotion states and behaviors at the end of conflicts, and associations with child emotions and behaviors during conflicts <span class="citation" data-cites="Schermerhorn2010">(<a href="../references/references.html#ref-Schermerhorn2010" role="doc-biblioref">Schermerhorn et al., 2010</a>)</span>. To analyze over-time and lagged dependencies in the couples’ dynamics and possible associations with child-related variable, we considered the following model:</p>
 <p><img src="https://raw.githubusercontent.com/psu-psychology/r-bootcamp-2019/master/demos/dynr/path.png" class="img-fluid"></p>
 <p><span class="math display">\[wp(t) = a \times wp(t-1) + b \times hp(t-1) + c \times ca(t) + d \times cn(t) + we(t) \]</span> <span class="math display">\[hp(t) = a_1 \times hp(t-1) + b_1 \times wp(t-1) + c_1 \times ca(t) + d_1 \times cn(t) + he(t)\]</span></p>
-<p>where <span class="math inline">\(wp\)</span>and <span class="math inline">\(hp\)</span> are two dependent variables representing the emotional ratings of wife and husband respectively; <span class="math inline">\(ca\)</span> is a covariate representing an aggregate measure of the child’s agentic behavior (e.g.&nbsp;helping out, taking sides, and comforting the parents); <span class="math inline">\(cn\)</span> is a covariate representing an aggregate measure of the child’s negative emotions and dysregulated behaviors (e.g., anger, sadness, and fear).</p>
+<p>where <span class="math inline">\(wp\)</span> and <span class="math inline">\(hp\)</span> are two dependent variables representing the emotional ratings of wife and husband respectively; <span class="math inline">\(ca\)</span> is a covariate representing an aggregate measure of the child’s agentic behavior (e.g.&nbsp;helping out, taking sides, and comforting the parents); <span class="math inline">\(cn\)</span> is a covariate representing an aggregate measure of the child’s negative emotions and dysregulated behaviors (e.g., anger, sadness, and fear).</p>
 <p>The simulated data were generated from the above model. The data contain 100 subjects (N = 100) and 30 time points (T = 30) for each subject.</p>
 <p>The trajectories of emotional ratings of wife and husband for two families are shown below.</p>
 <div class="cell">
@@ -421,8 +421,8 @@ Transformed fitted parameters:  0.3848036 -0.2912888 -0.2295281 0.2850637
 
 Doing end processing
 Successful trial
-Total Time: 57.36799 
-Backend Time: 56.43231 </code></pre>
+Total Time: 52.16067 
+Backend Time: 51.16561 </code></pre>
 </div>
 </div>
 </section>
