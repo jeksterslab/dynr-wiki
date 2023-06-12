@@ -7,9 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Ivan Jacob Agaloos Pesigan">
-<meta name="dcterms.date" content="2023-06-12">
 
-<title>dynr Wiki</title>
+<title>dynr Wiki - Windows using WSL 2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,28 +21,63 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./content/intro/intro.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../content/docker/docker-mac.html" rel="next">
+<link href="../../content/docker/docker.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -67,7 +101,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating fullcontent">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -76,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-title">Preface</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/docker/docker.html">dynr Docker Container</a></li><li class="breadcrumb-item"><a href="../../content/docker/docker-win.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Windows using WSL 2</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -91,7 +125,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">dynr Wiki</a> 
+      <a href="../../">dynr Wiki</a> 
         <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
@@ -106,17 +140,17 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Preface</span></a>
+  <a href="../../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/intro/intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">dynr: Dynamic Models with Regime-Switching</span></a>
+  <a href="../../content/intro/intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">dynr: Dynamic Models with Regime-Switching</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./content/docker/docker.html" class="sidebar-item-text sidebar-link">
+            <a href="../../content/docker/docker.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">dynr Docker Container</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -125,17 +159,17 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/docker/docker-win.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Windows using WSL 2</span></a>
+  <a href="../../content/docker/docker-win.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Windows using WSL 2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/docker/docker-mac.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">macOS</span></a>
+  <a href="../../content/docker/docker-mac.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">macOS</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/docker/docker-linux.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Linux</span></a>
+  <a href="../../content/docker/docker-linux.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Linux</span></a>
   </div>
 </li>
       </ul>
@@ -151,14 +185,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/examples/var.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Fitting A Vector Autoregressive Model in dynr</span></a>
+  <a href="../../content/examples/var.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Fitting A Vector Autoregressive Model in dynr</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/references/references.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">References</span></a>
+  <a href="../../content/references/references.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">References</span></a>
   </div>
 </li>
     </ul>
@@ -166,13 +200,23 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#installing-windows-subsystem-for-linux-wsl" id="toc-installing-windows-subsystem-for-linux-wsl" class="nav-link active" data-scroll-target="#installing-windows-subsystem-for-linux-wsl">Installing Windows Subsystem for Linux (WSL)</a></li>
+  <li><a href="#installing-docker-desktop" id="toc-installing-docker-desktop" class="nav-link" data-scroll-target="#installing-docker-desktop">Installing Docker Desktop</a></li>
+  <li><a href="#running-the-dynr-docker-container" id="toc-running-the-dynr-docker-container" class="nav-link" data-scroll-target="#running-the-dynr-docker-container">Running the dynr Docker Container</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">dynr Wiki</h1>
+<h1 class="title"><span class="chapter-title">Windows using WSL 2</span></h1>
 </div>
 
 
@@ -186,12 +230,6 @@ ul.task-list li input[type="checkbox"] {
           </div>
   </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">June 12, 2023</p>
-    </div>
-  </div>
   
     
   </div>
@@ -199,9 +237,94 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>This website serves as a Wiki for consolidating documentation, knowledge bases, and other relevant information pertaining to the <code>dynr</code> package. The intention is not to supplant existing source of information, for example, <a href="https://CRAN.R-project.org/package=dynr">https://CRAN.R-project.org/package=dynr</a> and <a href="https://github.com/mhunter1/dynr">https://github.com/mhunter1/dynr</a>, but to supplement them.</p>
+<p>In this tutorial, we will go through the necessary steps to launch the <code>dynr</code> Docker container on Windows 10. Installation on Windows 11 should be similar.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For a better terminal experience, you can, optionally, install the <code>Windows Terminal</code> using the <code>Microsoft Store</code>.</p>
+</div>
+</div>
+<section id="installing-windows-subsystem-for-linux-wsl" class="level2">
+<h2 class="anchored" data-anchor-id="installing-windows-subsystem-for-linux-wsl">Installing Windows Subsystem for Linux (WSL)</h2>
+<ul>
+<li>In <code>PowerShell</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, type the following:</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>wsl <span class="op">--</span>install <span class="op">--</span>distribution Ubuntu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There are times when the operating system requires a restart. After restarting, when the installation is successful, a new application <code>Ubuntu</code> will be available. Launch this application to continue.</p>
+</div>
+</div>
+<ul>
+<li>When prompted:
+<ul>
+<li>Enter new UNIX username:</li>
+<li>New password:</li>
+<li>Retype new password:</li>
+</ul></li>
+<li>You should see a prompt similar to the following which indicates that you are inside the newly installed <code>Ubuntu</code> instance. In the prompt, type <code>exit</code> to exit <code>Ubuntu</code>.</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">USER@HOST:~$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>You might need to update the kernel. You can do this with the following:
+<ul>
+<li>Download the Linux kernel update package from <a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi</a></li>
+<li>Double-click <code>wsl_update_x64.msi</code> to update the kernel.</li>
+</ul></li>
+<li>A system restart might be a good idea for all the changes to take effect.</li>
+</ul>
+<p>If the above instructions fail, you might be using an older version of Windows. See <a href="https://learn.microsoft.com/en-us/windows/wsl/install-manual">https://learn.microsoft.com/en-us/windows/wsl/install-manual</a> for more details on how to manually install WSL.</p>
+</section>
+<section id="installing-docker-desktop" class="level2">
+<h2 class="anchored" data-anchor-id="installing-docker-desktop">Installing Docker Desktop</h2>
+<ul>
+<li>Download the the appropriate Docker Desktop for Windows from <a href="https://www.docker.com/products/docker-desktop/">https://www.docker.com/products/docker-desktop/</a>.</li>
+<li>Double-click <code>Desktop Installer.exe</code> to install <code>Docker Desktop</code>.</li>
+<li>Launch <code>Docker Desktop</code>.
+<ul>
+<li>Click the <code>Accept</code> button to accept the terms of service to continue.</li>
+</ul></li>
+</ul>
+</section>
+<section id="running-the-dynr-docker-container" class="level2">
+<h2 class="anchored" data-anchor-id="running-the-dynr-docker-container">Running the dynr Docker Container</h2>
+<ul>
+<li>Launch <code>Docker Desktop</code>.</li>
+<li>In <code>PowerShell</code> type the following to launch <code>Rstudio Server</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>:</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>docker run <span class="op">--</span>rm <span class="op">-</span>ti <span class="op">-</span>e PASSWORD<span class="op">=</span>yourpassword <span class="op">-</span>p 8787<span class="op">:</span>8787 jeksterslab<span class="op">/</span>dynr<span class="op">-</span>rocker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Open http://localhost:8787 on your web browser to launch <code>Rstudio Server</code>.
+<ul>
+<li>username: rstudio</li>
+<li>password: yourpassword</li>
+</ul></li>
+</ul>
 
 
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Run all instances of PowerShell as administration.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Replace <code>jeksterslab/dynr-rocker</code> with <code>jeksterslab/dynr-arma-rocker</code> to use the <code>arma</code> branch.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -554,10 +677,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../content/docker/docker.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">dynr Docker Container</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./content/intro/intro.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-title">dynr: Dynamic Models with Regime-Switching</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../content/docker/docker-mac.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-title">macOS</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
