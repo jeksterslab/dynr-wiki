@@ -169,7 +169,11 @@ model <- dynr.model(
   data = rawdata,
   outfile = paste("trial.c", sep = "")
 )
-results <- dynr.cook(model, debug_flag = TRUE, verbose = FALSE)
+results <- dynr.cook(
+  model,
+  debug_flag = TRUE,
+  verbose = FALSE
+)
 ```
 
 ## Plot the Formula
@@ -177,7 +181,12 @@ results <- dynr.cook(model, debug_flag = TRUE, verbose = FALSE)
 ```{r}
 #| warning: false
 #| message: false
-plotFormula(dynrModel = model, ParameterAs = model$"param.names", printDyn = TRUE, printMeas = TRUE)
+plotFormula(
+  dynrModel = model,
+  ParameterAs = model$"param.names",
+  printDyn = TRUE,
+  printMeas = TRUE
+)
 ```
 
 ## Compare true parameters to estimated ones
