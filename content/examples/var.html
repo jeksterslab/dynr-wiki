@@ -400,7 +400,11 @@ div.csl-indent {
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> rawdata,</span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">outfile =</span> <span class="fu">paste</span>(<span class="st">"trial.c"</span>, <span class="at">sep =</span> <span class="st">""</span>)</span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">dynr.cook</span>(model, <span class="at">debug_flag =</span> <span class="cn">TRUE</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">dynr.cook</span>(</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  model,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">debug_flag =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Get ready!!!!"
 May I present to you your error messages?
@@ -421,15 +425,20 @@ Transformed fitted parameters:  0.3848036 -0.2912888 -0.2295281 0.2850637
 
 Doing end processing
 Successful trial
-Total Time: 52.16067 
-Backend Time: 51.16561 </code></pre>
+Total Time: 32.39834 
+Backend Time: 31.65834 </code></pre>
 </div>
 </div>
 </section>
 <section id="plot-the-formula" class="level2">
 <h2 class="anchored" data-anchor-id="plot-the-formula">Plot the Formula</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotFormula</span>(<span class="at">dynrModel =</span> model, <span class="at">ParameterAs =</span> model<span class="sc">$</span><span class="st">"param.names"</span>, <span class="at">printDyn =</span> <span class="cn">TRUE</span>, <span class="at">printMeas =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotFormula</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">dynrModel =</span> model,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ParameterAs =</span> model<span class="sc">$</span><span class="st">"param.names"</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">printDyn =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">printMeas =</span> <span class="cn">TRUE</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="var_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -444,20 +453,20 @@ Backend Time: 51.16561 </code></pre>
       Estimate Std. Error t value ci.lower ci.upper Pr(&gt;|t|)    
 a      0.38480    0.01504  25.586  0.35533  0.41428   &lt;2e-16 ***
 b     -0.29129    0.01662 -17.526 -0.32386 -0.25871   &lt;2e-16 ***
-b1    -0.22953    0.01496 -15.339 -0.25886 -0.20020   &lt;2e-16 ***
-a1     0.28506    0.01654  17.239  0.25265  0.31747   &lt;2e-16 ***
-c      0.29505    0.02644  11.159  0.24323  0.34687   &lt;2e-16 ***
-c1     0.26948    0.02630  10.245  0.21793  0.32104   &lt;2e-16 ***
-d     -0.53582    0.01584 -33.824 -0.56687 -0.50477   &lt;2e-16 ***
+b1    -0.22953    0.01496 -15.340 -0.25885 -0.20020   &lt;2e-16 ***
+a1     0.28506    0.01654  17.240  0.25266  0.31747   &lt;2e-16 ***
+c      0.29505    0.02644  11.158  0.24322  0.34688   &lt;2e-16 ***
+c1     0.26948    0.02631  10.244  0.21793  0.32104   &lt;2e-16 ***
+d     -0.53582    0.01584 -33.823 -0.56687 -0.50477   &lt;2e-16 ***
 d1    -0.41778    0.01576 -26.507 -0.44867 -0.38689   &lt;2e-16 ***
-v_wp   0.99518    0.02613  38.085  0.94397  1.04640   &lt;2e-16 ***
-c_wh   0.32752    0.01936  16.914  0.28957  0.36547   &lt;2e-16 ***
-v_hp   0.98503    0.02587  38.083  0.93434  1.03573   &lt;2e-16 ***
-mu_wp  0.10776    0.13958   0.772 -0.16581  0.38133   0.2201    
-mu_hp  0.09481    0.11058   0.857 -0.12193  0.31154   0.1957    
-v_11   1.94905    0.27568   7.070  1.40873  2.48938   &lt;2e-16 ***
-c_21   0.33547    0.15789   2.125  0.02602  0.64492   0.0168 *  
-v_22   1.22169    0.17272   7.073  0.88318  1.56021   &lt;2e-16 ***
+v_wp   0.99518    0.02613  38.084  0.94396  1.04640   &lt;2e-16 ***
+c_wh   0.32752    0.01936  16.913  0.28957  0.36547   &lt;2e-16 ***
+v_hp   0.98503    0.02587  38.082  0.93434  1.03573   &lt;2e-16 ***
+mu_wp  0.10776    0.13955   0.772 -0.16576  0.38128   0.2200    
+mu_hp  0.09481    0.11050   0.858 -0.12178  0.31139   0.1955    
+v_11   1.94905    0.27551   7.074  1.40907  2.48903   &lt;2e-16 ***
+c_21   0.33547    0.15791   2.124  0.02597  0.64497   0.0169 *  
+v_22   1.22169    0.17264   7.076  0.88332  1.56007   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
