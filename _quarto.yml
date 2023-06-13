@@ -6,6 +6,13 @@ book:
   title: "dynr Wiki"
   author: "Ivan Jacob Agaloos Pesigan"
   date: today
+  search: true
+  repo-url: https://github.com/jeksterslab/dynr-wiki
+  repo-actions: [edit]
+  site-url: https://jeksterslab.github.io/dynr-wiki/index.html
+  sidebar:
+    collapse-level: 3
+    pinned: true
   chapters:
     - index.qmd
     - content/intro/intro.qmd
@@ -17,6 +24,8 @@ book:
       chapters: 
       - content/examples/var.qmd
     - content/references/references.qmd
+  appendices:
+    - content/session/session.qmd
 
 bibliography: content/references/references.bib
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
@@ -24,6 +33,6 @@ csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa
 format:
   html:
     theme:
-      light: flatly
-      dark: darkly
+      - flatly
+      - custom.scss
     number-sections: false

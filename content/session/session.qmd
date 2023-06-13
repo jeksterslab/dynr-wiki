@@ -1,0 +1,14 @@
+---
+title: "Website Build Session"
+author: "Ivan Jacob Agaloos Pesigan"
+---
+
+```{r}
+library(dynr)
+```
+
+## Session
+
+```{r}
+sessionInfo()
+```
