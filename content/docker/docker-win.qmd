@@ -6,12 +6,12 @@ author: Ivan Jacob Agaloos Pesigan
 In this tutorial, we will go through the necessary steps to launch the `dynr` Docker container on Windows 10. Installation on Windows 11 should be similar.
 
 ::: callout-note
-For a better terminal experience, you can, optionally, install the `Windows Terminal` using the `Microsoft Store`.  
+For a better terminal experience, you can, optionally, install the `Windows Terminal` from the `Microsoft Store`.  
 :::
 
 ## Installing Windows Subsystem for Linux (WSL)
 
--   In `PowerShell`[^docker-win-1], type the following:
+-  In `PowerShell`[^docker-win-1], type the following:
 
 [^docker-win-1]: Run all instances of PowerShell as administration.
 
@@ -23,34 +23,40 @@ wsl --install --distribution Ubuntu
 There are times when the operating system requires a restart. After restarting, when the installation is successful, a new application `Ubuntu` will be available. Launch this application to continue.
 :::
 
--   When prompted:
-    -   Enter new UNIX username:
-    -   New password:
-    -   Retype new password:
--   You should see a prompt similar to the following which indicates that you are inside the newly installed `Ubuntu` instance. In the prompt, type `exit` to exit `Ubuntu`.
+-  When prompted:
+    -  Enter new UNIX username:
+    -  New password:
+    -  Retype new password:
+-  You should see a prompt similar to the following which indicates that you are inside the newly installed `Ubuntu` instance. In the prompt, type `exit` to exit `Ubuntu`.
 
 ```bash
 USER@HOST:~$
 ```
 
--   You might need to update the kernel. You can do this with the following:
-    -   Download the Linux kernel update package from [https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)
-    -   Double-click `wsl_update_x64.msi` to update the kernel.
--   A system restart might be a good idea for all the changes to take effect.
+-  You might need to update the kernel. You can do this with the following:
+    -  Download the Linux kernel update package from [https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)
+    -  Double-click `wsl_update_x64.msi` to update the kernel.
+-  A system restart might be a good idea for all the changes to take effect.
 
 If the above instructions fail, you might be using an older version of Windows. See [https://learn.microsoft.com/en-us/windows/wsl/install-manual](https://learn.microsoft.com/en-us/windows/wsl/install-manual) for more details on how to manually install WSL.
 
 ## Installing Docker Desktop
 
--   Download the the appropriate Docker Desktop for Windows from [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/).
--   Double-click `Desktop Installer.exe` to install `Docker Desktop`.
--   Launch `Docker Desktop`.
-    -   Click the `Accept` button to accept the terms of service to continue.
+-  Download the the appropriate Docker Desktop for Windows from [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/).
+-  Double-click `Desktop Installer.exe` to install `Docker Desktop`.
+-  Launch `Docker Desktop`.
+    -  Click the `Accept` button to accept the terms of service to continue.
 
 ## Running the dynr Docker Container
 
--   Launch `Docker Desktop`.
--   In `PowerShell` type the following to launch `Rstudio Server`[^docker-win-2]:
+-  Launch `Docker Desktop`.
+-  In `PowerShell` type the following to pull the latest Docker image[^docker-win-2]:
+
+```powershell
+docker pull jeksterslab/dynr-rocker:latest
+```
+
+-  In `PowerShell` type the following to launch `Rstudio Server`[^docker-win-2]:
 
 [^docker-win-2]: Replace `jeksterslab/dynr-rocker` with `jeksterslab/dynr-arma-rocker` to use the `arma` branch.
 
@@ -58,6 +64,6 @@ If the above instructions fail, you might be using an older version of Windows. 
 docker run --rm -ti -e PASSWORD=yourpassword -p 8787:8787 jeksterslab/dynr-rocker
 ```
 
--   Open http://localhost:8787 on your web browser to launch `Rstudio Server`.
-    -   username: rstudio
-    -   password: yourpassword
+-  Open http://localhost:8787 on your web browser to launch `Rstudio Server`.
+    -  username: rstudio
+    -  password: yourpassword

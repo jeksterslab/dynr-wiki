@@ -5,6 +5,7 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch
 
 jobs:
 
@@ -25,7 +26,7 @@ jobs:
         run: apptainer build image.sif docker://jeksterslab/dynr-rocker:latest
       -
         name: Render Quarto Project
-        run: apptainer run image.sif quarto render .
+        run: apptainer exec image.sif quarto render .
       -
         name: Deploy to GitHub pages
         uses: JamesIves/github-pages-deploy-action@v4.4.1

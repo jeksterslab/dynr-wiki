@@ -12,3 +12,7 @@ library(dynr)
 ```{r}
 sessionInfo()
 ```
+
+```{r}
+readLines("/srv/build/CONTAINER_RELEASE_MSG")
+```

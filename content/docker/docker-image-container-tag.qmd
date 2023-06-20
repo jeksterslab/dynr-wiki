@@ -1,0 +1,40 @@
+---
+title: Docker Images, Containers, and Tags
+author: Ivan Jacob Agaloos Pesigan
+---
+
+A Docker **image** is a blueprint for a container. It's a read-only file that contains all the information needed to run an application, including the code, runtime, system tools, and libraries.
+
+A Docker **container** is a running instance of a Docker image. It's a lightweight, standalone, executable package of software that includes everything needed to run an application: code, runtime, system tools, system libraries, and settings.
+
+**Tags** are used by Docker to identify specific versions of images. When you create a container from an image, you can specify the tag that you want to use. This tells Docker which version of the image you want to create the container from.
+
+Here's an analogy that might help you understand the difference between images and containers. Imagine you have a recipe for a cake. The recipe is like a Docker **image**. It tells you everything you need to make the cake, including the ingredients, the steps, and the oven temperature. The cake itself is like a Docker **container**. It's the actual cake that you've made from the recipe. Furthermore, imagine you have a bookcase with a bunch of books on it. Each book has a title, and each title is a unique identifier for that book. You can also add tags to books, such as "fiction" or "non-fiction." These tags can be used to categorize the books on your bookcase. In the same way, Docker images have **tags** that can be used to identify and categorize them. Tags can be used to track changes to images, and they can also be used to create containers from specific versions of images.
+
+When you execute `docker run --rm -ti -e PASSWORD=yourpassword -p 8787:8787 jeksterslab/dynr-rocker` for the first time, Docker actually performs two things. First, it pulls the Docker **image** from Docker Hub. Second, it creates and runs a Docker **container** which is a web application that is accessible via port 8787 of the local host. The command actually pulls the `jeksterslab/dynr-rocker` Docker image with the default `latest` **tag**. When you execute  `docker run --rm -ti -e PASSWORD=yourpassword -p 8787:8787 jeksterslab/dynr-rocker` a second time, assuming you have stopped the previously spawned Docker container, Docker builds another container from the image that has been downloaded previously.
+
+Updates are pushed to the Docker Hub repository as changes are made to the `dynr` project. In order to get the latest version of the image, execute
+
+```bash
+docker pull jeksterslab/dynr-rocker:latest
+```
+
+As tags are simply categories, newer versions of the image can be pushed to a tag. For reproducibility, it is a good practice to pull using the digest with the secure hash value, which is an immutable identifier, to make sure you are pulling exactly the same version of the image.
+
+The following command displays the image/s in the system and the corresponding digest hash value.
+
+```bash
+docker images --digest
+```
+I only have one image in my system and the information are given below.
+
+```bash
+REPOSITORY                TAG       DIGEST                                                                    IMAGE ID       CREATED             SIZE
+jeksterslab/dynr-rocker   latest    sha256:fd0a1a3b812a004d71492280a0c0211f55189375b47d9e584cec4c5473e87d08   c1c0ee15c3b1   About an hour ago   3.05GB
+```
+
+In order to make sure you are pulling this version of the image, use the following command.
+
+```bash
+docker pull jeksterslab/dynr-rocker@sha256:fd0a1a3b812a004d71492280a0c0211f55189375b47d9e584cec4c5473e87d08
+```
