@@ -8,7 +8,7 @@
 
 <meta name="author" content="Ivan Jacob Agaloos Pesigan">
 
-<title>dynr Wiki - dynr Docker Container</title>
+<title>dynr Wiki - Docker Images, Containers, and Tags</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,26 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,8 +64,8 @@ div.csl-indent {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../content/docker/docker-win.html" rel="next">
-<link href="../../content/intro/intro.html" rel="prev">
+<link href="../../content/examples/var.html" rel="next">
+<link href="../../content/docker/docker-mac.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -92,7 +107,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/docker/docker.html">dynr Docker Container</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/docker/docker.html">dynr Docker Container</a></li><li class="breadcrumb-item"><a href="../../content/docker/docker-image-container-tag.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Docker Images, Containers, and Tags</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -132,7 +147,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../content/docker/docker.html" class="sidebar-item-text sidebar-link active">
+            <a href="../../content/docker/docker.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">dynr Docker Container</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -151,7 +166,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/docker/docker-image-container-tag.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Docker Images, Containers, and Tags</span></a>
+  <a href="../../content/docker/docker-image-container-tag.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Docker Images, Containers, and Tags</span></a>
   </div>
 </li>
       </ul>
@@ -206,7 +221,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">dynr Docker Container</h1>
+<h1 class="title"><span class="chapter-title">Docker Images, Containers, and Tags</span></h1>
 </div>
 
 
@@ -227,21 +242,23 @@ div.csl-indent {
 
 </header>
 
-<p>In order to facilitate the use of the <code>dynr</code> package, we have created an Rstudio Server <a href="https://www.docker.com/">Docker</a> container based on the <a href="https://rocker-project.org/">Rocker Project</a> <span class="citation" data-cites="Rocker2017 Rocker2020">(<a href="../references/references.html#ref-Rocker2017" role="doc-biblioref">Boettiger &amp; Eddelbuettel, 2017</a>; <a href="../references/references.html#ref-Rocker2020" role="doc-biblioref">Nüst et al., 2020</a>)</span>, with the <code>dynr</code> package pre-installed.</p>
-<ul>
-<li><a href="../../content/docker/docker-win.html">Windows using WSL 2</a></li>
-<li><a href="../../content/docker/docker-mac.html">macOS</a></li>
-</ul>
+<p>A Docker <strong>image</strong> is a blueprint for a container. It’s a read-only file that contains all the information needed to run an application, including the code, runtime, system tools, and libraries.</p>
+<p>A Docker <strong>container</strong> is a running instance of a Docker image. It’s a lightweight, standalone, executable package of software that includes everything needed to run an application: code, runtime, system tools, system libraries, and settings.</p>
+<p><strong>Tags</strong> are used by Docker to identify specific versions of images. When you create a container from an image, you can specify the tag that you want to use. This tells Docker which version of the image you want to create the container from.</p>
+<p>Here’s an analogy that might help you understand the difference between images and containers. Imagine you have a recipe for a cake. The recipe is like a Docker <strong>image</strong>. It tells you everything you need to make the cake, including the ingredients, the steps, and the oven temperature. The cake itself is like a Docker <strong>container</strong>. It’s the actual cake that you’ve made from the recipe. Furthermore, imagine you have a bookcase with a bunch of books on it. Each book has a title, and each title is a unique identifier for that book. You can also add tags to books, such as “fiction” or “non-fiction.” These tags can be used to categorize the books on your bookcase. In the same way, Docker images have <strong>tags</strong> that can be used to identify and categorize them. Tags can be used to track changes to images, and they can also be used to create containers from specific versions of images.</p>
+<p>When you execute <code>docker run --rm -ti -e PASSWORD=yourpassword -p 8787:8787 jeksterslab/dynr-rocker</code> for the first time, Docker actually performs two things. First, it pulls the Docker <strong>image</strong> from Docker Hub. Second, it creates and runs a Docker <strong>container</strong> which is a web application that is accessible via port 8787 of the local host. The command actually pulls the <code>jeksterslab/dynr-rocker</code> Docker image with the default <code>latest</code> <strong>tag</strong>. When you execute <code>docker run --rm -ti -e PASSWORD=yourpassword -p 8787:8787 jeksterslab/dynr-rocker</code> a second time, assuming you have stopped the previously spawned Docker container, Docker builds another container from the image that has been downloaded previously.</p>
+<p>Updates are pushed to the Docker Hub repository as changes are made to the <code>dynr</code> project. In order to get the latest version of the image, execute</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull jeksterslab/dynr-rocker:latest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As tags are simply categories, newer versions of the image can be pushed to a tag. For reproducibility, it is a good practice to pull using the digest with the secure hash value, which is an immutable identifier, to make sure you are pulling exactly the same version of the image.</p>
+<p>The following command displays the image/s in the system and the corresponding digest hash value.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images <span class="at">--digest</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>I only have one image in my system and the information are given below.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">REPOSITORY</span>                TAG       DIGEST                                                                    IMAGE ID       CREATED             SIZE</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">jeksterslab/dynr-rocker</span>   latest    sha256:fd0a1a3b812a004d71492280a0c0211f55189375b47d9e584cec4c5473e87d08   c1c0ee15c3b1   About an hour ago   3.05GB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In order to make sure you are pulling this version of the image, use the following command.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull jeksterslab/dynr-rocker@sha256:fd0a1a3b812a004d71492280a0c0211f55189375b47d9e584cec4c5473e87d08</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="list" style="display: none">
-<div id="ref-Rocker2017" class="csl-entry" role="listitem">
-Boettiger, C., &amp; Eddelbuettel, D. (2017). An introduction to <span>Rocker</span>: <span>Docker</span> containers for <span>R</span>. <em><span>The R Journal</span></em>, <em>9</em>(2), 527–536. <a href="https://doi.org/10.32614/RJ-2017-065">https://doi.org/10.32614/RJ-2017-065</a>
-</div>
-<div id="ref-Rocker2020" class="csl-entry" role="listitem">
-Nüst, D., Eddelbuettel, D., Bennett, D., Cannoodt, R., Clark, D., Daróczi, G., Edmondson, M., Fay, C., Hughes, E., Kjeldgaard, L., Lopp, S., Marwick, B., Nolis, H., Nolis, J., Ooi, H., Ram, K., Ross, N., Shepherd, L., Sólymos, P., … Xiao, N. (2020). The <span>Rockerverse</span>: Packages and applications for containerisation with <span>R</span>. <em><span>The R Journal</span></em>, <em>12</em>(1), 437–461. <a href="https://doi.org/10.32614/RJ-2020-007">https://doi.org/10.32614/RJ-2020-007</a>
-</div>
-</div>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -479,13 +496,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../content/intro/intro.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">dynr: Dynamic Models with Regime-Switching</span></span>
+      <a href="../../content/docker/docker-mac.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">macOS</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../content/docker/docker-win.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-title">Windows using WSL 2</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../content/examples/var.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-title">Fitting A Vector Autoregressive Model in dynr</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -493,4 +510,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jeksterslab/dynr-wiki/edit/main/content/docker/docker.qmd" class="toc-action">Edit this page</a></p></div></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jeksterslab/dynr-wiki/edit/main/content/docker/docker-image-container-tag.qmd" class="toc-action">Edit this page</a></p></div></div></div></div></footer></body></html>

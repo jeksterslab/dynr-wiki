@@ -85,7 +85,7 @@ div.csl-indent {
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
 <link href="../../content/references/references.html" rel="next">
-<link href="../../content/docker/docker-mac.html" rel="prev">
+<link href="../../content/docker/docker-image-container-tag.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -129,7 +129,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/examples/var.html">Examples</a></li><li class="breadcrumb-item"><a href="../../content/examples/var.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Fitting A Vector Autoregressive Model in dynr</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/examples/var.html">Examples</a></li><li class="breadcrumb-item"><a href="../../content/examples/var.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Fitting A Vector Autoregressive Model in dynr</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -184,6 +184,11 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/docker/docker-mac.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">macOS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/docker/docker-image-container-tag.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Docker Images, Containers, and Tags</span></a>
   </div>
 </li>
       </ul>
@@ -438,8 +443,8 @@ Transformed fitted parameters:  0.3848036 -0.2912888 -0.2295281 0.2850637
 
 Doing end processing
 Successful trial
-Total Time: 32.43427 
-Backend Time: 31.65134 </code></pre>
+Total Time: 54.30178 
+Backend Time: 53.26313 </code></pre>
 </div>
 </div>
 </section>
@@ -466,20 +471,20 @@ Backend Time: 31.65134 </code></pre>
       Estimate Std. Error t value ci.lower ci.upper Pr(&gt;|t|)    
 a      0.38480    0.01504  25.586  0.35533  0.41428   &lt;2e-16 ***
 b     -0.29129    0.01662 -17.526 -0.32386 -0.25871   &lt;2e-16 ***
-b1    -0.22953    0.01496 -15.340 -0.25885 -0.20020   &lt;2e-16 ***
-a1     0.28506    0.01654  17.240  0.25266  0.31747   &lt;2e-16 ***
-c      0.29505    0.02644  11.158  0.24322  0.34688   &lt;2e-16 ***
-c1     0.26948    0.02631  10.244  0.21793  0.32104   &lt;2e-16 ***
-d     -0.53582    0.01584 -33.823 -0.56687 -0.50477   &lt;2e-16 ***
+b1    -0.22953    0.01496 -15.339 -0.25886 -0.20020   &lt;2e-16 ***
+a1     0.28506    0.01654  17.239  0.25265  0.31747   &lt;2e-16 ***
+c      0.29505    0.02644  11.159  0.24323  0.34687   &lt;2e-16 ***
+c1     0.26948    0.02630  10.245  0.21793  0.32104   &lt;2e-16 ***
+d     -0.53582    0.01584 -33.824 -0.56687 -0.50477   &lt;2e-16 ***
 d1    -0.41778    0.01576 -26.507 -0.44867 -0.38689   &lt;2e-16 ***
-v_wp   0.99518    0.02613  38.084  0.94396  1.04640   &lt;2e-16 ***
-c_wh   0.32752    0.01936  16.913  0.28957  0.36547   &lt;2e-16 ***
-v_hp   0.98503    0.02587  38.082  0.93434  1.03573   &lt;2e-16 ***
-mu_wp  0.10776    0.13955   0.772 -0.16576  0.38128   0.2200    
-mu_hp  0.09481    0.11050   0.858 -0.12178  0.31139   0.1955    
-v_11   1.94905    0.27551   7.074  1.40907  2.48903   &lt;2e-16 ***
-c_21   0.33547    0.15791   2.124  0.02597  0.64497   0.0169 *  
-v_22   1.22169    0.17264   7.076  0.88332  1.56007   &lt;2e-16 ***
+v_wp   0.99518    0.02613  38.085  0.94397  1.04640   &lt;2e-16 ***
+c_wh   0.32752    0.01936  16.914  0.28957  0.36547   &lt;2e-16 ***
+v_hp   0.98503    0.02587  38.083  0.93434  1.03573   &lt;2e-16 ***
+mu_wp  0.10776    0.13958   0.772 -0.16581  0.38133   0.2201    
+mu_hp  0.09481    0.11058   0.857 -0.12193  0.31154   0.1957    
+v_11   1.94905    0.27568   7.070  1.40873  2.48938   &lt;2e-16 ***
+c_21   0.33547    0.15789   2.125  0.02602  0.64492   0.0168 *  
+v_22   1.22169    0.17272   7.073  0.88318  1.56021   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
@@ -782,8 +787,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../content/docker/docker-mac.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">macOS</span></span>
+      <a href="../../content/docker/docker-image-container-tag.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Docker Images, Containers, and Tags</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
