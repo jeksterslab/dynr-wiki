@@ -5,4 +5,4 @@ This website serves as a Wiki for consolidating documentation, knowledge bases, 
 ## Website
 
 The website is deployed in
-[https://jeksterslab.github.io/dynr-wiki/index.html](https://jeksterslab.github.io/dynr-wiki).
+[https://jeksterslab.github.io/dynr-wiki](https://jeksterslab.github.io/dynr-wiki).
