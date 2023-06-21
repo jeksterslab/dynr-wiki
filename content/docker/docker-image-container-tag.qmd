@@ -11,30 +11,32 @@ A Docker **container** is a running instance of a Docker image. It's a lightweig
 
 Here's an analogy that might help you understand the difference between images and containers. Imagine you have a recipe for a cake. The recipe is like a Docker **image**. It tells you everything you need to make the cake, including the ingredients, the steps, and the oven temperature. The cake itself is like a Docker **container**. It's the actual cake that you've made from the recipe. Furthermore, imagine you have a bookcase with a bunch of books on it. Each book has a title, and each title is a unique identifier for that book. You can also add tags to books, such as "fiction" or "non-fiction." These tags can be used to categorize the books on your bookcase. In the same way, Docker images have **tags** that can be used to identify and categorize them. Tags can be used to track changes to images, and they can also be used to create containers from specific versions of images.
 
-When you execute `docker run --rm -ti -e PASSWORD=yourpassword -p 8787:8787 jeksterslab/dynr-rocker` for the first time, Docker actually performs two things. First, it pulls the Docker **image** from Docker Hub. Second, it creates and runs a Docker **container** which is a web application that is accessible via port 8787 of the local host. The command actually pulls the `jeksterslab/dynr-rocker` Docker image with the default `latest` **tag**. When you execute  `docker run --rm -ti -e PASSWORD=yourpassword -p 8787:8787 jeksterslab/dynr-rocker` a second time, assuming you have stopped the previously spawned Docker container, Docker builds another container from the image that has been downloaded previously.
+When you execute `docker run --rm -ti -e PASSWORD=yourpassword -p 8787:8787 jeksterslab/dynr-rocker` for the first time, Docker actually performs two things. First, it pulls the Docker **image** from [Docker Hub](https://hub.docker.com/)[^docker-image-container-tag-1]. Second, it creates and runs a Docker **container** which is a web application that is accessible via port 8787 of the local host. The command actually pulls the `jeksterslab/dynr-rocker` Docker image with the default `latest` **tag**. When you execute `docker run --rm -ti -e PASSWORD=yourpassword -p 8787:8787 jeksterslab/dynr-rocker` a second time, Docker builds another container from the image that has been downloaded previously.
 
-Updates are pushed to the Docker Hub repository as changes are made to the `dynr` project. In order to get the latest version of the image, execute
+[^docker-image-container-tag-1]: Docker Hub is the remote repository of the `dynr` Docker images. A Docker Hub account is not required to use the `dynr` Docker images in Docker Hub. However, an account is required to view details of the `dynr` docker images.
 
-```bash
+Updates are pushed to the Docker Hub repository as changes are made to the `dynr` project. In order to get the latest version of the image, execute the following.
+
+``` bash
 docker pull jeksterslab/dynr-rocker:latest
 ```
 
-As tags are simply categories, newer versions of the image can be pushed to a tag. For reproducibility, it is a good practice to pull using the digest with the secure hash value, which is an immutable identifier, to make sure you are pulling exactly the same version of the image.
+As tags are simply categories, newer versions of the image can be pushed to a tag. For **reproducibility**, it is a good practice to pull using the **digest** with the secure hash value, which is an immutable identifier, to make sure you are pulling exactly the same version of the image. To get the digest for a particular tag in Docker Hub, go to <https://hub.docker.com/repository/docker/jeksterslab/dynr-rocker/general>. Under `Tags` click on the tag of interest. In our example, we click on the `latest` tag.
 
-The following command displays the image/s in the system and the corresponding digest hash value.
+![](../docker/dockerhub-general.png)
 
-```bash
-docker images --digest
+I have highlighted the digest for the `latest` tag in the screenshot below.
+
+![](../docker/dockerhub-digest.png)
+
+In order to make sure you are pulling this version of the image, for future use or for use on another machine, use the following command.
+
+``` bash
+docker pull jeksterslab/dynr-rocker@sha256:f60403254cd6f2057ba97c24e0990a2d9f7a7c4f163210b312b490ee6d155f0a
 ```
-I only have one image in my system and the information are given below.
+
+You can also append the digest to the run commad as follows.
 
 ```bash
-REPOSITORY                TAG       DIGEST                                                                    IMAGE ID       CREATED             SIZE
-jeksterslab/dynr-rocker   latest    sha256:fd0a1a3b812a004d71492280a0c0211f55189375b47d9e584cec4c5473e87d08   c1c0ee15c3b1   About an hour ago   3.05GB
-```
-
-In order to make sure you are pulling this version of the image, use the following command.
-
-```bash
-docker pull jeksterslab/dynr-rocker@sha256:fd0a1a3b812a004d71492280a0c0211f55189375b47d9e584cec4c5473e87d08
+docker run --rm -ti -e PASSWORD=yourpassword -p 8787:8787 jeksterslab/dynr-rocker@sha256:f60403254cd6f2057ba97c24e0990a2d9f7a7c4f163210b312b490ee6d155f0a
 ```
