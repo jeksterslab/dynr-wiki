@@ -5,9 +5,12 @@ author: Ivan Jacob Agaloos Pesigan
 
 In this tutorial, we will go through the necessary steps to launch the `dynr` Docker container on macOS.
 
+<!--
 ::: callout-note
 For a better terminal experience, you can, optionally, install `iTerm2`.  
 :::
+-->
+
 
 ## Installing Docker Desktop
 
