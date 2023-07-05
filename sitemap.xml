@@ -2,38 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://jeksterslab.github.io/dynr-wiki/index.html/index.html</loc>
-    <lastmod>2023-06-21T17:45:01.102Z</lastmod>
+    <lastmod>2023-07-05T17:16:54.309Z</lastmod>
   </url>
   <url>
     <loc>https://jeksterslab.github.io/dynr-wiki/index.html/content/intro/intro.html</loc>
-    <lastmod>2023-06-21T17:45:01.110Z</lastmod>
+    <lastmod>2023-07-05T17:16:54.317Z</lastmod>
   </url>
   <url>
     <loc>https://jeksterslab.github.io/dynr-wiki/index.html/content/docker/docker.html</loc>
-    <lastmod>2023-06-21T17:45:01.114Z</lastmod>
+    <lastmod>2023-07-05T17:16:54.321Z</lastmod>
   </url>
   <url>
     <loc>https://jeksterslab.github.io/dynr-wiki/index.html/content/docker/docker-win.html</loc>
-    <lastmod>2023-06-21T17:45:01.122Z</lastmod>
+    <lastmod>2023-07-05T17:16:54.329Z</lastmod>
   </url>
   <url>
     <loc>https://jeksterslab.github.io/dynr-wiki/index.html/content/docker/docker-mac.html</loc>
-    <lastmod>2023-06-21T17:45:01.126Z</lastmod>
+    <lastmod>2023-07-05T17:16:54.333Z</lastmod>
   </url>
   <url>
     <loc>https://jeksterslab.github.io/dynr-wiki/index.html/content/docker/docker-image-container-tag.html</loc>
-    <lastmod>2023-06-21T17:45:01.134Z</lastmod>
+    <lastmod>2023-07-05T17:16:54.341Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeksterslab.github.io/dynr-wiki/index.html/content/docker/docker-volumes.html</loc>
+    <lastmod>2023-07-05T17:16:54.345Z</lastmod>
   </url>
   <url>
     <loc>https://jeksterslab.github.io/dynr-wiki/index.html/content/examples/var.html</loc>
-    <lastmod>2023-06-21T17:45:01.162Z</lastmod>
+    <lastmod>2023-07-05T17:16:54.373Z</lastmod>
   </url>
   <url>
     <loc>https://jeksterslab.github.io/dynr-wiki/index.html/content/references/references.html</loc>
-    <lastmod>2023-06-21T17:45:01.166Z</lastmod>
+    <lastmod>2023-07-05T17:16:54.377Z</lastmod>
   </url>
   <url>
     <loc>https://jeksterslab.github.io/dynr-wiki/index.html/content/session/session.html</loc>
-    <lastmod>2023-06-21T17:45:01.170Z</lastmod>
+    <lastmod>2023-07-05T17:16:54.381Z</lastmod>
   </url>
 </urlset>

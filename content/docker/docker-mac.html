@@ -169,6 +169,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <a href="../../content/docker/docker-image-container-tag.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Docker Images, Containers, and Tags</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/docker/docker-volumes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Docker Volumes</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -282,7 +287,7 @@ Note
 <li>Launch <code>Docker Desktop</code>.</li>
 <li>Type the following to launch <code>Rstudio Server</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> on your macOS terminal:</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-ti</span> <span class="at">-e</span> PASSWORD=yourpassword <span class="at">-p</span> 8787:8787 jeksterslab/dynr-rocker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-ti</span> <span class="at">-e</span> PASSWORD=yourpassword <span class="at">-p</span> 127.0.0.1:8787:8787 jeksterslab/dynr-rocker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Open http://localhost:8787 on your web browser to launch <code>Rstudio Server</code>.
 <ul>
