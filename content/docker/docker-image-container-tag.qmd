@@ -11,7 +11,7 @@ A Docker **container** is a running instance of a Docker image. It's a lightweig
 
 Here's an analogy that might help you understand the difference between images and containers. Imagine you have a recipe for a cake. The recipe is like a Docker **image**. It tells you everything you need to make the cake, including the ingredients, the steps, and the oven temperature. The cake itself is like a Docker **container**. It's the actual cake that you've made from the recipe. Furthermore, imagine you have a bookcase with a bunch of books on it. Each book has a title, and each title is a unique identifier for that book. You can also add tags to books, such as "fiction" or "non-fiction." These tags can be used to categorize the books on your bookcase. In the same way, Docker images have **tags** that can be used to identify and categorize them. Tags can be used to track changes to images, and they can also be used to create containers from specific versions of images.
 
-When you execute `docker run --rm -ti -e PASSWORD=yourpassword -p 8787:8787 jeksterslab/dynr-rocker` for the first time, Docker actually performs two things. First, it pulls the Docker **image** from [Docker Hub](https://hub.docker.com/)[^docker-image-container-tag-1]. Second, it creates and runs a Docker **container** which is a web application that is accessible via port 8787 of the local host. The command actually pulls the `jeksterslab/dynr-rocker` Docker image with the default `latest` **tag**. When you execute `docker run --rm -ti -e PASSWORD=yourpassword -p 8787:8787 jeksterslab/dynr-rocker` a second time, Docker builds another container from the image that has been downloaded previously.
+When you execute `docker run --rm -ti -e PASSWORD=yourpassword -p 127.0.0.1:8787:8787 jeksterslab/dynr-rocker` for the first time, Docker actually performs two things. First, it pulls the Docker **image** from [Docker Hub](https://hub.docker.com/)[^docker-image-container-tag-1]. Second, it creates and runs a Docker **container** which is a web application that is accessible via port 8787 of the local host. The command actually pulls the `jeksterslab/dynr-rocker` Docker image with the default `latest` **tag**. When you execute `docker run --rm -ti -e PASSWORD=yourpassword -p 127.0.0.1:8787:8787 jeksterslab/dynr-rocker` a second time, Docker builds another container from the image that has been downloaded previously.
 
 [^docker-image-container-tag-1]: Docker Hub is the remote repository of the `dynr` Docker images. A Docker Hub account is not required to use the `dynr` Docker images in Docker Hub. However, an account is required to view details of the `dynr` docker images.
 
@@ -38,5 +38,5 @@ docker pull jeksterslab/dynr-rocker@sha256:f60403254cd6f2057ba97c24e0990a2d9f7a7
 You can also append the digest to the run commad as follows.
 
 ```bash
-docker run --rm -ti -e PASSWORD=yourpassword -p 8787:8787 jeksterslab/dynr-rocker@sha256:f60403254cd6f2057ba97c24e0990a2d9f7a7c4f163210b312b490ee6d155f0a
+docker run --rm -ti -e PASSWORD=yourpassword -p 127.0.0.1:8787:8787 jeksterslab/dynr-rocker@sha256:f60403254cd6f2057ba97c24e0990a2d9f7a7c4f163210b312b490ee6d155f0a
 ```

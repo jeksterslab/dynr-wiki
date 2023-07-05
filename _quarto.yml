@@ -21,6 +21,7 @@ book:
       - content/docker/docker-win.qmd
       - content/docker/docker-mac.qmd
       - content/docker/docker-image-container-tag.qmd
+      - content/docker/docker-volumes.qmd
     - part: "Examples"
       chapters: 
       - content/examples/var.qmd

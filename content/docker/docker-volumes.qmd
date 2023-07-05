@@ -1,0 +1,18 @@
+---
+title: Docker Volumes
+author: Ivan Jacob Agaloos Pesigan
+---
+
+By default files created inside the Docker container does not persist when the container is stopped. We can mount a persistent volume on your Docker container using the `-v` flag. The idea here is that Docker maps a volume of the local host machine to a volume inside the Docker container. Let's say we have a folder `dynr_project` inside the local `Documents` folder. We can mount that volume using the following for Windows
+
+```bash
+docker run -v C:\Users\user\Documents\dynr_project:/home/rstudio/working-dir --rm -ti -e PASSWORD=yourpassword -p 127.0.0.1:8787:8787 jeksterslab/dynr-rocker
+```
+
+and for mac
+
+```bash
+docker run -v /Users/username/Documents/dynr_project:/home/rstudio/working-dir --rm -ti -e PASSWORD=yourpassword -p 127.0.0.1:8787:8787 jeksterslab/dynr-rocker
+```
+
+The directory on the left size of the colon is an existing directory on the host machine that the current user has read and write access to. The directory on the right side of the colon is the default working directory inside the Docker container. If you make changes inside the Docker container on files inside `/home/rstudio/working-dir`, the changes will persist on the mounted `dynr_project` folder. If you make changes in the `dynr_project` folder, they will be reflected on `/home/rstudio/working-dir` of the currently running container.
