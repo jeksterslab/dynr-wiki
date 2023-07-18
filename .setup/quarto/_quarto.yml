@@ -1,6 +1,6 @@
 project:
   type: book
-  output-dir: docs
+  output-dir: quarto
 
 book:
   title: "dynr Wiki"
@@ -15,21 +15,21 @@ book:
     pinned: true
   chapters:
     - index.qmd
-    - content/intro/intro.qmd
-    - part: content/docker/docker.qmd
+    - .setup/quarto/intro/intro.qmd
+    - part: .setup/quarto/docker/docker.qmd
       chapters: 
-      - content/docker/docker-win.qmd
-      - content/docker/docker-mac.qmd
-      - content/docker/docker-image-container-tag.qmd
-      - content/docker/docker-volumes.qmd
+      - .setup/quarto/docker/docker-win.qmd
+      - .setup/quarto/docker/docker-mac.qmd
+      - .setup/quarto/docker/docker-image-container-tag.qmd
+      - .setup/quarto/docker/docker-volumes.qmd
     - part: "Examples"
       chapters: 
-      - content/examples/var.qmd
-    - content/references/references.qmd
+      - .setup/quarto/examples/var.qmd
+    - .setup/quarto/references/references.qmd
   appendices:
-    - content/session/session.qmd
+    - .setup/quarto/session/session.qmd
 
-bibliography: content/references/references.bib
+bibliography: .setup/quarto/bib/quarto.bib
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 
 format:

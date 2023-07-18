@@ -1,0 +1,11 @@
+---
+title: dynr Docker Container
+author: Ivan Jacob Agaloos Pesigan
+---
+
+In order to facilitate the use of the `dynr` package, we have created an Rstudio Server [Docker](https://www.docker.com/) container based on the [Rocker Project](https://rocker-project.org/) [@Boettiger-Eddelbuettel-2017; @Nust-Eddelbuettel-Bennett-etal-2020], with the `dynr` package pre-installed.
+
+- [Windows using WSL 2](docker-win.qmd)
+- [macOS](docker-mac.qmd)
+- [Docker Images, Containers, and Tags](docker-image-container-tag.qmd)
+- [Docker Volumes](docker-volumes.qmd)

@@ -11,7 +11,6 @@ For a better terminal experience, you can, optionally, install `iTerm2`.
 :::
 -->
 
-
 ## Installing Docker Desktop
 
 -  Download the the appropriate Docker Desktop for macOS (Intel vs. M1) from [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/).
