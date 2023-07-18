@@ -1,0 +1,198 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "dynr Wiki",
+    "section": "",
+    "text": "This website serves as a Wiki for consolidating documentation, knowledge bases, and other relevant information pertaining to the dynr package. The intention is not to supplant existing sources of information, for example, https://CRAN.R-project.org/package=dynr and https://github.com/mhunter1/dynr, but to supplement them."
+  },
+  {
+    "objectID": ".setup/quarto/intro/intro.html#description",
+    "href": ".setup/quarto/intro/intro.html#description",
+    "title": "dynr: Dynamic Models with Regime-Switching",
+    "section": "Description",
+    "text": "Description\nIntensive longitudinal data have become increasingly prevalent in various scientific disciplines. Many such data sets are noisy, multivariate, and multi-subject in nature. The change functions may also be continuous, or continuous but interspersed with periods of discontinuities (i.e., showing regime switches). The package dynr (Dynamic Modeling in R) is an R package that implements a set of computationally efficient algorithms for handling a broad class of linear and nonlinear discrete- and continuous- time models with regime-switching properties under the constraint of linear Gaussian measurement functions. The discrete-time models can generally take on the form of a state-space or difference equation model. The continuous-time models are generally expressed as a set of ordinary or stochastic differential equations. All estimation and computations are performed in C, but users are provided with the option to specify the model of interest via a set of simple and easy-to-learn model specification functions in R. Model fitting can be performed using single-subject time series data or multiple-subject longitudinal data. Ou et al. (2019) provided a detailed introduction to the interface and more information on the algorithms."
+  },
+  {
+    "objectID": ".setup/quarto/intro/intro.html#cran",
+    "href": ".setup/quarto/intro/intro.html#cran",
+    "title": "dynr: Dynamic Models with Regime-Switching",
+    "section": "CRAN",
+    "text": "CRAN\nThe Comprehensive R Archive Network (CRAN) release of the dynr package is available at https://CRAN.R-project.org/package=dynr."
+  },
+  {
+    "objectID": ".setup/quarto/intro/intro.html#github",
+    "href": ".setup/quarto/intro/intro.html#github",
+    "title": "dynr: Dynamic Models with Regime-Switching",
+    "section": "GitHub",
+    "text": "GitHub\nThe development version of the dynr package is available at https://github.com/mhunter1/dynr.\n\n\n\n\nOu, L., Hunter, M. D., & Chow, S.-M. (2019). What’s for dynr: A package for linear and nonlinear dynamic modeling in R. The R Journal, 11(1), 91. https://doi.org/10.32614/rj-2019-012"
+  },
+  {
+    "objectID": ".setup/quarto/docker/docker.html",
+    "href": ".setup/quarto/docker/docker.html",
+    "title": "dynr Docker Container",
+    "section": "",
+    "text": "In order to facilitate the use of the dynr package, we have created an Rstudio Server Docker container based on the Rocker Project (Boettiger & Eddelbuettel, 2017; Nüst et al., 2020), with the dynr package pre-installed.\n\nWindows using WSL 2\nmacOS\nDocker Images, Containers, and Tags\nDocker Volumes\n\n\n\n\n\nBoettiger, C., & Eddelbuettel, D. (2017). An introduction to Rocker: Docker containers for R. The R Journal, 9(2), 527. https://doi.org/10.32614/rj-2017-065\n\n\nNüst, D., Eddelbuettel, D., Bennett, D., Cannoodt, R., Clark, D., Dar’oczi, G., Edmondson, M., Fay, C., Hughes, E., Kjeldgaard, L., Lopp, S., Marwick, B., Nolis, H., Nolis, J., Ooi, H., Ram, K., Ross, N., Shepherd, L., S’olymos, P., … Xiao, N. (2020). The Rockerverse: Packages and applications for containerisation with R. The R Journal, 12(1), 437. https://doi.org/10.32614/rj-2020-007"
+  },
+  {
+    "objectID": ".setup/quarto/docker/docker-win.html#installing-windows-subsystem-for-linux-wsl",
+    "href": ".setup/quarto/docker/docker-win.html#installing-windows-subsystem-for-linux-wsl",
+    "title": "Windows using WSL 2",
+    "section": "Installing Windows Subsystem for Linux (WSL)",
+    "text": "Installing Windows Subsystem for Linux (WSL)\n\nIn PowerShell1, type the following:\n\nwsl --install --distribution Ubuntu\n\n\n\n\n\n\nNote\n\n\n\nThere are times when the operating system requires a restart. After restarting, when the installation is successful, a new application Ubuntu will be available. Launch this application to continue.\n\n\n\nWhen prompted:\n\nEnter new UNIX username:\nNew password:\nRetype new password:\n\nYou should see a prompt similar to the following which indicates that you are inside the newly installed Ubuntu instance. In the prompt, type exit to exit Ubuntu.\n\nUSER@HOST:~$\n\nYou might need to update the kernel. You can do this with the following:\n\nDownload the Linux kernel update package from https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi\nDouble-click wsl_update_x64.msi to update the kernel.\n\nA system restart might be a good idea for all the changes to take effect.\n\nIf the above instructions fail, you might be using an older version of Windows. See https://learn.microsoft.com/en-us/windows/wsl/install-manual for more details on how to manually install WSL."
+  },
+  {
+    "objectID": ".setup/quarto/docker/docker-win.html#installing-docker-desktop",
+    "href": ".setup/quarto/docker/docker-win.html#installing-docker-desktop",
+    "title": "Windows using WSL 2",
+    "section": "Installing Docker Desktop",
+    "text": "Installing Docker Desktop\n\nDownload the the appropriate Docker Desktop for Windows from https://www.docker.com/products/docker-desktop/.\nDouble-click Desktop Installer.exe to install Docker Desktop.\nLaunch Docker Desktop.\n\nClick the Accept button to accept the terms of service to continue."
+  },
+  {
+    "objectID": ".setup/quarto/docker/docker-win.html#running-the-dynr-docker-container",
+    "href": ".setup/quarto/docker/docker-win.html#running-the-dynr-docker-container",
+    "title": "Windows using WSL 2",
+    "section": "Running the dynr Docker Container",
+    "text": "Running the dynr Docker Container\n\nLaunch Docker Desktop.\nIn PowerShell type the following to pull the latest Docker image2:\n\ndocker pull jeksterslab/dynr-rocker:latest\n\nIn PowerShell type the following to launch Rstudio Server3:\n\ndocker run --rm -ti -e PASSWORD=yourpassword -p 127.0.0.1:8787:8787 jeksterslab/dynr-rocker\n\nOpen http://localhost:8787 on your web browser to launch Rstudio Server.\n\nusername: rstudio\npassword: yourpassword"
+  },
+  {
+    "objectID": ".setup/quarto/docker/docker-win.html#footnotes",
+    "href": ".setup/quarto/docker/docker-win.html#footnotes",
+    "title": "Windows using WSL 2",
+    "section": "",
+    "text": "Run all instances of PowerShell as administration.↩︎\nReplace jeksterslab/dynr-rocker with jeksterslab/dynr-arma-rocker to use the arma branch.↩︎\nReplace jeksterslab/dynr-rocker with jeksterslab/dynr-arma-rocker to use the arma branch.↩︎"
+  },
+  {
+    "objectID": ".setup/quarto/docker/docker-mac.html#installing-docker-desktop",
+    "href": ".setup/quarto/docker/docker-mac.html#installing-docker-desktop",
+    "title": "macOS",
+    "section": "Installing Docker Desktop",
+    "text": "Installing Docker Desktop\n\nDownload the the appropriate Docker Desktop for macOS (Intel vs. M1) from https://www.docker.com/products/docker-desktop/.\nDouble-click Desktop.dmg to install Docker Desktop.\nDrag Docker.app to the Applications folder.\nLaunch Docker from the Launchpad.\n\nThe system would ask for your macOS user password.\nClick the Accept button to accept the terms of service to continue."
+  },
+  {
+    "objectID": ".setup/quarto/docker/docker-mac.html#running-the-dynr-docker-container",
+    "href": ".setup/quarto/docker/docker-mac.html#running-the-dynr-docker-container",
+    "title": "macOS",
+    "section": "Running the dynr Docker Container",
+    "text": "Running the dynr Docker Container\n\nLaunch Docker Desktop.\nType the following to launch Rstudio Server1 on your macOS terminal:\n\ndocker run --rm -ti -e PASSWORD=yourpassword -p 127.0.0.1:8787:8787 jeksterslab/dynr-rocker\n\nOpen http://localhost:8787 on your web browser to launch Rstudio Server.\n\nusername: rstudio\npassword: yourpassword"
+  },
+  {
+    "objectID": ".setup/quarto/docker/docker-mac.html#footnotes",
+    "href": ".setup/quarto/docker/docker-mac.html#footnotes",
+    "title": "macOS",
+    "section": "",
+    "text": "Replace jeksterslab/dynr-rocker with jeksterslab/dynr-arma-rocker to use the arma branch.↩︎"
+  },
+  {
+    "objectID": ".setup/quarto/docker/docker-image-container-tag.html#footnotes",
+    "href": ".setup/quarto/docker/docker-image-container-tag.html#footnotes",
+    "title": "Docker Images, Containers, and Tags",
+    "section": "",
+    "text": "Docker Hub is the remote repository of the dynr Docker images. A Docker Hub account is not required to use the dynr Docker images in Docker Hub. However, an account is required to view details of the dynr docker images.↩︎"
+  },
+  {
+    "objectID": ".setup/quarto/docker/docker-volumes.html",
+    "href": ".setup/quarto/docker/docker-volumes.html",
+    "title": "Docker Volumes",
+    "section": "",
+    "text": "By default files created inside the Docker container does not persist when the container is stopped. We can mount a persistent volume on your Docker container using the -v flag. The idea here is that Docker maps a volume of the local host machine to a volume inside the Docker container. Let’s say we have a folder dynr_project inside the local Documents folder. We can mount that volume using the following for Windows\ndocker run -v C:\\Users\\user\\Documents\\dynr_project:/home/rstudio/working-dir --rm -ti -e PASSWORD=yourpassword -p 127.0.0.1:8787:8787 jeksterslab/dynr-rocker\nand for mac\ndocker run -v /Users/username/Documents/dynr_project:/home/rstudio/working-dir --rm -ti -e PASSWORD=yourpassword -p 127.0.0.1:8787:8787 jeksterslab/dynr-rocker\nThe directory on the left size of the colon is an existing directory on the host machine that the current user has read and write access to. The directory on the right side of the colon is the default working directory inside the Docker container. If you make changes inside the Docker container on files inside /home/rstudio/working-dir, the changes will persist on the mounted dynr_project folder. If you make changes in the dynr_project folder, they will be reflected on /home/rstudio/working-dir of the currently running container."
+  },
+  {
+    "objectID": ".setup/quarto/examples/var.html#overview",
+    "href": ".setup/quarto/examples/var.html#overview",
+    "title": "Fitting A Vector Autoregressive Model in dynr",
+    "section": "Overview",
+    "text": "Overview\nThis is an illustrative example of implementing a vector autoregressive (VAR) model."
+  },
+  {
+    "objectID": ".setup/quarto/examples/var.html#preliminary",
+    "href": ".setup/quarto/examples/var.html#preliminary",
+    "title": "Fitting A Vector Autoregressive Model in dynr",
+    "section": "Preliminary",
+    "text": "Preliminary\nLoading the libraries used in this script and setting the path.\n\nlibrary(dynr)\n\nGetting the simulated data.\n\ndat &lt;- \"https://raw.githubusercontent.com/psu-psychology/r-bootcamp-2019/master/demos/dynr/Data/VARsim.csv\"\nVARsim &lt;- read.table(\n  dat,\n  sep = \",\",\n  header = TRUE\n)\nVARsim$ca &lt;- as.factor(VARsim$ca)"
+  },
+  {
+    "objectID": ".setup/quarto/examples/var.html#data-description",
+    "href": ".setup/quarto/examples/var.html#data-description",
+    "title": "Fitting A Vector Autoregressive Model in dynr",
+    "section": "Data description",
+    "text": "Data description\nThis example is inspired by a published study aimed at exploring the dynamics of inter-parental emotion states and behaviors at the end of conflicts, and associations with child emotions and behaviors during conflicts (Schermerhorn2010?). To analyze over-time and lagged dependencies in the couples’ dynamics and possible associations with child-related variable, we considered the following model:\n\n\\[wp(t) = a \\times wp(t-1) + b \\times hp(t-1) + c \\times ca(t) + d \\times cn(t) + we(t) \\] \\[hp(t) = a_1 \\times hp(t-1) + b_1 \\times wp(t-1) + c_1 \\times ca(t) + d_1 \\times cn(t) + he(t)\\]\nwhere \\(wp\\) and \\(hp\\) are two dependent variables representing the emotional ratings of wife and husband respectively; \\(ca\\) is a covariate representing an aggregate measure of the child’s agentic behavior (e.g. helping out, taking sides, and comforting the parents); \\(cn\\) is a covariate representing an aggregate measure of the child’s negative emotions and dysregulated behaviors (e.g., anger, sadness, and fear).\nThe simulated data were generated from the above model. The data contain 100 subjects (N = 100) and 30 time points (T = 30) for each subject.\nThe trajectories of emotional ratings of wife and husband for two families are shown below.\n\nggplot(\n  data = subset(VARsim, ID &gt;= 5 & ID &lt;= 6)\n) +\n  geom_line(aes(x = Time, y = wp, col = \"wp\")) +\n  geom_line(aes(x = Time, y = hp, col = \"hp\")) +\n  labs(col = \"Variable\", x = \"Time\", y = \"wp and hp\") +\n  theme_classic() +\n  # scale_colour_manual(values = c(\"pink\", \"purple\")) +\n  facet_wrap(~ paste0(\"ID:\", ID), dir = \"v\")"
+  },
+  {
+    "objectID": ".setup/quarto/examples/var.html#declare-the-data-with-the-dynr.data-function",
+    "href": ".setup/quarto/examples/var.html#declare-the-data-with-the-dynr.data-function",
+    "title": "Fitting A Vector Autoregressive Model in dynr",
+    "section": "Declare the data with the dynr.data() function",
+    "text": "Declare the data with the dynr.data() function\n\nrawdata &lt;- dynr.data(\n  VARsim,\n  id = \"ID\",\n  time = \"Time\",\n  observed = c(\"wp\", \"hp\"),\n  covariates = c(\"ca\", \"cn\")\n)"
+  },
+  {
+    "objectID": ".setup/quarto/examples/var.html#define-elements-of-the-measurement-model",
+    "href": ".setup/quarto/examples/var.html#define-elements-of-the-measurement-model",
+    "title": "Fitting A Vector Autoregressive Model in dynr",
+    "section": "Define elements of the measurement model",
+    "text": "Define elements of the measurement model\n\nmeas &lt;- prep.measurement(\n  values.load = matrix(c(1, 0, 0, 1), ncol = 2, byrow = T),\n  params.load = matrix(rep(\"fixed\", 4), ncol = 2),\n  state.names = c(\"wp\", \"hp\"),\n  obs.names = c(\"wp\", \"hp\")\n)"
+  },
+  {
+    "objectID": ".setup/quarto/examples/var.html#define-elements-of-the-dynamic-model",
+    "href": ".setup/quarto/examples/var.html#define-elements-of-the-dynamic-model",
+    "title": "Fitting A Vector Autoregressive Model in dynr",
+    "section": "Define elements of the dynamic model",
+    "text": "Define elements of the dynamic model\n\nformula &lt;- list(\n  list(\n    wp ~ a * wp + b * hp + c * ca + d * cn,\n    hp ~ a1 * hp + b1 * wp + c1 * ca + d1 * cn\n  )\n)\n\ndynm &lt;- prep.formulaDynamics(\n  formula = formula,\n  startval = c(\n    a = .4, b = -.3, b1 = -.2, a1 = .3,\n    c = .3, c1 = .3, d = -.5, d1 = -.4\n  ),\n  isContinuousTime = FALSE\n)"
+  },
+  {
+    "objectID": ".setup/quarto/examples/var.html#define-the-initial-conditions-of-the-latent-variables-at-time-1",
+    "href": ".setup/quarto/examples/var.html#define-the-initial-conditions-of-the-latent-variables-at-time-1",
+    "title": "Fitting A Vector Autoregressive Model in dynr",
+    "section": "Define the initial conditions of the latent variables at time 1",
+    "text": "Define the initial conditions of the latent variables at time 1\n\ninitial &lt;- prep.initial(\n  values.inistate = c(-.5, -.9),\n  params.inistate = c(\"mu_wp\", \"mu_hp\"),\n  values.inicov = matrix(\n    c(1, -0.3, -0.3, 1),\n    byrow = T,\n    ncol = 2\n  ),\n  params.inicov = matrix(\n    c(\"v_11\", \"c_21\", \"c_21\", \"v_22\"),\n    byrow = T,\n    ncol = 2\n  )\n)"
+  },
+  {
+    "objectID": ".setup/quarto/examples/var.html#define-the-structures-of-the-measurement-noise-covariance-matrix-and-the-dynamic-noise-covariance-matrix",
+    "href": ".setup/quarto/examples/var.html#define-the-structures-of-the-measurement-noise-covariance-matrix-and-the-dynamic-noise-covariance-matrix",
+    "title": "Fitting A Vector Autoregressive Model in dynr",
+    "section": "Define the structures of the measurement noise covariance matrix and the dynamic noise covariance matrix",
+    "text": "Define the structures of the measurement noise covariance matrix and the dynamic noise covariance matrix\n\nmdcov &lt;- prep.noise(\n  values.latent = matrix(\n    c(1.0, 0.2, 0.2, 1.0),\n    byrow = T,\n    ncol = 2\n  ),\n  params.latent = matrix(\n    c(\"v_wp\", \"c_wh\", \"c_wh\", \"v_hp\"),\n    byrow = T,\n    ncol = 2\n  ),\n  values.observed = diag(rep(0, 2)),\n  params.observed = diag(c(\"fixed\", \"fixed\"), 2)\n)"
+  },
+  {
+    "objectID": ".setup/quarto/examples/var.html#pass-data-and-submodels-to-dynrmodel-object-and-cook",
+    "href": ".setup/quarto/examples/var.html#pass-data-and-submodels-to-dynrmodel-object-and-cook",
+    "title": "Fitting A Vector Autoregressive Model in dynr",
+    "section": "Pass data and submodels to dynrModel object and “cook”",
+    "text": "Pass data and submodels to dynrModel object and “cook”\n\nmodel &lt;- dynr.model(\n  dynamics = dynm,\n  measurement = meas,\n  noise = mdcov,\n  initial = initial,\n  data = rawdata,\n  outfile = paste(\"trial.c\", sep = \"\")\n)\nresults &lt;- dynr.cook(\n  model,\n  debug_flag = TRUE,\n  verbose = FALSE\n)\n\n[1] \"Get ready!!!!\"\nusing C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0’\nOptimization function called.\nStarting Hessian calculation ...\nFinished Hessian calculation.\nOriginal exit flag:  3 \nModified exit flag:  3 \nOptimization terminated successfully: ftol_rel or ftol_abs was reached. \nOriginal fitted parameters:  0.3848036 -0.2912888 -0.2295281 0.2850637 \n0.2950499 0.2694823 -0.5358179 -0.4177793 -0.004831377 0.3291069 -0.1309684 \n0.1077609 0.09480576 0.6673443 0.17212 0.1518221 \n\nTransformed fitted parameters:  0.3848036 -0.2912888 -0.2295281 0.2850637 \n0.2950499 0.2694823 -0.5358179 -0.4177793 0.9951803 0.3275207 0.9850348 \n0.1077609 0.09480576 1.949054 0.3354712 1.221694 \n\nDoing end processing\nSuccessful trial\nTotal Time: 34.67215 \nBackend Time: 34.13529"
+  },
+  {
+    "objectID": ".setup/quarto/examples/var.html#plot-the-formula",
+    "href": ".setup/quarto/examples/var.html#plot-the-formula",
+    "title": "Fitting A Vector Autoregressive Model in dynr",
+    "section": "Plot the Formula",
+    "text": "Plot the Formula\n\nplotFormula(\n  dynrModel = model,\n  ParameterAs = model$\"param.names\",\n  printDyn = TRUE,\n  printMeas = TRUE\n)"
+  },
+  {
+    "objectID": ".setup/quarto/examples/var.html#compare-true-parameters-to-estimated-ones",
+    "href": ".setup/quarto/examples/var.html#compare-true-parameters-to-estimated-ones",
+    "title": "Fitting A Vector Autoregressive Model in dynr",
+    "section": "Compare true parameters to estimated ones",
+    "text": "Compare true parameters to estimated ones\n\nsummary(results)\n\nCoefficients:\n      Estimate Std. Error t value ci.lower ci.upper Pr(&gt;|t|)    \na      0.38480    0.01504  25.586  0.35533  0.41428   &lt;2e-16 ***\nb     -0.29129    0.01662 -17.526 -0.32386 -0.25871   &lt;2e-16 ***\nb1    -0.22953    0.01496 -15.340 -0.25885 -0.20020   &lt;2e-16 ***\na1     0.28506    0.01654  17.240  0.25266  0.31747   &lt;2e-16 ***\nc      0.29505    0.02644  11.158  0.24322  0.34688   &lt;2e-16 ***\nc1     0.26948    0.02631  10.244  0.21793  0.32104   &lt;2e-16 ***\nd     -0.53582    0.01584 -33.823 -0.56687 -0.50477   &lt;2e-16 ***\nd1    -0.41778    0.01576 -26.507 -0.44867 -0.38689   &lt;2e-16 ***\nv_wp   0.99518    0.02613  38.084  0.94396  1.04640   &lt;2e-16 ***\nc_wh   0.32752    0.01936  16.913  0.28957  0.36547   &lt;2e-16 ***\nv_hp   0.98503    0.02587  38.082  0.93434  1.03573   &lt;2e-16 ***\nmu_wp  0.10776    0.13955   0.772 -0.16576  0.38128   0.2200    \nmu_hp  0.09481    0.11050   0.858 -0.12178  0.31139   0.1955    \nv_11   1.94905    0.27551   7.074  1.40907  2.48903   &lt;2e-16 ***\nc_21   0.33547    0.15791   2.124  0.02597  0.64497   0.0169 *  \nv_22   1.22169    0.17264   7.076  0.88332  1.56007   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n-2 log-likelihood value at convergence = 16715.66\nAIC = 16747.66\nBIC = 16843.76\n\ntruep &lt;- c(\n  a = 0.4, b = -0.3, b1 = -0.2, a1 = 0.3,\n  c = 0.3, c1 = 0.3, d = -0.5, d1 = -0.4,\n  v_wp = 1, c_wh = .3, v_hp = 1\n)\n\nestp &lt;- round(coef(results)[1:11], 3)\ndata.frame(truep, estp)\n\n     truep   estp\na      0.4  0.385\nb     -0.3 -0.291\nb1    -0.2 -0.230\na1     0.3  0.285\nc      0.3  0.295\nc1     0.3  0.269\nd     -0.5 -0.536\nd1    -0.4 -0.418\nv_wp   1.0  0.995\nc_wh   0.3  0.328\nv_hp   1.0  0.985"
+  },
+  {
+    "objectID": ".setup/quarto/examples/var.html#additional-plotting-functions",
+    "href": ".setup/quarto/examples/var.html#additional-plotting-functions",
+    "title": "Fitting A Vector Autoregressive Model in dynr",
+    "section": "Additional plotting functions",
+    "text": "Additional plotting functions\n\nplot(results, model)\n\n\n\ndynr.ggplot(results, model, style = 2)\n\n\n\n# Create a LaTeX file showing all the equations. Don't run if you don't\n# already use LaTeX on your machine and has all the dependencies set up.\n\nprintex(\n  model,\n  ParameterAs = model$\"param.names\",\n  show = FALSE,\n  printInit = TRUE,\n  printRS = FALSE,\n  outFile = \"VAR.tex\"\n)\n# tools::texi2pdf(\"VAR.tex\")\n# system(paste(getOption(\"pdfviewer\"), \"VAR.pdf\"))"
+  },
+  {
+    "objectID": ".setup/quarto/references/references.html",
+    "href": ".setup/quarto/references/references.html",
+    "title": "References",
+    "section": "",
+    "text": "Boettiger, C., & Eddelbuettel, D. (2017). An introduction to\nRocker: Docker containers for R. The R\nJournal, 9(2), 527. https://doi.org/10.32614/rj-2017-065\n\n\nNüst, D., Eddelbuettel, D., Bennett, D., Cannoodt, R., Clark, D.,\nDar’oczi, G., Edmondson, M., Fay, C., Hughes, E., Kjeldgaard, L., Lopp,\nS., Marwick, B., Nolis, H., Nolis, J., Ooi, H., Ram, K., Ross, N.,\nShepherd, L., S’olymos, P., … Xiao, N. (2020). The\nRockerverse: Packages and applications for containerisation\nwith R. The R Journal, 12(1), 437. https://doi.org/10.32614/rj-2020-007\n\n\nOu, L., Hunter, M. D., & Chow, S.-M. (2019). What’s for dynr: A package for linear and nonlinear dynamic\nmodeling in R. The R Journal, 11(1), 91.\nhttps://doi.org/10.32614/rj-2019-012"
+  },
+  {
+    "objectID": ".setup/quarto/session/session.html#session",
+    "href": ".setup/quarto/session/session.html#session",
+    "title": "Appendix A — Website Build Session",
+    "section": "Session",
+    "text": "Session\n\nsessionInfo()\n\nR version 4.3.1 (2023-06-16)\nPlatform: x86_64-pc-linux-gnu (64-bit)\nRunning under: Ubuntu 22.04.2 LTS\n\nMatrix products: default\nBLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 \nLAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so;  LAPACK version 3.10.0\n\nlocale:\n [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              \n [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    \n [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   \n [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 \n [9] LC_ADDRESS=C               LC_TELEPHONE=C            \n[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       \n\ntime zone: Etc/UTC\ntzcode source: system (glibc)\n\nattached base packages:\n[1] stats     graphics  grDevices utils     datasets  methods   base     \n\nloaded via a namespace (and not attached):\n [1] htmlwidgets_1.6.2 compiler_4.3.1    fastmap_1.1.1     cli_3.6.1.9000   \n [5] tools_4.3.1       htmltools_0.5.5   rstudioapi_0.15.0 yaml_2.3.7       \n [9] rmarkdown_2.23    knitr_1.43        jsonlite_1.8.7    xfun_0.39        \n[13] digest_0.6.33     rlang_1.1.1       evaluate_0.21    \n\n\n\n\n/srv/build/CONTAINER_RELEASE: 636439b81ddd2fa48a09bd055272220412ca886b\n/srv/build/CONTAINER_RELEASE_MSG: This release is based on commit 636439b81ddd2fa48a09bd055272220412ca886b.\n/srv/build/DOCKER_HUB_CONTAINER: docs\n/srv/build/DOCKER_HUB_USERNAME: ijapesigan\n/srv/build/GIT_HUB_REPO: docker-docs\n/srv/build/GIT_HUB_USERNAME: ijapesigan"
+  }
+]
