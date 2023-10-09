@@ -25,6 +25,7 @@ book:
     - part: "Examples"
       chapters: 
       - .setup/quarto/examples/var.qmd
+      - .setup/quarto/examples/ou.qmd
     - .setup/quarto/references/references.qmd
   appendices:
     - .setup/quarto/session/session.qmd

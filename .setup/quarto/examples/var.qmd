@@ -1,187 +1,294 @@
 ---
-title: "Fitting A Vector Autoregressive Model in dynr"
-author:
-  - "Yanling Li"
-  - "Linying Ji"
+title: "Vector Autoregressive Model"
+author: Ivan Jacob Agaloos Pesigan
 ---
 
-## Overview
+## The Vector Autoregressive Model
 
-This is an illustrative example of implementing a vector autoregressive (VAR) model.
+The measurement model is given by
 
-## Preliminary
-Loading the libraries used in this script and setting the path.
+\begin{equation}
+  \mathbf{y}_{i, t}
+  =
+  \boldsymbol{\eta}_{i, t} .
+\end{equation}
+
+The dynamic structure is given by
+
+\begin{equation}
+  \boldsymbol{\eta}_{i, t}
+  =
+  \boldsymbol{\alpha}
+  +
+  \boldsymbol{\beta}
+  \boldsymbol{\eta}_{i, t - 1}
+  +
+  \boldsymbol{\zeta}_{i, t}
+  \quad
+  \mathrm{with}
+  \quad
+  \boldsymbol{\zeta}_{i, t}
+  \sim
+  \mathcal{N}
+  \left(
+  \mathbf{0},
+  \boldsymbol{\Psi}
+  \right)
+\end{equation}
+
+where $\boldsymbol{\eta}_{i, t}$, $\boldsymbol{\eta}_{i, t - 1}$,
+and $\boldsymbol{\zeta}_{i, t}$ are random variables
+and $\boldsymbol{\alpha}$, $\boldsymbol{\beta}$,
+and $\boldsymbol{\Psi}$ are model parameters.
+$\boldsymbol{\eta}_{i, t}$ is a vector of latent variables
+at time $t$ and individual $i$, $\boldsymbol{\eta}_{i, t - 1}$
+is a vector of latent variables at
+$t - 1$ and individual $i$,
+and $\boldsymbol{\zeta}_{i, t}$ is a vector of dynamic noise
+at time $t$ and individual $i$,
+while $\boldsymbol{\alpha}$
+is a vector of intercepts,
+$\boldsymbol{\beta}$ is a matrix of autoregression
+and cross regression coefficients,
+and $\boldsymbol{\Psi}$ is the covariance matrix of
+$\boldsymbol{\zeta}_{i, t}$.
+
+## Data Generation
+
+### Notation
 
 ```{r}
-#| warning: false
-#| message: false
-library(dynr)
-```
-
-Getting the simulated data.
-
-```{r}
-#| warning: false
-#| message: false
-dat <- "https://raw.githubusercontent.com/psu-psychology/r-bootcamp-2019/master/demos/dynr/Data/VARsim.csv"
-VARsim <- read.table(
-  dat,
-  sep = ",",
-  header = TRUE
+#| echo = FALSE
+set.seed(42)
+time <- 500
+n <- 10
+k <- p <- 3
+I <- diag(k)
+null_vec <- rep(x = 0, times = k)
+mu0 <- null_vec
+sigma0 <- I
+alpha <- null_vec
+beta <- matrix(
+  data = c(
+    0.7,
+    0.5,
+    -0.1,
+    0.0,
+    0.6,
+    0.4,
+    0,
+    0,
+    0.5
+  ),
+  nrow = k
 )
-VARsim$ca <- as.factor(VARsim$ca)
+psi <- I
 ```
 
-## Data description
+Let $t = `r time`$ be the number of time points and $n = `r n`$ be the number of individuals.
 
-This example is inspired by a published study aimed at exploring the dynamics of inter-parental emotion states and behaviors at the end of conflicts, and associations with child emotions and behaviors during conflicts [@Schermerhorn2010]. To analyze over-time and lagged dependencies in the couples' dynamics and possible associations with child-related variable, we considered the following model:
+Let the initial condition
+$\boldsymbol{\eta}_{0}$
+be given by
 
-![](https://raw.githubusercontent.com/psu-psychology/r-bootcamp-2019/master/demos/dynr/path.png)
+\begin{equation}
+\boldsymbol{\eta}_{0} \sim \mathcal{N} \left( \boldsymbol{\mu}_{0}, \boldsymbol{\Sigma}_{0} \right)
+\end{equation}
 
-$$wp(t) = a \times wp(t-1) + b \times hp(t-1) + c \times ca(t) + d \times cn(t) + we(t) $$
-$$hp(t) = a_1 \times hp(t-1) + b_1 \times wp(t-1) + c_1 \times ca(t) + d_1 \times cn(t) + he(t)$$
+\begin{equation}
+\boldsymbol{\mu}_{0}
+=
+\left(
+\begin{array}{c}
+  `r mu0[1]` \\
+  `r mu0[2]` \\
+  `r mu0[3]` \\
+\end{array}
+\right)
+\end{equation}
 
-where $wp$ and $hp$ are two dependent variables representing the emotional ratings of wife and husband respectively; $ca$ is a covariate representing an aggregate measure of the child's agentic behavior (e.g. helping out, taking sides, and comforting the parents); $cn$ is a covariate representing an aggregate measure of the child's negative emotions and dysregulated behaviors (e.g., anger, sadness, and fear).
+\begin{equation}
+\boldsymbol{\Sigma}_{0}
+=
+\left(
+\begin{array}{ccc}
+  `r sigma0[1, 1]` & `r sigma0[1, 2]` & `r sigma0[1, 3]` \\
+  `r sigma0[2, 1]` & `r sigma0[2, 2]` & `r sigma0[2, 3]` \\
+  `r sigma0[3, 1]` & `r sigma0[3, 2]` & `r sigma0[3, 3]` \\
+\end{array}
+\right) .
+\end{equation}
 
-The simulated data were generated from the above model. The data contain 100 subjects (N = 100) and 30 time points (T = 30) for each subject.
+Let the constant vector $\boldsymbol{\alpha}$ be given by
 
-The trajectories of emotional ratings of wife and husband for two families are shown below.
+\begin{equation}
+\boldsymbol{\alpha}
+=
+\left(
+\begin{array}{c}
+  `r alpha[1]` \\
+  `r alpha[2]` \\
+  `r alpha[3]` \\
+\end{array}
+\right) .
+\end{equation}
+
+Let the transition matrix $\boldsymbol{\beta}$ be given by
+
+\begin{equation}
+\boldsymbol{\beta}
+=
+\left(
+\begin{array}{ccc}
+  `r beta[1, 1]` & `r beta[1, 2]` & `r beta[1, 3]` \\
+  `r beta[2, 1]` & `r beta[2, 2]` & `r beta[2, 3]` \\
+  `r beta[3, 1]` & `r beta[3, 2]` & `r beta[3, 3]` \\
+\end{array}
+\right) .
+\end{equation}
+
+Let the dynamic process noise $\boldsymbol{\Psi}$ be given by
+
+\begin{equation}
+\boldsymbol{\Psi}
+=
+\left(
+\begin{array}{ccc}
+  `r psi[1, 1]` & `r psi[1, 2]` & `r psi[1, 3]` \\
+  `r psi[2, 1]` & `r psi[2, 2]` & `r psi[2, 3]` \\
+  `r psi[3, 1]` & `r psi[3, 2]` & `r psi[3, 3]` \\
+\end{array}
+\right) .
+\end{equation}
+
+### R Function Arguments
 
 ```{r}
-#| warning: false
-#| message: false
-ggplot(
-  data = subset(VARsim, ID >= 5 & ID <= 6)
-) +
-  geom_line(aes(x = Time, y = wp, col = "wp")) +
-  geom_line(aes(x = Time, y = hp, col = "hp")) +
-  labs(col = "Variable", x = "Time", y = "wp and hp") +
-  theme_classic() +
-  # scale_colour_manual(values = c("pink", "purple")) +
-  facet_wrap(~ paste0("ID:", ID), dir = "v")
+n
+time
+mu0
+sigma0
+alpha
+beta
+psi
 ```
 
-
-## Declare the data with the dynr.data() function
+### Using the simStateSpace::SimSSMVARStationary Function to Simulate Data
 
 ```{r}
-#| warning: false
-#| message: false
-rawdata <- dynr.data(
-  VARsim,
-  id = "ID",
-  time = "Time",
-  observed = c("wp", "hp"),
-  covariates = c("ca", "cn")
+#| eval = FALSE
+if (!require("remotes")) install.packages("remotes")
+remotes::install_github("ijapesigan/simStateSpace")
+```
+
+```{r}
+data <- simStateSpace::SimSSMVARStationary(
+  n = n,
+  mu0 = mu0,
+  sigma0_sqrt = chol(sigma0),
+  alpha = alpha,
+  beta = beta,
+  psi_sqrt = chol(psi),
+  time = time,
+  burn_in = 0
+)
+head(data)
+```
+
+## Model Fitting
+
+### Prepare Data
+
+```{r}
+dynr_data <- dynr::dynr.data(
+  data = data,
+  id = "id",
+  time = "time",
+  observed = c("y1", "y2", "y3")
 )
 ```
 
-
-## Define elements of the measurement model
-
-```{r}
-#| warning: false
-#| message: false
-meas <- prep.measurement(
-  values.load = matrix(c(1, 0, 0, 1), ncol = 2, byrow = T),
-  params.load = matrix(rep("fixed", 4), ncol = 2),
-  state.names = c("wp", "hp"),
-  obs.names = c("wp", "hp")
-)
-```
-
-## Define elements of the dynamic model
+### Prepare Initial Condition
 
 ```{r}
-#| warning: false
-#| message: false
-formula <- list(
-  list(
-    wp ~ a * wp + b * hp + c * ca + d * cn,
-    hp ~ a1 * hp + b1 * wp + c1 * ca + d1 * cn
+dynr_initial <- dynr::prep.initial(
+  values.inistate = c(0, 0, 0),
+  params.inistate = c("mu0_1", "mu0_2", "mu0_3"),
+  values.inicov = diag(3),
+  params.inicov = matrix(
+    data = c(
+      "sigma0_11", "sigma0_12", "sigma0_13",
+      "sigma0_12", "sigma0_22", "sigma0_23",
+      "sigma0_13", "sigma0_23", "sigma0_33"
+    ),
+    nrow = 3
   )
 )
+```
 
-dynm <- prep.formulaDynamics(
-  formula = formula,
+### Prepare Measurement Model
+
+```{r}
+dynr_measurement <- dynr::prep.measurement(
+  values.load = diag(3),
+  params.load = matrix(data = "fixed", nrow = 3, ncol = 3),
+  state.names = c("eta_1", "eta_2", "eta_3"),
+  obs.names = c("y1", "y2", "y3")
+)
+```
+
+### Prepare Dynamic Process
+
+```{r}
+dynr_dynamics <- dynr::prep.formulaDynamics(
+  formula = list(
+    eta_1 ~ alpha_1 * 1 + beta_11 * eta_1 + beta_12 * eta_2 + beta_13 * eta_3,
+    eta_2 ~ alpha_2 * 1 + beta_21 * eta_1 + beta_22 * eta_2 + beta_23 * eta_3,
+    eta_3 ~ alpha_3 * 1 + beta_31 * eta_1 + beta_32 * eta_2 + beta_33 * eta_3
+  ),
   startval = c(
-    a = .4, b = -.3, b1 = -.2, a1 = .3,
-    c = .3, c1 = .3, d = -.5, d1 = -.4
+    alpha_1 = 0, alpha_2 = 0, alpha_3 = 0,
+    beta_11 = 0, beta_12 = 0, beta_13 = 0,
+    beta_21 = 0, beta_22 = 0, beta_23 = 0,
+    beta_31 = 0, beta_32 = 0, beta_33 = 0
   ),
   isContinuousTime = FALSE
 )
 ```
 
-
-## Define the initial conditions of the latent variables at time 1
-
-```{r}
-#| warning: false
-#| message: false
-initial <- prep.initial(
-  values.inistate = c(-.5, -.9),
-  params.inistate = c("mu_wp", "mu_hp"),
-  values.inicov = matrix(
-    c(1, -0.3, -0.3, 1),
-    byrow = T,
-    ncol = 2
-  ),
-  params.inicov = matrix(
-    c("v_11", "c_21", "c_21", "v_22"),
-    byrow = T,
-    ncol = 2
-  )
-)
-```
-
-
-## Define the structures of the measurement noise covariance matrix and the dynamic noise covariance matrix
+### Prepare Process Noise
 
 ```{r}
-#| warning: false
-#| message: false
-mdcov <- prep.noise(
-  values.latent = matrix(
-    c(1.0, 0.2, 0.2, 1.0),
-    byrow = T,
-    ncol = 2
-  ),
+dynr_noise <- dynr::prep.noise(
+  values.latent = diag(3),
   params.latent = matrix(
-    c("v_wp", "c_wh", "c_wh", "v_hp"),
-    byrow = T,
-    ncol = 2
+    data = c(
+      "psi_11", "psi_12", "psi_13",
+      "psi_12", "psi_22", "psi_23",
+      "psi_13", "psi_23", "psi_33"
+    ),
+    nrow = 3
   ),
-  values.observed = diag(rep(0, 2)),
-  params.observed = diag(c("fixed", "fixed"), 2)
+  values.observed = matrix(data = 0, nrow = 3, ncol = 3),
+  params.observed = matrix(data = "fixed", nrow = 3, ncol = 3)
 )
 ```
 
-## Pass data and submodels to dynrModel object and "cook"
+### Prepare the Model
 
 ```{r}
-#| warning: false
-#| message: false
-model <- dynr.model(
-  dynamics = dynm,
-  measurement = meas,
-  noise = mdcov,
-  initial = initial,
-  data = rawdata,
-  outfile = paste("trial.c", sep = "")
-)
-results <- dynr.cook(
-  model,
-  debug_flag = TRUE,
-  verbose = FALSE
+model <- dynr::dynr.model(
+  data = dynr_data,
+  initial = dynr_initial,
+  measurement = dynr_measurement,
+  dynamics = dynr_dynamics,
+  noise = dynr_noise,
+  outfile = "var.c"
 )
 ```
 
-## Plot the Formula
-
 ```{r}
-#| warning: false
-#| message: false
-plotFormula(
+dynr::plotFormula(
   dynrModel = model,
   ParameterAs = model$"param.names",
   printDyn = TRUE,
@@ -189,44 +296,135 @@ plotFormula(
 )
 ```
 
-## Compare true parameters to estimated ones
+### Fit the Model
 
 ```{r}
-#| warning: false
-#| message: false
-summary(results)
-
-truep <- c(
-  a = 0.4, b = -0.3, b1 = -0.2, a1 = 0.3,
-  c = 0.3, c1 = 0.3, d = -0.5, d1 = -0.4,
-  v_wp = 1, c_wh = .3, v_hp = 1
-)
-
-estp <- round(coef(results)[1:11], 3)
-data.frame(truep, estp)
-```
-
-## Additional plotting functions
-
-```{r}
-#| warning: false
-#| message: false
-plot(results, model)
-dynr.ggplot(results, model, style = 2)
-
-# Create a LaTeX file showing all the equations. Don't run if you don't
-# already use LaTeX on your machine and has all the dependencies set up.
-
-printex(
+results <- dynr::dynr.cook(
   model,
-  ParameterAs = model$"param.names",
-  show = FALSE,
-  printInit = TRUE,
-  printRS = FALSE,
-  outFile = "VAR.tex"
+  debug_flag = TRUE,
+  verbose = FALSE
 )
-# tools::texi2pdf("VAR.tex")
-# system(paste(getOption("pdfviewer"), "VAR.pdf"))
 ```
 
-![](https://raw.githubusercontent.com/psu-psychology/r-bootcamp-2019/master/demos/dynr/Latex_output_VAR.PNG)
+#### Summary
+
+```{r}
+summary(results)
+```
+
+```{r}
+#| echo = FALSE
+estimates <- coef(results)
+mu0_hat <- unname(
+  estimates[
+    c(
+      "mu0_1",
+      "mu0_2",
+      "mu0_3"
+    )
+  ]
+)
+sigma0_hat <- matrix(
+  data = estimates[
+    c(
+      "sigma0_11",
+      "sigma0_12",
+      "sigma0_13",
+      "sigma0_12",
+      "sigma0_22",
+      "sigma0_23",
+      "sigma0_13",
+      "sigma0_23",
+      "sigma0_33"
+    )
+  ],
+  nrow = 3
+)
+alpha_hat <- unname(
+  estimates[
+    c(
+      "alpha_1",
+      "alpha_2",
+      "alpha_3"
+    )
+  ]
+)
+beta_hat <- matrix(
+  data = estimates[
+    c(
+      "beta_11",
+      "beta_21",
+      "beta_31",
+      "beta_12",
+      "beta_22",
+      "beta_32",
+      "beta_13",
+      "beta_23",
+      "beta_33"
+    )
+  ],
+  nrow = 3
+)
+psi_hat <- matrix(
+  data = estimates[
+    c(
+      "psi_11",
+      "psi_12",
+      "psi_13",
+      "psi_12",
+      "psi_22",
+      "psi_23",
+      "psi_13",
+      "psi_23",
+      "psi_33"
+    )
+  ],
+  nrow = 3
+)
+```
+
+#### Estimated Coefficients
+
+```{r}
+alpha_hat
+beta_hat
+psi_hat
+mu0_hat
+sigma0_hat
+```
+
+#### Discrepancy Between Estimated and Population Coefficients
+
+```{r}
+tol <- 0.10
+all(
+  as.vector(
+    abs(alpha - alpha_hat)
+  ) <= tol
+)
+all(
+  as.vector(
+    abs(beta - beta_hat)
+  ) <= tol
+)
+```
+
+```{r}
+#| echo = FALSE,
+#| eval = FALSE
+all(
+  as.vector(
+    abs(psi - psi_hat)
+  ) <= tol
+)
+all(
+  as.vector(
+    abs(mu0 - mu0_hat)
+  ) <= tol
+)
+all(
+  as.vector(
+    abs(sigma0 - sigma0_hat)
+  ) <= tol
+)
+```
