@@ -6,10 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Yanling Li">
-<meta name="author" content="Linying Ji">
+<meta name="author" content="Ivan Jacob Agaloos Pesigan">
 
-<title>dynr Wiki - Fitting A Vector Autoregressive Model in dynr</title>
+<title>dynr Wiki - Vector Autoregressive Model</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../.setup/quarto/references/references.html" rel="next">
+<link href="../../../.setup/quarto/examples/ou.html" rel="next">
 <link href="../../../.setup/quarto/docker/docker-volumes.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
@@ -111,7 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../.setup/quarto/examples/var.html">Examples</a></li><li class="breadcrumb-item"><a href="../../../.setup/quarto/examples/var.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Fitting A Vector Autoregressive Model in dynr</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../.setup/quarto/examples/var.html">Examples</a></li><li class="breadcrumb-item"><a href="../../../.setup/quarto/examples/var.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Vector Autoregressive Model</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -191,7 +190,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../.setup/quarto/examples/var.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Fitting A Vector Autoregressive Model in dynr</span></a>
+  <a href="../../../.setup/quarto/examples/var.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Vector Autoregressive Model</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../.setup/quarto/examples/ou.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Ornstein–Uhlenbeck Model</span></a>
   </div>
 </li>
       </ul>
@@ -227,18 +231,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#preliminary" id="toc-preliminary" class="nav-link" data-scroll-target="#preliminary">Preliminary</a></li>
-  <li><a href="#data-description" id="toc-data-description" class="nav-link" data-scroll-target="#data-description">Data description</a></li>
-  <li><a href="#declare-the-data-with-the-dynr.data-function" id="toc-declare-the-data-with-the-dynr.data-function" class="nav-link" data-scroll-target="#declare-the-data-with-the-dynr.data-function">Declare the data with the dynr.data() function</a></li>
-  <li><a href="#define-elements-of-the-measurement-model" id="toc-define-elements-of-the-measurement-model" class="nav-link" data-scroll-target="#define-elements-of-the-measurement-model">Define elements of the measurement model</a></li>
-  <li><a href="#define-elements-of-the-dynamic-model" id="toc-define-elements-of-the-dynamic-model" class="nav-link" data-scroll-target="#define-elements-of-the-dynamic-model">Define elements of the dynamic model</a></li>
-  <li><a href="#define-the-initial-conditions-of-the-latent-variables-at-time-1" id="toc-define-the-initial-conditions-of-the-latent-variables-at-time-1" class="nav-link" data-scroll-target="#define-the-initial-conditions-of-the-latent-variables-at-time-1">Define the initial conditions of the latent variables at time 1</a></li>
-  <li><a href="#define-the-structures-of-the-measurement-noise-covariance-matrix-and-the-dynamic-noise-covariance-matrix" id="toc-define-the-structures-of-the-measurement-noise-covariance-matrix-and-the-dynamic-noise-covariance-matrix" class="nav-link" data-scroll-target="#define-the-structures-of-the-measurement-noise-covariance-matrix-and-the-dynamic-noise-covariance-matrix">Define the structures of the measurement noise covariance matrix and the dynamic noise covariance matrix</a></li>
-  <li><a href="#pass-data-and-submodels-to-dynrmodel-object-and-cook" id="toc-pass-data-and-submodels-to-dynrmodel-object-and-cook" class="nav-link" data-scroll-target="#pass-data-and-submodels-to-dynrmodel-object-and-cook">Pass data and submodels to dynrModel object and “cook”</a></li>
-  <li><a href="#plot-the-formula" id="toc-plot-the-formula" class="nav-link" data-scroll-target="#plot-the-formula">Plot the Formula</a></li>
-  <li><a href="#compare-true-parameters-to-estimated-ones" id="toc-compare-true-parameters-to-estimated-ones" class="nav-link" data-scroll-target="#compare-true-parameters-to-estimated-ones">Compare true parameters to estimated ones</a></li>
-  <li><a href="#additional-plotting-functions" id="toc-additional-plotting-functions" class="nav-link" data-scroll-target="#additional-plotting-functions">Additional plotting functions</a></li>
+  <li><a href="#the-vector-autoregressive-model" id="toc-the-vector-autoregressive-model" class="nav-link active" data-scroll-target="#the-vector-autoregressive-model">The Vector Autoregressive Model</a></li>
+  <li><a href="#data-generation" id="toc-data-generation" class="nav-link" data-scroll-target="#data-generation">Data Generation</a>
+  <ul class="collapse">
+  <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation">Notation</a></li>
+  <li><a href="#r-function-arguments" id="toc-r-function-arguments" class="nav-link" data-scroll-target="#r-function-arguments">R Function Arguments</a></li>
+  <li><a href="#using-the-simstatespacesimssmvarstationary-function-to-simulate-data" id="toc-using-the-simstatespacesimssmvarstationary-function-to-simulate-data" class="nav-link" data-scroll-target="#using-the-simstatespacesimssmvarstationary-function-to-simulate-data">Using the simStateSpace::SimSSMVARStationary Function to Simulate Data</a></li>
+  </ul></li>
+  <li><a href="#model-fitting" id="toc-model-fitting" class="nav-link" data-scroll-target="#model-fitting">Model Fitting</a>
+  <ul class="collapse">
+  <li><a href="#prepare-data" id="toc-prepare-data" class="nav-link" data-scroll-target="#prepare-data">Prepare Data</a></li>
+  <li><a href="#prepare-initial-condition" id="toc-prepare-initial-condition" class="nav-link" data-scroll-target="#prepare-initial-condition">Prepare Initial Condition</a></li>
+  <li><a href="#prepare-measurement-model" id="toc-prepare-measurement-model" class="nav-link" data-scroll-target="#prepare-measurement-model">Prepare Measurement Model</a></li>
+  <li><a href="#prepare-dynamic-process" id="toc-prepare-dynamic-process" class="nav-link" data-scroll-target="#prepare-dynamic-process">Prepare Dynamic Process</a></li>
+  <li><a href="#prepare-process-noise" id="toc-prepare-process-noise" class="nav-link" data-scroll-target="#prepare-process-noise">Prepare Process Noise</a></li>
+  <li><a href="#prepare-the-model" id="toc-prepare-the-model" class="nav-link" data-scroll-target="#prepare-the-model">Prepare the Model</a></li>
+  <li><a href="#fit-the-model" id="toc-fit-the-model" class="nav-link" data-scroll-target="#fit-the-model">Fit the Model</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jeksterslab/dynr-wiki/edit/main/.setup/quarto/examples/var.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
@@ -247,7 +256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Fitting A Vector Autoregressive Model in dynr</span></h1>
+<h1 class="title"><span class="chapter-title">Vector Autoregressive Model</span></h1>
 </div>
 
 
@@ -255,10 +264,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-title-meta">
 
     <div>
-    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Yanling Li </p>
-             <p>Linying Ji </p>
+             <p>Ivan Jacob Agaloos Pesigan </p>
           </div>
   </div>
     
@@ -269,147 +277,288 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>This is an illustrative example of implementing a vector autoregressive (VAR) model.</p>
+<section id="the-vector-autoregressive-model" class="level2">
+<h2 class="anchored" data-anchor-id="the-vector-autoregressive-model">The Vector Autoregressive Model</h2>
+<p>The measurement model is given by</p>
+<p><span class="math display">\[\begin{equation}
+  \mathbf{y}_{i, t}
+  =
+  \boldsymbol{\eta}_{i, t} .
+\end{equation}\]</span></p>
+<p>The dynamic structure is given by</p>
+<p><span class="math display">\[\begin{equation}
+  \boldsymbol{\eta}_{i, t}
+  =
+  \boldsymbol{\alpha}
+  +
+  \boldsymbol{\beta}
+  \boldsymbol{\eta}_{i, t - 1}
+  +
+  \boldsymbol{\zeta}_{i, t}
+  \quad
+  \mathrm{with}
+  \quad
+  \boldsymbol{\zeta}_{i, t}
+  \sim
+  \mathcal{N}
+  \left(
+  \mathbf{0},
+  \boldsymbol{\Psi}
+  \right)
+\end{equation}\]</span></p>
+<p>where <span class="math inline">\(\boldsymbol{\eta}_{i, t}\)</span>, <span class="math inline">\(\boldsymbol{\eta}_{i, t - 1}\)</span>, and <span class="math inline">\(\boldsymbol{\zeta}_{i, t}\)</span> are random variables and <span class="math inline">\(\boldsymbol{\alpha}\)</span>, <span class="math inline">\(\boldsymbol{\beta}\)</span>, and <span class="math inline">\(\boldsymbol{\Psi}\)</span> are model parameters. <span class="math inline">\(\boldsymbol{\eta}_{i, t}\)</span> is a vector of latent variables at time <span class="math inline">\(t\)</span> and individual <span class="math inline">\(i\)</span>, <span class="math inline">\(\boldsymbol{\eta}_{i, t - 1}\)</span> is a vector of latent variables at <span class="math inline">\(t - 1\)</span> and individual <span class="math inline">\(i\)</span>, and <span class="math inline">\(\boldsymbol{\zeta}_{i, t}\)</span> is a vector of dynamic noise at time <span class="math inline">\(t\)</span> and individual <span class="math inline">\(i\)</span>, while <span class="math inline">\(\boldsymbol{\alpha}\)</span> is a vector of intercepts, <span class="math inline">\(\boldsymbol{\beta}\)</span> is a matrix of autoregression and cross regression coefficients, and <span class="math inline">\(\boldsymbol{\Psi}\)</span> is the covariance matrix of <span class="math inline">\(\boldsymbol{\zeta}_{i, t}\)</span>.</p>
 </section>
-<section id="preliminary" class="level2">
-<h2 class="anchored" data-anchor-id="preliminary">Preliminary</h2>
-<p>Loading the libraries used in this script and setting the path.</p>
+<section id="data-generation" class="level2">
+<h2 class="anchored" data-anchor-id="data-generation">Data Generation</h2>
+<section id="notation" class="level3">
+<h3 class="anchored" data-anchor-id="notation">Notation</h3>
+<p>Let <span class="math inline">\(t = 500\)</span> be the number of time points and <span class="math inline">\(n = 10\)</span> be the number of individuals.</p>
+<p>Let the initial condition <span class="math inline">\(\boldsymbol{\eta}_{0}\)</span> be given by</p>
+<p><span class="math display">\[\begin{equation}
+\boldsymbol{\eta}_{0} \sim \mathcal{N} \left( \boldsymbol{\mu}_{0}, \boldsymbol{\Sigma}_{0} \right)
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+\boldsymbol{\mu}_{0}
+=
+\left(
+\begin{array}{c}
+  0 \\
+  0 \\
+  0 \\
+\end{array}
+\right)
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+\boldsymbol{\Sigma}_{0}
+=
+\left(
+\begin{array}{ccc}
+  1 &amp; 0 &amp; 0 \\
+  0 &amp; 1 &amp; 0 \\
+  0 &amp; 0 &amp; 1 \\
+\end{array}
+\right) .
+\end{equation}\]</span></p>
+<p>Let the constant vector <span class="math inline">\(\boldsymbol{\alpha}\)</span> be given by</p>
+<p><span class="math display">\[\begin{equation}
+\boldsymbol{\alpha}
+=
+\left(
+\begin{array}{c}
+  0 \\
+  0 \\
+  0 \\
+\end{array}
+\right) .
+\end{equation}\]</span></p>
+<p>Let the transition matrix <span class="math inline">\(\boldsymbol{\beta}\)</span> be given by</p>
+<p><span class="math display">\[\begin{equation}
+\boldsymbol{\beta}
+=
+\left(
+\begin{array}{ccc}
+  0.7 &amp; 0 &amp; 0 \\
+  0.5 &amp; 0.6 &amp; 0 \\
+  -0.1 &amp; 0.4 &amp; 0.5 \\
+\end{array}
+\right) .
+\end{equation}\]</span></p>
+<p>Let the dynamic process noise <span class="math inline">\(\boldsymbol{\Psi}\)</span> be given by</p>
+<p><span class="math display">\[\begin{equation}
+\boldsymbol{\Psi}
+=
+\left(
+\begin{array}{ccc}
+  1 &amp; 0 &amp; 0 \\
+  0 &amp; 1 &amp; 0 \\
+  0 &amp; 0 &amp; 1 \\
+\end{array}
+\right) .
+\end{equation}\]</span></p>
+</section>
+<section id="r-function-arguments" class="level3">
+<h3 class="anchored" data-anchor-id="r-function-arguments">R Function Arguments</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dynr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
 </div>
-<p>Getting the simulated data.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/psu-psychology/r-bootcamp-2019/master/demos/dynr/Data/VARsim.csv"</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>VARsim <span class="ot">&lt;-</span> <span class="fu">read.table</span>(</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  dat,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">","</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">header =</span> <span class="cn">TRUE</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>VARsim<span class="sc">$</span>ca <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(VARsim<span class="sc">$</span>ca)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>time</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 500</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mu0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0 0 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sigma0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,]    1    0    0
+[2,]    0    1    0
+[3,]    0    0    1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>alpha</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0 0 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>beta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,]  0.7  0.0  0.0
+[2,]  0.5  0.6  0.0
+[3,] -0.1  0.4  0.5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>psi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,]    1    0    0
+[2,]    0    1    0
+[3,]    0    0    1</code></pre>
+</div>
 </div>
 </section>
-<section id="data-description" class="level2">
-<h2 class="anchored" data-anchor-id="data-description">Data description</h2>
-<p>This example is inspired by a published study aimed at exploring the dynamics of inter-parental emotion states and behaviors at the end of conflicts, and associations with child emotions and behaviors during conflicts <span class="citation" data-cites="Schermerhorn2010">(<a href="../references/references.html#ref-Schermerhorn2010" role="doc-biblioref"><strong>Schermerhorn2010?</strong></a>)</span>. To analyze over-time and lagged dependencies in the couples’ dynamics and possible associations with child-related variable, we considered the following model:</p>
-<p><img src="https://raw.githubusercontent.com/psu-psychology/r-bootcamp-2019/master/demos/dynr/path.png" class="img-fluid"></p>
-<p><span class="math display">\[wp(t) = a \times wp(t-1) + b \times hp(t-1) + c \times ca(t) + d \times cn(t) + we(t) \]</span> <span class="math display">\[hp(t) = a_1 \times hp(t-1) + b_1 \times wp(t-1) + c_1 \times ca(t) + d_1 \times cn(t) + he(t)\]</span></p>
-<p>where <span class="math inline">\(wp\)</span> and <span class="math inline">\(hp\)</span> are two dependent variables representing the emotional ratings of wife and husband respectively; <span class="math inline">\(ca\)</span> is a covariate representing an aggregate measure of the child’s agentic behavior (e.g.&nbsp;helping out, taking sides, and comforting the parents); <span class="math inline">\(cn\)</span> is a covariate representing an aggregate measure of the child’s negative emotions and dysregulated behaviors (e.g., anger, sadness, and fear).</p>
-<p>The simulated data were generated from the above model. The data contain 100 subjects (N = 100) and 30 time points (T = 30) for each subject.</p>
-<p>The trajectories of emotional ratings of wife and husband for two families are shown below.</p>
+<section id="using-the-simstatespacesimssmvarstationary-function-to-simulate-data" class="level3">
+<h3 class="anchored" data-anchor-id="using-the-simstatespacesimssmvarstationary-function-to-simulate-data">Using the simStateSpace::SimSSMVARStationary Function to Simulate Data</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">subset</span>(VARsim, ID <span class="sc">&gt;=</span> <span class="dv">5</span> <span class="sc">&amp;</span> ID <span class="sc">&lt;=</span> <span class="dv">6</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> wp, <span class="at">col =</span> <span class="st">"wp"</span>)) <span class="sc">+</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> hp, <span class="at">col =</span> <span class="st">"hp"</span>)) <span class="sc">+</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">col =</span> <span class="st">"Variable"</span>, <span class="at">x =</span> <span class="st">"Time"</span>, <span class="at">y =</span> <span class="st">"wp and hp"</span>) <span class="sc">+</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># scale_colour_manual(values = c("pink", "purple")) +</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> <span class="fu">paste0</span>(<span class="st">"ID:"</span>, ID), <span class="at">dir =</span> <span class="st">"v"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"remotes"</span>)) <span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"ijapesigan/simStateSpace"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> simStateSpace<span class="sc">::</span><span class="fu">SimSSMVARStationary</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> n,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mu0 =</span> mu0,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">sigma0_sqrt =</span> <span class="fu">chol</span>(sigma0),</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha =</span> alpha,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">beta =</span> beta,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">psi_sqrt =</span> <span class="fu">chol</span>(psi),</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">time =</span> time,</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">burn_in =</span> <span class="dv">0</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              y1         y2        y3 id time
+[1,] -0.53150173  0.8212527 2.2174497  1    1
+[2,]  0.03280741 -0.3981712 2.4785526  1    2
+[3,] -0.31722163  1.5413967 1.1638121  1    3
+[4,] -0.28222201  1.4683295 0.1377762  1    4
+[5,] -1.04463827  0.7687173 0.4667933  1    5
+[6,] -0.92475541  1.1649958 1.2460595  1    6</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="model-fitting" class="level2">
+<h2 class="anchored" data-anchor-id="model-fitting">Model Fitting</h2>
+<section id="prepare-data" class="level3">
+<h3 class="anchored" data-anchor-id="prepare-data">Prepare Data</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>dynr_data <span class="ot">&lt;-</span> dynr<span class="sc">::</span><span class="fu">dynr.data</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">"id"</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">time =</span> <span class="st">"time"</span>,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">observed =</span> <span class="fu">c</span>(<span class="st">"y1"</span>, <span class="st">"y2"</span>, <span class="st">"y3"</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="prepare-initial-condition" class="level3">
+<h3 class="anchored" data-anchor-id="prepare-initial-condition">Prepare Initial Condition</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>dynr_initial <span class="ot">&lt;-</span> dynr<span class="sc">::</span><span class="fu">prep.initial</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.inistate =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>),</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">params.inistate =</span> <span class="fu">c</span>(<span class="st">"mu0_1"</span>, <span class="st">"mu0_2"</span>, <span class="st">"mu0_3"</span>),</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.inicov =</span> <span class="fu">diag</span>(<span class="dv">3</span>),</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">params.inicov =</span> <span class="fu">matrix</span>(</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">c</span>(</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"sigma0_11"</span>, <span class="st">"sigma0_12"</span>, <span class="st">"sigma0_13"</span>,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"sigma0_12"</span>, <span class="st">"sigma0_22"</span>, <span class="st">"sigma0_23"</span>,</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"sigma0_13"</span>, <span class="st">"sigma0_23"</span>, <span class="st">"sigma0_33"</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">nrow =</span> <span class="dv">3</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="prepare-measurement-model" class="level3">
+<h3 class="anchored" data-anchor-id="prepare-measurement-model">Prepare Measurement Model</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>dynr_measurement <span class="ot">&lt;-</span> dynr<span class="sc">::</span><span class="fu">prep.measurement</span>(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.load =</span> <span class="fu">diag</span>(<span class="dv">3</span>),</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">params.load =</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="st">"fixed"</span>, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">3</span>),</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">state.names =</span> <span class="fu">c</span>(<span class="st">"eta_1"</span>, <span class="st">"eta_2"</span>, <span class="st">"eta_3"</span>),</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">obs.names =</span> <span class="fu">c</span>(<span class="st">"y1"</span>, <span class="st">"y2"</span>, <span class="st">"y3"</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="prepare-dynamic-process" class="level3">
+<h3 class="anchored" data-anchor-id="prepare-dynamic-process">Prepare Dynamic Process</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>dynr_dynamics <span class="ot">&lt;-</span> dynr<span class="sc">::</span><span class="fu">prep.formulaDynamics</span>(</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> <span class="fu">list</span>(</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    eta_1 <span class="sc">~</span> alpha_1 <span class="sc">*</span> <span class="dv">1</span> <span class="sc">+</span> beta_11 <span class="sc">*</span> eta_1 <span class="sc">+</span> beta_12 <span class="sc">*</span> eta_2 <span class="sc">+</span> beta_13 <span class="sc">*</span> eta_3,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    eta_2 <span class="sc">~</span> alpha_2 <span class="sc">*</span> <span class="dv">1</span> <span class="sc">+</span> beta_21 <span class="sc">*</span> eta_1 <span class="sc">+</span> beta_22 <span class="sc">*</span> eta_2 <span class="sc">+</span> beta_23 <span class="sc">*</span> eta_3,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    eta_3 <span class="sc">~</span> alpha_3 <span class="sc">*</span> <span class="dv">1</span> <span class="sc">+</span> beta_31 <span class="sc">*</span> eta_1 <span class="sc">+</span> beta_32 <span class="sc">*</span> eta_2 <span class="sc">+</span> beta_33 <span class="sc">*</span> eta_3</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">startval =</span> <span class="fu">c</span>(</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha_1 =</span> <span class="dv">0</span>, <span class="at">alpha_2 =</span> <span class="dv">0</span>, <span class="at">alpha_3 =</span> <span class="dv">0</span>,</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">beta_11 =</span> <span class="dv">0</span>, <span class="at">beta_12 =</span> <span class="dv">0</span>, <span class="at">beta_13 =</span> <span class="dv">0</span>,</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">beta_21 =</span> <span class="dv">0</span>, <span class="at">beta_22 =</span> <span class="dv">0</span>, <span class="at">beta_23 =</span> <span class="dv">0</span>,</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">beta_31 =</span> <span class="dv">0</span>, <span class="at">beta_32 =</span> <span class="dv">0</span>, <span class="at">beta_33 =</span> <span class="dv">0</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">isContinuousTime =</span> <span class="cn">FALSE</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="prepare-process-noise" class="level3">
+<h3 class="anchored" data-anchor-id="prepare-process-noise">Prepare Process Noise</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>dynr_noise <span class="ot">&lt;-</span> dynr<span class="sc">::</span><span class="fu">prep.noise</span>(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.latent =</span> <span class="fu">diag</span>(<span class="dv">3</span>),</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">params.latent =</span> <span class="fu">matrix</span>(</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">c</span>(</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"psi_11"</span>, <span class="st">"psi_12"</span>, <span class="st">"psi_13"</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"psi_12"</span>, <span class="st">"psi_22"</span>, <span class="st">"psi_23"</span>,</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"psi_13"</span>, <span class="st">"psi_23"</span>, <span class="st">"psi_33"</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">nrow =</span> <span class="dv">3</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.observed =</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="dv">0</span>, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">3</span>),</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">params.observed =</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="st">"fixed"</span>, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="prepare-the-model" class="level3">
+<h3 class="anchored" data-anchor-id="prepare-the-model">Prepare the Model</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> dynr<span class="sc">::</span><span class="fu">dynr.model</span>(</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> dynr_data,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">initial =</span> dynr_initial,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">measurement =</span> dynr_measurement,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dynamics =</span> dynr_dynamics,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">noise =</span> dynr_noise,</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">outfile =</span> <span class="st">"var.c"</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>dynr<span class="sc">::</span><span class="fu">plotFormula</span>(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">dynrModel =</span> model,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ParameterAs =</span> model<span class="sc">$</span><span class="st">"param.names"</span>,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">printDyn =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">printMeas =</span> <span class="cn">TRUE</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="var_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<p><img src="var_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
-<section id="declare-the-data-with-the-dynr.data-function" class="level2">
-<h2 class="anchored" data-anchor-id="declare-the-data-with-the-dynr.data-function">Declare the data with the dynr.data() function</h2>
+<section id="fit-the-model" class="level3">
+<h3 class="anchored" data-anchor-id="fit-the-model">Fit the Model</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rawdata <span class="ot">&lt;-</span> <span class="fu">dynr.data</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  VARsim,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">"ID"</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">time =</span> <span class="st">"Time"</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">observed =</span> <span class="fu">c</span>(<span class="st">"wp"</span>, <span class="st">"hp"</span>),</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">covariates =</span> <span class="fu">c</span>(<span class="st">"ca"</span>, <span class="st">"cn"</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="define-elements-of-the-measurement-model" class="level2">
-<h2 class="anchored" data-anchor-id="define-elements-of-the-measurement-model">Define elements of the measurement model</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>meas <span class="ot">&lt;-</span> <span class="fu">prep.measurement</span>(</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.load =</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">byrow =</span> T),</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">params.load =</span> <span class="fu">matrix</span>(<span class="fu">rep</span>(<span class="st">"fixed"</span>, <span class="dv">4</span>), <span class="at">ncol =</span> <span class="dv">2</span>),</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">state.names =</span> <span class="fu">c</span>(<span class="st">"wp"</span>, <span class="st">"hp"</span>),</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">obs.names =</span> <span class="fu">c</span>(<span class="st">"wp"</span>, <span class="st">"hp"</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="define-elements-of-the-dynamic-model" class="level2">
-<h2 class="anchored" data-anchor-id="define-elements-of-the-dynamic-model">Define elements of the dynamic model</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>formula <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    wp <span class="sc">~</span> a <span class="sc">*</span> wp <span class="sc">+</span> b <span class="sc">*</span> hp <span class="sc">+</span> c <span class="sc">*</span> ca <span class="sc">+</span> d <span class="sc">*</span> cn,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    hp <span class="sc">~</span> a1 <span class="sc">*</span> hp <span class="sc">+</span> b1 <span class="sc">*</span> wp <span class="sc">+</span> c1 <span class="sc">*</span> ca <span class="sc">+</span> d1 <span class="sc">*</span> cn</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>dynm <span class="ot">&lt;-</span> <span class="fu">prep.formulaDynamics</span>(</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> formula,</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">startval =</span> <span class="fu">c</span>(</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">a =</span> .<span class="dv">4</span>, <span class="at">b =</span> <span class="sc">-</span>.<span class="dv">3</span>, <span class="at">b1 =</span> <span class="sc">-</span>.<span class="dv">2</span>, <span class="at">a1 =</span> .<span class="dv">3</span>,</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">c =</span> .<span class="dv">3</span>, <span class="at">c1 =</span> .<span class="dv">3</span>, <span class="at">d =</span> <span class="sc">-</span>.<span class="dv">5</span>, <span class="at">d1 =</span> <span class="sc">-</span>.<span class="dv">4</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">isContinuousTime =</span> <span class="cn">FALSE</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="define-the-initial-conditions-of-the-latent-variables-at-time-1" class="level2">
-<h2 class="anchored" data-anchor-id="define-the-initial-conditions-of-the-latent-variables-at-time-1">Define the initial conditions of the latent variables at time 1</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>initial <span class="ot">&lt;-</span> <span class="fu">prep.initial</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.inistate =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">5</span>, <span class="sc">-</span>.<span class="dv">9</span>),</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">params.inistate =</span> <span class="fu">c</span>(<span class="st">"mu_wp"</span>, <span class="st">"mu_hp"</span>),</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.inicov =</span> <span class="fu">matrix</span>(</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="fl">0.3</span>, <span class="sc">-</span><span class="fl">0.3</span>, <span class="dv">1</span>),</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">byrow =</span> T,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">ncol =</span> <span class="dv">2</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">params.inicov =</span> <span class="fu">matrix</span>(</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="st">"v_11"</span>, <span class="st">"c_21"</span>, <span class="st">"c_21"</span>, <span class="st">"v_22"</span>),</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">byrow =</span> T,</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">ncol =</span> <span class="dv">2</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="define-the-structures-of-the-measurement-noise-covariance-matrix-and-the-dynamic-noise-covariance-matrix" class="level2">
-<h2 class="anchored" data-anchor-id="define-the-structures-of-the-measurement-noise-covariance-matrix-and-the-dynamic-noise-covariance-matrix">Define the structures of the measurement noise covariance matrix and the dynamic noise covariance matrix</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mdcov <span class="ot">&lt;-</span> <span class="fu">prep.noise</span>(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.latent =</span> <span class="fu">matrix</span>(</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="fl">1.0</span>, <span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="fl">1.0</span>),</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">byrow =</span> T,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ncol =</span> <span class="dv">2</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">params.latent =</span> <span class="fu">matrix</span>(</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="st">"v_wp"</span>, <span class="st">"c_wh"</span>, <span class="st">"c_wh"</span>, <span class="st">"v_hp"</span>),</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">byrow =</span> T,</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">ncol =</span> <span class="dv">2</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.observed =</span> <span class="fu">diag</span>(<span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">2</span>)),</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">params.observed =</span> <span class="fu">diag</span>(<span class="fu">c</span>(<span class="st">"fixed"</span>, <span class="st">"fixed"</span>), <span class="dv">2</span>)</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="pass-data-and-submodels-to-dynrmodel-object-and-cook" class="level2">
-<h2 class="anchored" data-anchor-id="pass-data-and-submodels-to-dynrmodel-object-and-cook">Pass data and submodels to dynrModel object and “cook”</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">dynr.model</span>(</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">dynamics =</span> dynm,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">measurement =</span> meas,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">noise =</span> mdcov,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">initial =</span> initial,</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> rawdata,</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">outfile =</span> <span class="fu">paste</span>(<span class="st">"trial.c"</span>, <span class="at">sep =</span> <span class="st">""</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">dynr.cook</span>(</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  model,</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">debug_flag =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> dynr<span class="sc">::</span><span class="fu">dynr.cook</span>(</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  model,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">debug_flag =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Get ready!!!!"
 using C compiler: ‘gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0’
@@ -419,117 +568,126 @@ Finished Hessian calculation.
 Original exit flag:  3 
 Modified exit flag:  3 
 Optimization terminated successfully: ftol_rel or ftol_abs was reached. 
-Original fitted parameters:  0.3848036 -0.2912888 -0.2295281 0.2850637 
-0.2950499 0.2694823 -0.5358179 -0.4177793 -0.004831377 0.3291069 -0.1309684 
-0.1077609 0.09480576 0.6673443 0.17212 0.1518221 
+Original fitted parameters:  -0.01496695 -0.008388628 0.007902923 0.6906446 
+0.01484089 -0.003228517 0.4856372 0.6205177 -0.008203662 -0.113009 0.4165596 
+0.4950765 -0.01730149 -0.024154 -0.01538862 0.007159089 -0.01518432 
+-0.003750755 0.02465033 -0.01822517 0.5138599 -0.09631148 0.1127464 0.2024329 
+0.184493 0.009545498 -0.0634222 
 
-Transformed fitted parameters:  0.3848036 -0.2912888 -0.2295281 0.2850637 
-0.2950499 0.2694823 -0.5358179 -0.4177793 0.9951803 0.3275207 0.9850348 
-0.1077609 0.09480576 1.949054 0.3354712 1.221694 
+Transformed fitted parameters:  -0.01496695 -0.008388628 0.007902923 0.6906446 
+0.01484089 -0.003228517 0.4856372 0.6205177 -0.008203662 -0.113009 0.4165596 
+0.4950765 0.9828473 -0.0237397 -0.01512467 1.007758 -0.01492809 0.9967212 
+0.02465033 -0.01822517 0.5138599 0.9081811 0.1023942 0.1838457 1.214153 
+0.03220745 0.9758731 
 
 Doing end processing
 Successful trial
-Total Time: 39.93344 
-Backend Time: 39.17997 </code></pre>
+Total Time: 3.414853 
+Backend Time: 3.4057 </code></pre>
 </div>
 </div>
-</section>
-<section id="plot-the-formula" class="level2">
-<h2 class="anchored" data-anchor-id="plot-the-formula">Plot the Formula</h2>
+<section id="summary" class="level4">
+<h4 class="anchored" data-anchor-id="summary">Summary</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotFormula</span>(</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">dynrModel =</span> model,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ParameterAs =</span> model<span class="sc">$</span><span class="st">"param.names"</span>,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">printDyn =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">printMeas =</span> <span class="cn">TRUE</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="var_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-</section>
-<section id="compare-true-parameters-to-estimated-ones" class="level2">
-<h2 class="anchored" data-anchor-id="compare-true-parameters-to-estimated-ones">Compare true parameters to estimated ones</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Coefficients:
-      Estimate Std. Error t value ci.lower ci.upper Pr(&gt;|t|)    
-a      0.38480    0.01504  25.586  0.35533  0.41428   &lt;2e-16 ***
-b     -0.29129    0.01662 -17.526 -0.32386 -0.25871   &lt;2e-16 ***
-b1    -0.22953    0.01496 -15.340 -0.25885 -0.20020   &lt;2e-16 ***
-a1     0.28506    0.01654  17.240  0.25266  0.31747   &lt;2e-16 ***
-c      0.29505    0.02644  11.158  0.24322  0.34688   &lt;2e-16 ***
-c1     0.26948    0.02631  10.244  0.21793  0.32104   &lt;2e-16 ***
-d     -0.53582    0.01584 -33.823 -0.56687 -0.50477   &lt;2e-16 ***
-d1    -0.41778    0.01576 -26.507 -0.44867 -0.38689   &lt;2e-16 ***
-v_wp   0.99518    0.02613  38.084  0.94396  1.04640   &lt;2e-16 ***
-c_wh   0.32752    0.01936  16.913  0.28957  0.36547   &lt;2e-16 ***
-v_hp   0.98503    0.02587  38.082  0.93434  1.03573   &lt;2e-16 ***
-mu_wp  0.10776    0.13955   0.772 -0.16576  0.38128   0.2200    
-mu_hp  0.09481    0.11050   0.858 -0.12178  0.31139   0.1955    
-v_11   1.94905    0.27551   7.074  1.40907  2.48903   &lt;2e-16 ***
-c_21   0.33547    0.15791   2.124  0.02597  0.64497   0.0169 *  
-v_22   1.22169    0.17264   7.076  0.88332  1.56007   &lt;2e-16 ***
+           Estimate Std. Error t value  ci.lower  ci.upper Pr(&gt;|t|)    
+alpha_1   -0.014967   0.014052  -1.065 -0.042509  0.012575   0.1434    
+alpha_2   -0.008389   0.014227  -0.590 -0.036274  0.019496   0.2777    
+alpha_3    0.007903   0.014151   0.558 -0.019833  0.035639   0.2883    
+beta_11    0.690645   0.011356  60.820  0.668388  0.712901   &lt;2e-16 ***
+beta_12    0.014841   0.009433   1.573 -0.003647  0.033328   0.0578 .  
+beta_13   -0.003229   0.009593  -0.337 -0.022030  0.015573   0.3682    
+beta_21    0.485637   0.011497  42.239  0.463103  0.508171   &lt;2e-16 ***
+beta_22    0.620518   0.009551  64.969  0.601798  0.639237   &lt;2e-16 ***
+beta_23   -0.008204   0.009714  -0.845 -0.027242  0.010835   0.1992    
+beta_31   -0.113009   0.011436  -9.882 -0.135423 -0.090595   &lt;2e-16 ***
+beta_32    0.416560   0.009499  43.851  0.397941  0.435178   &lt;2e-16 ***
+beta_33    0.495077   0.009660  51.249  0.476143  0.514010   &lt;2e-16 ***
+psi_11     0.982847   0.019677  49.949  0.944281  1.021413   &lt;2e-16 ***
+psi_12    -0.023740   0.014093  -1.684 -0.051362  0.003882   0.0461 *  
+psi_13    -0.015125   0.014013  -1.079 -0.042589  0.012340   0.1402    
+psi_22     1.007758   0.020173  49.957  0.968221  1.047296   &lt;2e-16 ***
+psi_23    -0.014928   0.014191  -1.052 -0.042741  0.012885   0.1464    
+psi_33     0.996721   0.019958  49.941  0.957604  1.035839   &lt;2e-16 ***
+mu0_1      0.024650   0.301226   0.082 -0.565742  0.615042   0.4674    
+mu0_2     -0.018225   0.350522  -0.052 -0.705237  0.668786   0.4793    
+mu0_3      0.513860   0.313076   1.641 -0.099758  1.127478   0.0504 .  
+sigma0_11  0.908181   0.406870   2.232  0.110731  1.705631   0.0128 *  
+sigma0_12  0.102394   0.333790   0.307 -0.551823  0.756611   0.3795    
+sigma0_13  0.183846   0.303623   0.606 -0.411245  0.778936   0.2724    
+sigma0_22  1.214153   0.540907   2.245  0.153995  2.274311   0.0124 *  
+sigma0_23  0.032207   0.344624   0.093 -0.643242  0.707657   0.4628    
+sigma0_33  0.975873   0.438297   2.227  0.116826  1.834920   0.0130 *  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
--2 log-likelihood value at convergence = 16715.66
-AIC = 16747.66
-BIC = 16843.76</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>truep <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">a =</span> <span class="fl">0.4</span>, <span class="at">b =</span> <span class="sc">-</span><span class="fl">0.3</span>, <span class="at">b1 =</span> <span class="sc">-</span><span class="fl">0.2</span>, <span class="at">a1 =</span> <span class="fl">0.3</span>,</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">c =</span> <span class="fl">0.3</span>, <span class="at">c1 =</span> <span class="fl">0.3</span>, <span class="at">d =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">d1 =</span> <span class="sc">-</span><span class="fl">0.4</span>,</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">v_wp =</span> <span class="dv">1</span>, <span class="at">c_wh =</span> .<span class="dv">3</span>, <span class="at">v_hp =</span> <span class="dv">1</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>estp <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">coef</span>(results)[<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>], <span class="dv">3</span>)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(truep, estp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     truep   estp
-a      0.4  0.385
-b     -0.3 -0.291
-b1    -0.2 -0.230
-a1     0.3  0.285
-c      0.3  0.295
-c1     0.3  0.269
-d     -0.5 -0.536
-d1    -0.4 -0.418
-v_wp   1.0  0.995
-c_wh   0.3  0.328
-v_hp   1.0  0.985</code></pre>
+-2 log-likelihood value at convergence = 42499.82
+AIC = 42553.82
+BIC = 42729.79</code></pre>
 </div>
 </div>
 </section>
-<section id="additional-plotting-functions" class="level2">
-<h2 class="anchored" data-anchor-id="additional-plotting-functions">Additional plotting functions</h2>
+<section id="estimated-coefficients" class="level4">
+<h4 class="anchored" data-anchor-id="estimated-coefficients">Estimated Coefficients</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(results, model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="var_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>alpha_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.014966945 -0.008388628  0.007902923</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dynr.ggplot</span>(results, model, <span class="at">style =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="var_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid" width="672"></p>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>beta_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           [,1]       [,2]         [,3]
+[1,]  0.6906446 0.01484089 -0.003228517
+[2,]  0.4856372 0.62051774 -0.008203662
+[3,] -0.1130090 0.41655958  0.495076528</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a LaTeX file showing all the equations. Don't run if you don't</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># already use LaTeX on your machine and has all the dependencies set up.</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">printex</span>(</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  model,</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">ParameterAs =</span> model<span class="sc">$</span><span class="st">"param.names"</span>,</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">show =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">printInit =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">printRS =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">outFile =</span> <span class="st">"VAR.tex"</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co"># tools::texi2pdf("VAR.tex")</span></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co"># system(paste(getOption("pdfviewer"), "VAR.pdf"))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>psi_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            [,1]        [,2]        [,3]
+[1,]  0.98284732 -0.02373970 -0.01512467
+[2,] -0.02373970  1.00775818 -0.01492809
+[3,] -0.01512467 -0.01492809  0.99672124</code></pre>
 </div>
-<p><img src="https://raw.githubusercontent.com/psu-psychology/r-bootcamp-2019/master/demos/dynr/Latex_output_VAR.PNG" class="img-fluid"></p>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>mu0_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  0.02465033 -0.01822517  0.51385992</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>sigma0_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          [,1]       [,2]       [,3]
+[1,] 0.9081811 0.10239418 0.18384572
+[2,] 0.1023942 1.21415314 0.03220745
+[3,] 0.1838457 0.03220745 0.97587313</code></pre>
+</div>
+</div>
+</section>
+<section id="discrepancy-between-estimated-and-population-coefficients" class="level4">
+<h4 class="anchored" data-anchor-id="discrepancy-between-estimated-and-population-coefficients">Discrepancy Between Estimated and Population Coefficients</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>tol <span class="ot">&lt;-</span> <span class="fl">0.10</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span>(</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.vector</span>(</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">abs</span>(alpha <span class="sc">-</span> alpha_hat)</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">&lt;=</span> tol</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span>(</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.vector</span>(</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">abs</span>(beta <span class="sc">-</span> beta_hat)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">&lt;=</span> tol</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -773,8 +931,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../.setup/quarto/references/references.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-title">References</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../.setup/quarto/examples/ou.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-title">Ornstein–Uhlenbeck Model</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
