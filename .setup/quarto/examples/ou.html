@@ -657,8 +657,8 @@ Transformed fitted parameters:  0.07403584 0.1766053 0.1539797 0.3697301
 
 Doing end processing
 Successful trial
-Total Time: 5.059803 
-Backend Time: 5.050118 </code></pre>
+Total Time: 5.008569 
+Backend Time: 4.999344 </code></pre>
 </div>
 </div>
 <section id="summary" class="level4">
@@ -788,22 +788,23 @@ BIC = 7613.81</code></pre>
 <section id="monte-carlo-confidence-interval-for-functions-of-parameters" class="level2">
 <h2 class="anchored" data-anchor-id="monte-carlo-confidence-interval-for-functions-of-parameters">Monte Carlo Confidence Interval for Functions of Parameters</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dynr.mc</span>(</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">object =</span> results,</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">R =</span> <span class="dv">20000</span>,</span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">def =</span> <span class="fu">list</span>(</span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_21 * phi_32"</span>, <span class="co"># indirect effect</span></span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_21 * phi_32 + phi_31"</span> <span class="co"># total effect</span></span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"remotes"</span>)) <span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"jeksterslab/semmcci"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>semmcci<span class="sc">::</span><span class="fu">MCGeneric</span>(</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">object =</span> results,</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">R =</span> 20000L,</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">def =</span> <span class="fu">list</span>(</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_21 * phi_32"</span>, <span class="co"># indirect effect</span></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_21 * phi_32 + phi_31"</span> <span class="co"># total effect</span></span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha =</span> <span class="fl">0.05</span></span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>$`phi_21 * phi_32`
-     2.5%     97.5% 
-0.4114503 0.6011294 
-
-$`phi_21 * phi_32 + phi_31`
-     2.5%     97.5% 
-0.8327859 1.1675499 </code></pre>
+<pre><code>                            est     se     R   2.5%  97.5%
+phi_21 * phi_32          0.5032 0.0484 20000 0.4115 0.6011
+phi_21 * phi_32 + phi_31 0.9982 0.0855 20000 0.8328 1.1675</code></pre>
 </div>
 </div>
 
