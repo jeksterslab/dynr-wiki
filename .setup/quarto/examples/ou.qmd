@@ -325,7 +325,7 @@ dynr_measurement <- dynr::prep.measurement(
 
 ```{r}
 dynr_dynamics <- dynr::prep.formulaDynamics(
-  formula = list(  
+  formula = list(
     eta_1 ~ phi_11 * (mu_1 - eta_1) + phi_12 * (mu_2 - eta_2) + phi_13 * (mu_3 - eta_3),
     eta_2 ~ phi_21 * (mu_1 - eta_1) + phi_22 * (mu_2 - eta_2) + phi_23 * (mu_3 - eta_3),
     eta_3 ~ phi_31 * (mu_1 - eta_1) + phi_32 * (mu_2 - eta_2) + phi_33 * (mu_3 - eta_3)
@@ -544,7 +544,7 @@ semmcci::MCGeneric(
   object = results,
   R = 20000L,
   def = list(
-    "phi_21 * phi_32",         # indirect effect
+    "phi_21 * phi_32", # indirect effect
     "phi_21 * phi_32 + phi_31" # total effect
   ),
   alpha = 0.05
