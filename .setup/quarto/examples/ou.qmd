@@ -325,7 +325,7 @@ dynr_measurement <- dynr::prep.measurement(
 
 ```{r}
 dynr_dynamics <- dynr::prep.formulaDynamics(
-  formula = list(
+  formula = list(  
     eta_1 ~ phi_11 * (mu_1 - eta_1) + phi_12 * (mu_2 - eta_2) + phi_13 * (mu_3 - eta_3),
     eta_2 ~ phi_21 * (mu_1 - eta_1) + phi_22 * (mu_2 - eta_2) + phi_23 * (mu_3 - eta_3),
     eta_3 ~ phi_31 * (mu_1 - eta_1) + phi_32 * (mu_2 - eta_2) + phi_33 * (mu_3 - eta_3)
@@ -527,81 +527,17 @@ all(
 ## Monte Carlo Confidence Interval for Functions of Parameters
 
 ```{r}
-#| echo = FALSE
-#' @param object R object.
-#'   `dynr.cook` object.
-#' @param R Positive integer.
-#'   Number of Monte Carlo replications.
-#' @param def List of character strings.
-#'   A list of defined functions of parameters.
-#' @param seed Random seed for reproducibility.
-dynr.mc <- function(object,
-                    R,
-                    def,
-                    seed = NULL) {
-  if (!is.null(seed)) {
-    set.seed(seed)
-  }
-  # identify coefficients used and do MC only for them
-  defs_exp <- lapply(
-    X = def,
-    FUN = function(x) {
-      parse(text = x)
-    }
-  )
-  def_vars <- unique(
-    unlist(
-      sapply(
-        X = defs_exp, FUN = all.vars
-      )
-    )
-  )
-  # generate sampling distribution of parameter estimates
-  mc <- MASS::mvrnorm(
-    n = R,
-    mu = coef(object)[def_vars],
-    Sigma = vcov(object)[def_vars, def_vars]
-  )
-  # function to parse and execute the input def
-  foo <- function(def) {
-    mc_dist <- rep(x = NA, times = R)
-    bar <- function(i) {
-      i1 <- as.list(i)
-      env <- list2env(i1)
-      return(
-        eval(
-          parse(text = def),
-          envir = env
-        )
-      )
-    }
-    for (i in seq_len(R)) {
-      mc_i <- mc[i, ]
-      names(mc_i) <- colnames(mc)
-      mc_dist[i] <- bar(mc_i)
-    }
-    return(
-      stats::quantile(
-        x = mc_dist,
-        probs = c(0.025, 0.975)
-      )
-    )
-  }
-  out <- lapply(
-    X = def,
-    FUN = foo
-  )
-  names(out) <- def
-  return(out)
-}
+#| eval = FALSE
+if (!require("remotes")) install.packages("remotes")
+remotes::install_github("jeksterslab/semmcci")
 ```
 
 ```{r}
-dynr.mc(
+semmcci::MCGeneric(
   object = results,
   R = 20000,
   def = list(
-    "phi_21 * phi_32", # indirect effect
+    "phi_21 * phi_32",         # indirect effect
     "phi_21 * phi_32 + phi_31" # total effect
   )
 )
