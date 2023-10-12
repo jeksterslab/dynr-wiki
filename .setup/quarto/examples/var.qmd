@@ -92,11 +92,11 @@ $\boldsymbol{\eta}_{0}$
 be given by
 
 \begin{equation}
-\boldsymbol{\eta}_{0} \sim \mathcal{N} \left( \boldsymbol{\mu}_{0}, \boldsymbol{\Sigma}_{0} \right)
+\boldsymbol{\eta}_{0} \sim \mathcal{N} \left( \boldsymbol{\mu}_{\boldsymbol{\eta} \mid 0}, \boldsymbol{\Sigma}_{\boldsymbol{\eta} \mid 0} \right)
 \end{equation}
 
 \begin{equation}
-\boldsymbol{\mu}_{0}
+\boldsymbol{\mu}_{\boldsymbol{\eta} \mid 0}
 =
 \left(
 \begin{array}{c}
@@ -108,7 +108,7 @@ be given by
 \end{equation}
 
 \begin{equation}
-\boldsymbol{\Sigma}_{0}
+\boldsymbol{\Sigma}_{\boldsymbol{\eta} \mid 0}
 =
 \left(
 \begin{array}{ccc}
