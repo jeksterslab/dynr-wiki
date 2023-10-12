@@ -248,6 +248,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#prepare-the-model" id="toc-prepare-the-model" class="nav-link" data-scroll-target="#prepare-the-model">Prepare the Model</a></li>
   <li><a href="#fit-the-model" id="toc-fit-the-model" class="nav-link" data-scroll-target="#fit-the-model">Fit the Model</a></li>
   </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a>
+  <ul class="collapse">
+  <li><a href="#estimated-coefficients" id="toc-estimated-coefficients" class="nav-link" data-scroll-target="#estimated-coefficients">Estimated Coefficients</a></li>
+  <li><a href="#discrepancy-between-estimated-and-population-coefficients" id="toc-discrepancy-between-estimated-and-population-coefficients" class="nav-link" data-scroll-target="#discrepancy-between-estimated-and-population-coefficients">Discrepancy Between Estimated and Population Coefficients</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jeksterslab/dynr-wiki/edit/main/.setup/quarto/examples/var.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
@@ -315,10 +320,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Let <span class="math inline">\(t = 500\)</span> be the number of time points and <span class="math inline">\(n = 10\)</span> be the number of individuals.</p>
 <p>Let the initial condition <span class="math inline">\(\boldsymbol{\eta}_{0}\)</span> be given by</p>
 <p><span class="math display">\[\begin{equation}
-\boldsymbol{\eta}_{0} \sim \mathcal{N} \left( \boldsymbol{\mu}_{0}, \boldsymbol{\Sigma}_{0} \right)
+\boldsymbol{\eta}_{0} \sim \mathcal{N} \left( \boldsymbol{\mu}_{\boldsymbol{\eta} \mid 0}, \boldsymbol{\Sigma}_{\boldsymbol{\eta} \mid 0} \right)
 \end{equation}\]</span></p>
 <p><span class="math display">\[\begin{equation}
-\boldsymbol{\mu}_{0}
+\boldsymbol{\mu}_{\boldsymbol{\eta} \mid 0}
 =
 \left(
 \begin{array}{c}
@@ -329,7 +334,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 \right)
 \end{equation}\]</span></p>
 <p><span class="math display">\[\begin{equation}
-\boldsymbol{\Sigma}_{0}
+\boldsymbol{\Sigma}_{\boldsymbol{\eta} \mid 0}
 =
 \left(
 \begin{array}{ccc}
@@ -582,12 +587,14 @@ Transformed fitted parameters:  -0.01496695 -0.008388628 0.007902923 0.6906446
 
 Doing end processing
 Successful trial
-Total Time: 4.101473 
-Backend Time: 4.090921 </code></pre>
+Total Time: 4.004514 
+Backend Time: 3.994407 </code></pre>
 </div>
 </div>
-<section id="summary" class="level4">
-<h4 class="anchored" data-anchor-id="summary">Summary</h4>
+</section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -628,9 +635,8 @@ AIC = 42553.82
 BIC = 42729.79</code></pre>
 </div>
 </div>
-</section>
-<section id="estimated-coefficients" class="level4">
-<h4 class="anchored" data-anchor-id="estimated-coefficients">Estimated Coefficients</h4>
+<section id="estimated-coefficients" class="level3">
+<h3 class="anchored" data-anchor-id="estimated-coefficients">Estimated Coefficients</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>alpha_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -663,8 +669,8 @@ BIC = 42729.79</code></pre>
 </div>
 </div>
 </section>
-<section id="discrepancy-between-estimated-and-population-coefficients" class="level4">
-<h4 class="anchored" data-anchor-id="discrepancy-between-estimated-and-population-coefficients">Discrepancy Between Estimated and Population Coefficients</h4>
+<section id="discrepancy-between-estimated-and-population-coefficients" class="level3">
+<h3 class="anchored" data-anchor-id="discrepancy-between-estimated-and-population-coefficients">Discrepancy Between Estimated and Population Coefficients</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>tol <span class="ot">&lt;-</span> <span class="fl">0.10</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span>(</span>
@@ -686,7 +692,6 @@ BIC = 42729.79</code></pre>
 </div>
 
 
-</section>
 </section>
 </section>
 
