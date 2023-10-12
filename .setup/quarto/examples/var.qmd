@@ -397,35 +397,9 @@ sigma0_hat
 ### Discrepancy Between Estimated and Population Coefficients
 
 ```{r}
-tol <- 0.10
-all(
-  as.vector(
-    abs(alpha - alpha_hat)
-  ) <= tol
-)
-all(
-  as.vector(
-    abs(beta - beta_hat)
-  ) <= tol
-)
-```
-
-```{r}
-#| echo = FALSE,
-#| eval = FALSE
-all(
-  as.vector(
-    abs(psi - psi_hat)
-  ) <= tol
-)
-all(
-  as.vector(
-    abs(mu0 - mu0_hat)
-  ) <= tol
-)
-all(
-  as.vector(
-    abs(sigma0 - sigma0_hat)
-  ) <= tol
-)
+abs(alpha - alpha_hat)
+abs(beta - beta_hat)
+abs(psi - psi_hat)
+abs(mu0 - mu0_hat)
+abs(sigma0 - sigma0_hat)
 ```
