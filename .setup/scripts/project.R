@@ -20,8 +20,7 @@ project <- "dynr-wiki"
 pkg_cran <- c()
 
 pkg_github <- c(
-  "ijapesigan/simStateSpace",
-  "jeksterslab/semmcci"
+  "ijapesigan/simStateSpace"
 )
 
 pkg_github_ref <- c()

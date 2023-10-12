@@ -176,7 +176,8 @@ psi
 ### Using the simStateSpace::SimSSMVARStationary Function to Simulate Data
 
 ```{r}
-#| eval = FALSE
+#| message = FALSE,
+#| warning = FALSE
 if (!require("remotes")) install.packages("remotes")
 remotes::install_github("ijapesigan/simStateSpace")
 ```
@@ -306,7 +307,7 @@ results <- dynr::dynr.cook(
 )
 ```
 
-#### Summary
+## Summary
 
 ```{r}
 summary(results)
@@ -383,7 +384,7 @@ psi_hat <- matrix(
 )
 ```
 
-#### Estimated Coefficients
+### Estimated Coefficients
 
 ```{r}
 alpha_hat
@@ -393,7 +394,7 @@ mu0_hat
 sigma0_hat
 ```
 
-#### Discrepancy Between Estimated and Population Coefficients
+### Discrepancy Between Estimated and Population Coefficients
 
 ```{r}
 tol <- 0.10
