@@ -236,7 +236,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation">Notation</a></li>
   <li><a href="#r-function-arguments" id="toc-r-function-arguments" class="nav-link" data-scroll-target="#r-function-arguments">R Function Arguments</a></li>
-  <li><a href="#using-the-simstatespacesimssmvarstationary-function-to-simulate-data" id="toc-using-the-simstatespacesimssmvarstationary-function-to-simulate-data" class="nav-link" data-scroll-target="#using-the-simstatespacesimssmvarstationary-function-to-simulate-data">Using the simStateSpace::SimSSMVARStationary Function to Simulate Data</a></li>
+  <li><a href="#using-the-simstatespacesimssmvarfixed-function-to-simulate-data" id="toc-using-the-simstatespacesimssmvarfixed-function-to-simulate-data" class="nav-link" data-scroll-target="#using-the-simstatespacesimssmvarfixed-function-to-simulate-data">Using the simStateSpace::SimSSMVARFixed Function to Simulate Data</a></li>
   </ul></li>
   <li><a href="#model-fitting" id="toc-model-fitting" class="nav-link" data-scroll-target="#model-fitting">Model Fitting</a>
   <ul class="collapse">
@@ -423,14 +423,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="using-the-simstatespacesimssmvarstationary-function-to-simulate-data" class="level3">
-<h3 class="anchored" data-anchor-id="using-the-simstatespacesimssmvarstationary-function-to-simulate-data">Using the simStateSpace::SimSSMVARStationary Function to Simulate Data</h3>
+<section id="using-the-simstatespacesimssmvarfixed-function-to-simulate-data" class="level3">
+<h3 class="anchored" data-anchor-id="using-the-simstatespacesimssmvarfixed-function-to-simulate-data">Using the simStateSpace::SimSSMVARFixed Function to Simulate Data</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"remotes"</span>)) <span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"ijapesigan/simStateSpace"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> simStateSpace<span class="sc">::</span><span class="fu">SimSSMVARStationary</span>(</span>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> simStateSpace<span class="sc">::</span><span class="fu">SimSSMVARFixed</span>(</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> n,</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mu0 =</span> mu0,</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">sigma0_sqrt =</span> <span class="fu">chol</span>(sigma0),</span>
@@ -573,22 +573,22 @@ Finished Hessian calculation.
 Original exit flag:  3 
 Modified exit flag:  3 
 Optimization terminated successfully: ftol_rel or ftol_abs was reached. 
-Original fitted parameters:  -0.01496695 -0.00838863 0.007902923 0.6906446 
-0.01484088 -0.003228512 0.4856372 0.6205177 -0.008203664 -0.113009 0.4165596 
-0.4950765 -0.01730149 -0.024154 -0.01538862 0.007159095 -0.01518431 
--0.003750751 0.02465051 -0.018225 0.5138602 -0.09631138 0.1127465 0.2024325 
-0.1844931 0.009545478 -0.06342263 
+Original fitted parameters:  -0.01496695 -0.008388628 0.007902923 0.6906446 
+0.01484089 -0.003228517 0.4856372 0.6205177 -0.008203662 -0.113009 0.4165596 
+0.4950765 -0.01730149 -0.024154 -0.01538862 0.007159089 -0.01518432 
+-0.003750755 0.02465033 -0.01822517 0.5138599 -0.09631148 0.1127464 0.2024329 
+0.184493 0.009545498 -0.0634222 
 
-Transformed fitted parameters:  -0.01496695 -0.00838863 0.007902923 0.6906446 
-0.01484088 -0.003228512 0.4856372 0.6205177 -0.008203664 -0.113009 0.4165596 
-0.4950765 0.9828473 -0.02373969 -0.01512467 1.007758 -0.01492809 0.9967212 
-0.02465051 -0.018225 0.5138602 0.9081812 0.1023942 0.1838454 1.214153 
-0.03220739 0.9758726 
+Transformed fitted parameters:  -0.01496695 -0.008388628 0.007902923 0.6906446 
+0.01484089 -0.003228517 0.4856372 0.6205177 -0.008203662 -0.113009 0.4165596 
+0.4950765 0.9828473 -0.0237397 -0.01512467 1.007758 -0.01492809 0.9967212 
+0.02465033 -0.01822517 0.5138599 0.9081811 0.1023942 0.1838457 1.214153 
+0.03220745 0.9758731 
 
 Doing end processing
 Successful trial
-Total Time: 5.249135 
-Backend Time: 5.237462 </code></pre>
+Total Time: 3.441422 
+Backend Time: 3.432563 </code></pre>
 </div>
 </div>
 </section>
@@ -600,33 +600,33 @@ Backend Time: 5.237462 </code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Coefficients:
            Estimate Std. Error t value  ci.lower  ci.upper Pr(&gt;|t|)    
-alpha_1   -0.014967   0.014049  -1.065 -0.042503  0.012569   0.1434    
-alpha_2   -0.008389   0.014226  -0.590 -0.036271  0.019494   0.2777    
-alpha_3    0.007903   0.014149   0.559 -0.019828  0.035634   0.2882    
-beta_11    0.690645   0.011353  60.836  0.668394  0.712895   &lt;2e-16 ***
-beta_12    0.014841   0.009430   1.574 -0.003642  0.033323   0.0578 .  
-beta_13   -0.003229   0.009591  -0.337 -0.022026  0.015569   0.3682    
-beta_21    0.485637   0.011495  42.249  0.463108  0.508166   &lt;2e-16 ***
-beta_22    0.620518   0.009548  64.989  0.601804  0.639232   &lt;2e-16 ***
-beta_23   -0.008204   0.009712  -0.845 -0.027238  0.010831   0.1992    
-beta_31   -0.113009   0.011431  -9.886 -0.135413 -0.090605   &lt;2e-16 ***
-beta_32    0.416560   0.009496  43.868  0.397948  0.435171   &lt;2e-16 ***
-beta_33    0.495077   0.009658  51.258  0.476146  0.514007   &lt;2e-16 ***
-psi_11     0.982847   0.019670  49.968  0.944295  1.021399   &lt;2e-16 ***
-psi_12    -0.023740   0.014089  -1.685 -0.051354  0.003875   0.0460 *  
-psi_13    -0.015125   0.014009  -1.080 -0.042583  0.012333   0.1402    
-psi_22     1.007758   0.020166  49.973  0.968233  1.047283   &lt;2e-16 ***
-psi_23    -0.014928   0.014185  -1.052 -0.042731  0.012874   0.1463    
-psi_33     0.996721   0.019948  49.967  0.957625  1.035818   &lt;2e-16 ***
-mu0_1      0.024651   0.301373   0.082 -0.566030  0.615331   0.4674    
-mu0_2     -0.018225   0.349374  -0.052 -0.702986  0.666536   0.4792    
-mu0_3      0.513860   0.312682   1.643 -0.098985  1.126706   0.0502 .  
-sigma0_11  0.908181   0.405715   2.238  0.112995  1.703367   0.0126 *  
-sigma0_12  0.102394   0.334454   0.306 -0.553124  0.757912   0.3798    
-sigma0_13  0.183845   0.302808   0.607 -0.409647  0.777338   0.2719    
-sigma0_22  1.214153   0.542466   2.238  0.150940  2.277367   0.0126 *  
-sigma0_23  0.032207   0.344172   0.094 -0.642357  0.706772   0.4627    
-sigma0_33  0.975873   0.440031   2.218  0.113427  1.838318   0.0133 *  
+alpha_1   -0.014967   0.014052  -1.065 -0.042509  0.012575   0.1434    
+alpha_2   -0.008389   0.014227  -0.590 -0.036274  0.019496   0.2777    
+alpha_3    0.007903   0.014151   0.558 -0.019833  0.035639   0.2883    
+beta_11    0.690645   0.011356  60.820  0.668388  0.712901   &lt;2e-16 ***
+beta_12    0.014841   0.009433   1.573 -0.003647  0.033328   0.0578 .  
+beta_13   -0.003229   0.009593  -0.337 -0.022030  0.015573   0.3682    
+beta_21    0.485637   0.011497  42.239  0.463103  0.508171   &lt;2e-16 ***
+beta_22    0.620518   0.009551  64.969  0.601798  0.639237   &lt;2e-16 ***
+beta_23   -0.008204   0.009714  -0.845 -0.027242  0.010835   0.1992    
+beta_31   -0.113009   0.011436  -9.882 -0.135423 -0.090595   &lt;2e-16 ***
+beta_32    0.416560   0.009499  43.851  0.397941  0.435178   &lt;2e-16 ***
+beta_33    0.495077   0.009660  51.249  0.476143  0.514010   &lt;2e-16 ***
+psi_11     0.982847   0.019677  49.949  0.944281  1.021413   &lt;2e-16 ***
+psi_12    -0.023740   0.014093  -1.684 -0.051362  0.003882   0.0461 *  
+psi_13    -0.015125   0.014013  -1.079 -0.042589  0.012340   0.1402    
+psi_22     1.007758   0.020173  49.957  0.968221  1.047296   &lt;2e-16 ***
+psi_23    -0.014928   0.014191  -1.052 -0.042741  0.012885   0.1464    
+psi_33     0.996721   0.019958  49.941  0.957604  1.035839   &lt;2e-16 ***
+mu0_1      0.024650   0.301226   0.082 -0.565742  0.615042   0.4674    
+mu0_2     -0.018225   0.350522  -0.052 -0.705237  0.668786   0.4793    
+mu0_3      0.513860   0.313076   1.641 -0.099758  1.127478   0.0504 .  
+sigma0_11  0.908181   0.406870   2.232  0.110731  1.705631   0.0128 *  
+sigma0_12  0.102394   0.333790   0.307 -0.551823  0.756611   0.3795    
+sigma0_13  0.183846   0.303623   0.606 -0.411245  0.778936   0.2724    
+sigma0_22  1.214153   0.540907   2.245  0.153995  2.274311   0.0124 *  
+sigma0_23  0.032207   0.344624   0.093 -0.643242  0.707657   0.4628    
+sigma0_33  0.975873   0.438297   2.227  0.116826  1.834920   0.0130 *  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
@@ -640,32 +640,32 @@ BIC = 42729.79</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>alpha_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.014966945 -0.008388630  0.007902923</code></pre>
+<pre><code>[1] -0.014966945 -0.008388628  0.007902923</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>beta_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           [,1]       [,2]         [,3]
-[1,]  0.6906446 0.01484088 -0.003228512
-[2,]  0.4856372 0.62051774 -0.008203664
-[3,] -0.1130090 0.41655958  0.495076527</code></pre>
+[1,]  0.6906446 0.01484089 -0.003228517
+[2,]  0.4856372 0.62051774 -0.008203662
+[3,] -0.1130090 0.41655958  0.495076528</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>psi_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            [,1]        [,2]        [,3]
-[1,]  0.98284732 -0.02373969 -0.01512467
-[2,] -0.02373969  1.00775819 -0.01492809
+[1,]  0.98284732 -0.02373970 -0.01512467
+[2,] -0.02373970  1.00775818 -0.01492809
 [3,] -0.01512467 -0.01492809  0.99672124</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>mu0_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  0.02465051 -0.01822500  0.51386024</code></pre>
+<pre><code>[1]  0.02465033 -0.01822517  0.51385992</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>sigma0_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          [,1]       [,2]       [,3]
-[1,] 0.9081812 0.10239423 0.18384538
-[2,] 0.1023942 1.21415331 0.03220739
-[3,] 0.1838454 0.03220739 0.97587259</code></pre>
+[1,] 0.9081811 0.10239418 0.18384572
+[2,] 0.1023942 1.21415314 0.03220745
+[3,] 0.1838457 0.03220745 0.97587313</code></pre>
 </div>
 </div>
 </section>
@@ -674,32 +674,32 @@ BIC = 42729.79</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(alpha <span class="sc">-</span> alpha_hat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.014966945 0.008388630 0.007902923</code></pre>
+<pre><code>[1] 0.014966945 0.008388628 0.007902923</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(beta <span class="sc">-</span> beta_hat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            [,1]       [,2]        [,3]
-[1,] 0.009355381 0.01484088 0.003228512
-[2,] 0.014362832 0.02051774 0.008203664
-[3,] 0.013009032 0.01655958 0.004923473</code></pre>
+[1,] 0.009355395 0.01484089 0.003228517
+[2,] 0.014362829 0.02051774 0.008203662
+[3,] 0.013009036 0.01655958 0.004923472</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(psi <span class="sc">-</span> psi_hat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           [,1]        [,2]        [,3]
-[1,] 0.01715268 0.023739693 0.015124667
-[2,] 0.02373969 0.007758191 0.014928087
-[3,] 0.01512467 0.014928087 0.003278758</code></pre>
+[1,] 0.01715268 0.023739697 0.015124667
+[2,] 0.02373970 0.007758185 0.014928091
+[3,] 0.01512467 0.014928091 0.003278762</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(mu0 <span class="sc">-</span> mu0_hat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.02465051 0.01822500 0.51386024</code></pre>
+<pre><code>[1] 0.02465033 0.01822517 0.51385992</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(sigma0 <span class="sc">-</span> sigma0_hat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           [,1]       [,2]       [,3]
-[1,] 0.09181882 0.10239423 0.18384538
-[2,] 0.10239423 0.21415331 0.03220739
-[3,] 0.18384538 0.03220739 0.02412741</code></pre>
+[1,] 0.09181891 0.10239418 0.18384572
+[2,] 0.10239418 0.21415314 0.03220745
+[3,] 0.18384572 0.03220745 0.02412687</code></pre>
 </div>
 </div>
 
