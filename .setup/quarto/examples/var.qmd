@@ -173,7 +173,7 @@ beta
 psi
 ```
 
-### Using the simStateSpace::SimSSMVARStationary Function to Simulate Data
+### Using the simStateSpace::SimSSMVARFixed Function to Simulate Data
 
 ```{r}
 #| message = FALSE,
@@ -183,7 +183,7 @@ remotes::install_github("ijapesigan/simStateSpace")
 ```
 
 ```{r}
-data <- simStateSpace::SimSSMVARStationary(
+data <- simStateSpace::SimSSMVARFixed(
   n = n,
   mu0 = mu0,
   sigma0_sqrt = chol(sigma0),
