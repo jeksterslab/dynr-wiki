@@ -60,8 +60,8 @@ $\boldsymbol{\zeta}_{i, t}$.
 ```{r}
 #| echo = FALSE
 set.seed(42)
-time <- 500
-n <- 10
+time <- 10000
+n <- 5
 k <- p <- 3
 I <- diag(k)
 null_vec <- rep(x = 0, times = k)
@@ -183,15 +183,19 @@ remotes::install_github("ijapesigan/simStateSpace")
 ```
 
 ```{r}
-data <- simStateSpace::SimSSMVARFixed(
-  n = n,
-  mu0 = mu0,
-  sigma0_sqrt = chol(sigma0),
-  alpha = alpha,
-  beta = beta,
-  psi_sqrt = chol(psi),
-  time = time,
-  burn_in = 0
+library(simStateSpace)
+set.seed(42)
+data <- Sim2Matrix(
+  SimSSMVARFixed(
+    n = n,
+    mu0 = mu0,
+    sigma0_sqrt = chol(sigma0),
+    alpha = alpha,
+    beta = beta,
+    psi_sqrt = chol(psi),
+    time = time,
+    burn_in = 0
+  )
 )
 head(data)
 ```
@@ -400,6 +404,11 @@ sigma0_hat
 abs(alpha - alpha_hat)
 abs(beta - beta_hat)
 abs(psi - psi_hat)
+```
+
+```{r}
+#| echo = FALSE,
+#| eval = FALSE
 abs(mu0 - mu0_hat)
 abs(sigma0 - sigma0_hat)
 ```
