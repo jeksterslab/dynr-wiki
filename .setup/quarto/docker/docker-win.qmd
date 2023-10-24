@@ -55,14 +55,14 @@ If the above instructions fail, you might be using an older version of Windows. 
 -  Download the the appropriate Docker Desktop for Windows from [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/).
 -  Double-click `Docker Desktop Installer.exe` to install `Docker Desktop`.
 -  Launch `Docker Desktop`.
-    -  Click the `Accept` button to accept the terms of service to continue.
+-  You may continue without creating an account or signing in.
 
 ## Running the dynr Docker Container
 
 -  Launch `Docker Desktop`.
--  In `PowerShell` type the following to launch `Rstudio Server`[^docker-win-2]:
+-  In `PowerShell` type the following to launch `Rstudio Server`[^docker-win-1]:
 
-[^docker-win-2]: Note for developers only: Replace `jeksterslab/dynr-rocker` with `jeksterslab/dynr-arma-rocker` to use the `arma` branch.
+[^docker-win-1]: Note for developers only: Replace `jeksterslab/dynr-rocker` with `jeksterslab/dynr-arma-rocker` to use the `arma` branch.
 
 ```powershell
 docker run --rm -ti -e PASSWORD=yourpassword -p 127.0.0.1:8787:8787 jeksterslab/dynr-rocker
@@ -70,9 +70,9 @@ docker run --rm -ti -e PASSWORD=yourpassword -p 127.0.0.1:8787:8787 jeksterslab/
 
 -  Open http://localhost:8787 on your web browser to launch `Rstudio Server`.
     -  username: rstudio
-    -  password: yourpassword[^docker-win-3]
+    -  password: yourpassword[^docker-win-2]
 
-[^docker-win-3]: You can change the password by replacing `yourpassword` in `PASSWORD=yourpassword`.
+[^docker-win-2]: You can change the password by replacing `yourpassword` in `PASSWORD=yourpassword`.
 
 <!--
 -  In `PowerShell` type the following to pull the latest Docker image:

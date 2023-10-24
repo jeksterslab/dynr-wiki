@@ -1,9 +1,9 @@
 ---
-title: MacOS
+title: macOS
 author: Ivan Jacob Agaloos Pesigan
 ---
 
-In this tutorial, we will go through the necessary steps to launch the `dynr` Docker container on MacOS.
+In this tutorial, we will go through the necessary steps to launch the `dynr` Docker container on macOS.
 
 <!--
 ::: callout-note
@@ -14,27 +14,27 @@ For a better terminal experience, you can, optionally, install `iTerm2`.
 ## Installing Docker Desktop
 
 <!--
--  Download the the appropriate Docker Desktop for MacOS (Intel vs. M1) from [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/).
+-  Download the the appropriate Docker Desktop for macOS (Intel Chip vs. Apple Chip) from [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/).
 -  Double-click `Desktop.dmg` to install `Docker Desktop`.
 -  Drag `Docker.app` to the `Applications` folder.
 -  Launch `Docker` from the `Launchpad`.
-    -  The system would ask for your MacOS user password.
+    -  The system would ask for your macOS user password.
     -  Click the `Accept` button to accept the terms of service to continue.
 -->
 
--  Download the the appropriate Docker Desktop for MacOS (Intel vs. M1) from [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/).
+-  Download the the appropriate Docker Desktop for macOS (Intel Chip vs. Apple Chip) from [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/).
 -  Double-click `Desktop.dmg` to install `Docker Desktop`.
 -  Drag `Docker.app` to the `Applications` folder.
 -  Launch `Docker` from the `Launchpad`.
--  Choose "Use recommended settings (requires password)" and provide your MacOS user password.
+-  Choose `Use recommended settings (requires password)` and provide your macOS user password.
 -  You may continue without creating an account or signing in.
 
 ## Running the dynr Docker Container
 
 -  Launch `Docker Desktop`.
--  Type the following to launch `Rstudio Server`[^dynr-rocker-mac-2] on your MacOS terminal:
+-  Type the following to launch `Rstudio Server`[^dynr-rocker-mac-1] on your macOS terminal:
 
-[^dynr-rocker-mac-2]: Note for developers only: Replace `jeksterslab/dynr-rocker` with `jeksterslab/dynr-arma-rocker` to use the `arma` branch.
+[^dynr-rocker-mac-1]: Note for developers only: Replace `jeksterslab/dynr-rocker` with `jeksterslab/dynr-arma-rocker` to use the `arma` branch.
 
 ```bash
 docker run --rm -ti -e PASSWORD=yourpassword -p 127.0.0.1:8787:8787 jeksterslab/dynr-rocker
@@ -42,6 +42,6 @@ docker run --rm -ti -e PASSWORD=yourpassword -p 127.0.0.1:8787:8787 jeksterslab/
 
 -  Open http://localhost:8787 on your web browser to launch `Rstudio Server`.
     -  username: rstudio
-    -  password: yourpassword[^docker-mac-3]
+    -  password: yourpassword[^docker-mac-2]
 
-[^docker-mac-3]: You can change the password by replacing `yourpassword` in `PASSWORD=yourpassword`.
+[^docker-mac-2]: You can change the password by replacing `yourpassword` in `PASSWORD=yourpassword`.
