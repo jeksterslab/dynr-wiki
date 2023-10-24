@@ -23,11 +23,19 @@ docker pull jeksterslab/dynr-rocker:latest
 
 As tags are simply categories, newer versions of the image can be pushed to a tag. For **reproducibility**, it is a good practice to pull using the **digest** with the secure hash value, which is an immutable identifier, to make sure you are pulling exactly the same version of the image. To get the digest for a particular tag in Docker Hub, go to <https://hub.docker.com/repository/docker/jeksterslab/dynr-rocker/general>. Under `Tags` click on the tag of interest. In our example, we click on the `latest` tag.
 
+<!--
 ![](.setup/quarto/docker/dockerhub-general.png)
+-->
+
+![](https://raw.githubusercontent.com/jeksterslab/dynr-wiki/main/.setup/quarto/docker/dockerhub-general.png)
 
 I have highlighted the digest for the `latest` tag in the screenshot below.
 
+<!--
 ![](.setup/quarto/docker/dockerhub-digest.png)
+-->
+
+![](https://raw.githubusercontent.com/jeksterslab/dynr-wiki/main/.setup/quarto/docker/dockerhub-digest.png)
 
 In order to make sure you are pulling this version of the image, for future use or for use on another machine, use the following command.
 

@@ -60,12 +60,6 @@ If the above instructions fail, you might be using an older version of Windows. 
 ## Running the dynr Docker Container
 
 -  Launch `Docker Desktop`.
--  In `PowerShell` type the following to pull the latest Docker image[^docker-win-2]:
-
-```powershell
-docker pull jeksterslab/dynr-rocker:latest
-```
-
 -  In `PowerShell` type the following to launch `Rstudio Server`[^docker-win-2]:
 
 [^docker-win-2]: Note for developers only: Replace `jeksterslab/dynr-rocker` with `jeksterslab/dynr-arma-rocker` to use the `arma` branch.
@@ -79,3 +73,11 @@ docker run --rm -ti -e PASSWORD=yourpassword -p 127.0.0.1:8787:8787 jeksterslab/
     -  password: yourpassword[^docker-win-3]
 
 [^docker-win-3]: You can change the password by replacing `yourpassword` in `PASSWORD=yourpassword`.
+
+<!--
+-  In `PowerShell` type the following to pull the latest Docker image:
+
+```powershell
+docker pull jeksterslab/dynr-rocker:latest
+```
+-->
