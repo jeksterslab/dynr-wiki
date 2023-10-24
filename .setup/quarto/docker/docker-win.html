@@ -162,7 +162,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../.setup/quarto/docker/docker-mac.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">macOS</span></a>
+  <a href="../../../.setup/quarto/docker/docker-mac.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">MacOS</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -270,9 +270,18 @@ For a better terminal experience, you can, optionally, install the `Windows Term
 <section id="installing-windows-subsystem-for-linux-wsl" class="level2">
 <h2 class="anchored" data-anchor-id="installing-windows-subsystem-for-linux-wsl">Installing Windows Subsystem for Linux (WSL)</h2>
 <ul>
-<li>In <code>PowerShell</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, type the following:</li>
+<li>Search for <code>PowerShell</code> or <code>Command Prompt</code>. Right click to run as an administrator, then type the following:</li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>wsl <span class="op">--</span>install <span class="op">--</span>distribution Ubuntu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!--
+-  In `PowerShell`[^docker-win-1], type the following:
+
+```powershell
+wsl --install --distribution Ubuntu
+
+[^docker-win-1]: Run all instances of PowerShell as administration.
+```
+-->
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -310,7 +319,7 @@ Note
 <h2 class="anchored" data-anchor-id="installing-docker-desktop">Installing Docker Desktop</h2>
 <ul>
 <li>Download the the appropriate Docker Desktop for Windows from <a href="https://www.docker.com/products/docker-desktop/">https://www.docker.com/products/docker-desktop/</a>.</li>
-<li>Double-click <code>Desktop Installer.exe</code> to install <code>Docker Desktop</code>.</li>
+<li>Double-click <code>Docker Desktop Installer.exe</code> to install <code>Docker Desktop</code>.</li>
 <li>Launch <code>Docker Desktop</code>.
 <ul>
 <li>Click the <code>Accept</code> button to accept the terms of service to continue.</li>
@@ -321,18 +330,18 @@ Note
 <h2 class="anchored" data-anchor-id="running-the-dynr-docker-container">Running the dynr Docker Container</h2>
 <ul>
 <li>Launch <code>Docker Desktop</code>.</li>
-<li>In <code>PowerShell</code> type the following to pull the latest Docker image<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>:</li>
+<li>In <code>PowerShell</code> type the following to pull the latest Docker image<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>:</li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>docker pull jeksterslab<span class="op">/</span>dynr<span class="op">-</span>rocker<span class="op">:</span>latest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>In <code>PowerShell</code> type the following to launch <code>Rstudio Server</code><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>:</li>
+<li>In <code>PowerShell</code> type the following to launch <code>Rstudio Server</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>:</li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>docker run <span class="op">--</span>rm <span class="op">-</span>ti <span class="op">-</span>e PASSWORD<span class="op">=</span>yourpassword <span class="op">-</span>p 127<span class="op">.</span><span class="fu">0</span><span class="op">.</span><span class="fu">0</span><span class="op">.</span><span class="fu">1</span><span class="op">:</span>8787<span class="op">:</span>8787 jeksterslab<span class="op">/</span>dynr<span class="op">-</span>rocker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Open http://localhost:8787 on your web browser to launch <code>Rstudio Server</code>.
 <ul>
 <li>username: rstudio</li>
-<li>password: yourpassword</li>
+<li>password: yourpassword<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
 </ul></li>
 </ul>
 
@@ -341,9 +350,9 @@ Note
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>Run all instances of PowerShell as administration.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Replace <code>jeksterslab/dynr-rocker</code> with <code>jeksterslab/dynr-arma-rocker</code> to use the <code>arma</code> branch.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>Replace <code>jeksterslab/dynr-rocker</code> with <code>jeksterslab/dynr-arma-rocker</code> to use the <code>arma</code> branch.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Note for developers only: Replace <code>jeksterslab/dynr-rocker</code> with <code>jeksterslab/dynr-arma-rocker</code> to use the <code>arma</code> branch.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Note for developers only: Replace <code>jeksterslab/dynr-rocker</code> with <code>jeksterslab/dynr-arma-rocker</code> to use the <code>arma</code> branch.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>You can change the password by replacing <code>yourpassword</code> in <code>PASSWORD=yourpassword</code>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -589,7 +598,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="../../../.setup/quarto/docker/docker-mac.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-title">macOS</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-title">MacOS</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
