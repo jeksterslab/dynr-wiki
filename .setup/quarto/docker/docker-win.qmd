@@ -13,13 +13,21 @@ For a better terminal experience, you can, optionally, install the `Windows Term
 
 ## Installing Windows Subsystem for Linux (WSL)
 
--  In `PowerShell`[^docker-win-1], type the following:
-
-[^docker-win-1]: Run all instances of PowerShell as administration.
+- Search for `PowerShell` or `Command Prompt`. Right click to run as an administrator, then type the following:
 
 ```powershell
 wsl --install --distribution Ubuntu
 ```
+
+<!--
+-  In `PowerShell`[^docker-win-1], type the following:
+
+```powershell
+wsl --install --distribution Ubuntu
+
+[^docker-win-1]: Run all instances of PowerShell as administration.
+```
+-->
 
 ::: callout-note
 There are times when the operating system requires a restart. After restarting, when the installation is successful, a new application `Ubuntu` will be available. Launch this application to continue.
@@ -45,7 +53,7 @@ If the above instructions fail, you might be using an older version of Windows. 
 ## Installing Docker Desktop
 
 -  Download the the appropriate Docker Desktop for Windows from [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/).
--  Double-click `Desktop Installer.exe` to install `Docker Desktop`.
+-  Double-click `Docker Desktop Installer.exe` to install `Docker Desktop`.
 -  Launch `Docker Desktop`.
     -  Click the `Accept` button to accept the terms of service to continue.
 
@@ -60,7 +68,7 @@ docker pull jeksterslab/dynr-rocker:latest
 
 -  In `PowerShell` type the following to launch `Rstudio Server`[^docker-win-2]:
 
-[^docker-win-2]: Replace `jeksterslab/dynr-rocker` with `jeksterslab/dynr-arma-rocker` to use the `arma` branch.
+[^docker-win-2]: Note for developers only: Replace `jeksterslab/dynr-rocker` with `jeksterslab/dynr-arma-rocker` to use the `arma` branch.
 
 ```powershell
 docker run --rm -ti -e PASSWORD=yourpassword -p 127.0.0.1:8787:8787 jeksterslab/dynr-rocker
@@ -68,4 +76,6 @@ docker run --rm -ti -e PASSWORD=yourpassword -p 127.0.0.1:8787:8787 jeksterslab/
 
 -  Open http://localhost:8787 on your web browser to launch `Rstudio Server`.
     -  username: rstudio
-    -  password: yourpassword
+    -  password: yourpassword[^docker-win-3]
+
+[^docker-win-3]: You can change the password by replacing `yourpassword` in `PASSWORD=yourpassword`.

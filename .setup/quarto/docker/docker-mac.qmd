@@ -23,9 +23,9 @@ For a better terminal experience, you can, optionally, install `iTerm2`.
 ## Running the dynr Docker Container
 
 -  Launch `Docker Desktop`.
--  Type the following to launch `Rstudio Server`[^dynr-rocker-win10-2] on your macOS terminal:
+-  Type the following to launch `Rstudio Server`[^dynr-rocker-mac-2] on your macOS terminal:
 
-[^dynr-rocker-win10-2]: Replace `jeksterslab/dynr-rocker` with `jeksterslab/dynr-arma-rocker` to use the `arma` branch.
+[^dynr-rocker-mac-2]: Note for developers only: Replace `jeksterslab/dynr-rocker` with `jeksterslab/dynr-arma-rocker` to use the `arma` branch.
 
 ```bash
 docker run --rm -ti -e PASSWORD=yourpassword -p 127.0.0.1:8787:8787 jeksterslab/dynr-rocker
@@ -33,4 +33,6 @@ docker run --rm -ti -e PASSWORD=yourpassword -p 127.0.0.1:8787:8787 jeksterslab/
 
 -  Open http://localhost:8787 on your web browser to launch `Rstudio Server`.
     -  username: rstudio
-    -  password: yourpassword
+    -  password: yourpassword[^docker-mac-3]
+
+[^docker-mac-3]: You can change the password by replacing `yourpassword` in `PASSWORD=yourpassword`.
