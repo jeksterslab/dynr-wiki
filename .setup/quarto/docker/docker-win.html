@@ -330,20 +330,23 @@ Note
 <h2 class="anchored" data-anchor-id="running-the-dynr-docker-container">Running the dynr Docker Container</h2>
 <ul>
 <li>Launch <code>Docker Desktop</code>.</li>
-<li>In <code>PowerShell</code> type the following to pull the latest Docker image<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>:</li>
+<li>In <code>PowerShell</code> type the following to launch <code>Rstudio Server</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>:</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>docker pull jeksterslab<span class="op">/</span>dynr<span class="op">-</span>rocker<span class="op">:</span>latest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>In <code>PowerShell</code> type the following to launch <code>Rstudio Server</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>:</li>
-</ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>docker run <span class="op">--</span>rm <span class="op">-</span>ti <span class="op">-</span>e PASSWORD<span class="op">=</span>yourpassword <span class="op">-</span>p 127<span class="op">.</span><span class="fu">0</span><span class="op">.</span><span class="fu">0</span><span class="op">.</span><span class="fu">1</span><span class="op">:</span>8787<span class="op">:</span>8787 jeksterslab<span class="op">/</span>dynr<span class="op">-</span>rocker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>docker run <span class="op">--</span>rm <span class="op">-</span>ti <span class="op">-</span>e PASSWORD<span class="op">=</span>yourpassword <span class="op">-</span>p 127<span class="op">.</span><span class="fu">0</span><span class="op">.</span><span class="fu">0</span><span class="op">.</span><span class="fu">1</span><span class="op">:</span>8787<span class="op">:</span>8787 jeksterslab<span class="op">/</span>dynr<span class="op">-</span>rocker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Open http://localhost:8787 on your web browser to launch <code>Rstudio Server</code>.
 <ul>
 <li>username: rstudio</li>
-<li>password: yourpassword<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
+<li>password: yourpassword<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
 </ul></li>
 </ul>
+<!--
+-  In `PowerShell` type the following to pull the latest Docker image:
+
+```powershell
+docker pull jeksterslab/dynr-rocker:latest
+```
+-->
 
 
 </section>
@@ -351,8 +354,7 @@ Note
 <hr>
 <ol>
 <li id="fn1"><p>Note for developers only: Replace <code>jeksterslab/dynr-rocker</code> with <code>jeksterslab/dynr-arma-rocker</code> to use the <code>arma</code> branch.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Note for developers only: Replace <code>jeksterslab/dynr-rocker</code> with <code>jeksterslab/dynr-arma-rocker</code> to use the <code>arma</code> branch.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>You can change the password by replacing <code>yourpassword</code> in <code>PASSWORD=yourpassword</code>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>You can change the password by replacing <code>yourpassword</code> in <code>PASSWORD=yourpassword</code>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
