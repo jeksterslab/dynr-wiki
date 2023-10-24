@@ -8,7 +8,7 @@
 
 <meta name="author" content="Ivan Jacob Agaloos Pesigan">
 
-<title>dynr Wiki - MacOS</title>
+<title>dynr Wiki - macOS</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -108,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../.setup/quarto/docker/docker.html">dynr Docker Container</a></li><li class="breadcrumb-item"><a href="../../../.setup/quarto/docker/docker-mac.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">MacOS</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../.setup/quarto/docker/docker.html">dynr Docker Container</a></li><li class="breadcrumb-item"><a href="../../../.setup/quarto/docker/docker-mac.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">macOS</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -162,7 +162,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../.setup/quarto/docker/docker-mac.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">MacOS</span></a>
+  <a href="../../../.setup/quarto/docker/docker-mac.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">macOS</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -239,7 +239,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">MacOS</span></h1>
+<h1 class="title"><span class="chapter-title">macOS</span></h1>
 </div>
 
 
@@ -260,7 +260,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>In this tutorial, we will go through the necessary steps to launch the <code>dynr</code> Docker container on MacOS.</p>
+<p>In this tutorial, we will go through the necessary steps to launch the <code>dynr</code> Docker container on macOS.</p>
 <!--
 ::: callout-note
 For a better terminal experience, you can, optionally, install `iTerm2`.  
@@ -269,19 +269,19 @@ For a better terminal experience, you can, optionally, install `iTerm2`.
 <section id="installing-docker-desktop" class="level2">
 <h2 class="anchored" data-anchor-id="installing-docker-desktop">Installing Docker Desktop</h2>
 <!--
--  Download the the appropriate Docker Desktop for MacOS (Intel vs. M1) from [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/).
+-  Download the the appropriate Docker Desktop for macOS (Intel Chip vs. Apple Chip) from [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/).
 -  Double-click `Desktop.dmg` to install `Docker Desktop`.
 -  Drag `Docker.app` to the `Applications` folder.
 -  Launch `Docker` from the `Launchpad`.
-    -  The system would ask for your MacOS user password.
+    -  The system would ask for your macOS user password.
     -  Click the `Accept` button to accept the terms of service to continue.
 -->
 <ul>
-<li>Download the the appropriate Docker Desktop for MacOS (Intel vs.&nbsp;M1) from <a href="https://www.docker.com/products/docker-desktop/">https://www.docker.com/products/docker-desktop/</a>.</li>
+<li>Download the the appropriate Docker Desktop for macOS (Intel Chip vs.&nbsp;Apple Chip) from <a href="https://www.docker.com/products/docker-desktop/">https://www.docker.com/products/docker-desktop/</a>.</li>
 <li>Double-click <code>Desktop.dmg</code> to install <code>Docker Desktop</code>.</li>
 <li>Drag <code>Docker.app</code> to the <code>Applications</code> folder.</li>
 <li>Launch <code>Docker</code> from the <code>Launchpad</code>.</li>
-<li>Choose “Use recommended settings (requires password)” and provide your MacOS user password.</li>
+<li>Choose <code>Use recommended settings (requires password)</code> and provide your macOS user password.</li>
 <li>You may continue without creating an account or signing in.</li>
 </ul>
 </section>
@@ -289,7 +289,7 @@ For a better terminal experience, you can, optionally, install `iTerm2`.
 <h2 class="anchored" data-anchor-id="running-the-dynr-docker-container">Running the dynr Docker Container</h2>
 <ul>
 <li>Launch <code>Docker Desktop</code>.</li>
-<li>Type the following to launch <code>Rstudio Server</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> on your MacOS terminal:</li>
+<li>Type the following to launch <code>Rstudio Server</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> on your macOS terminal:</li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-ti</span> <span class="at">-e</span> PASSWORD=yourpassword <span class="at">-p</span> 127.0.0.1:8787:8787 jeksterslab/dynr-rocker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
