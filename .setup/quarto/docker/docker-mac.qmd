@@ -1,9 +1,9 @@
 ---
-title: macOS
+title: MacOS
 author: Ivan Jacob Agaloos Pesigan
 ---
 
-In this tutorial, we will go through the necessary steps to launch the `dynr` Docker container on macOS.
+In this tutorial, we will go through the necessary steps to launch the `dynr` Docker container on MacOS.
 
 <!--
 ::: callout-note
@@ -13,17 +13,26 @@ For a better terminal experience, you can, optionally, install `iTerm2`.
 
 ## Installing Docker Desktop
 
--  Download the the appropriate Docker Desktop for macOS (Intel vs. M1) from [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/).
+<!--
+-  Download the the appropriate Docker Desktop for MacOS (Intel vs. M1) from [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/).
 -  Double-click `Desktop.dmg` to install `Docker Desktop`.
 -  Drag `Docker.app` to the `Applications` folder.
 -  Launch `Docker` from the `Launchpad`.
-    -  The system would ask for your macOS user password.
+    -  The system would ask for your MacOS user password.
     -  Click the `Accept` button to accept the terms of service to continue.
+-->
+
+-  Download the the appropriate Docker Desktop for MacOS (Intel vs. M1) from [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/).
+-  Double-click `Desktop.dmg` to install `Docker Desktop`.
+-  Drag `Docker.app` to the `Applications` folder.
+-  Launch `Docker` from the `Launchpad`.
+-  Choose "Use recommended settings (requires password)" and provide your MacOS user password.
+-  You may continue without creating an account or signing in.
 
 ## Running the dynr Docker Container
 
 -  Launch `Docker Desktop`.
--  Type the following to launch `Rstudio Server`[^dynr-rocker-mac-2] on your macOS terminal:
+-  Type the following to launch `Rstudio Server`[^dynr-rocker-mac-2] on your MacOS terminal:
 
 [^dynr-rocker-mac-2]: Note for developers only: Replace `jeksterslab/dynr-rocker` with `jeksterslab/dynr-arma-rocker` to use the `arma` branch.
 
