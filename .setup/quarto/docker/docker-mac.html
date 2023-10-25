@@ -229,7 +229,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#installing-docker-desktop" id="toc-installing-docker-desktop" class="nav-link active" data-scroll-target="#installing-docker-desktop">Installing Docker Desktop</a></li>
+  <li><a href="#installation-video-tutorial" id="toc-installation-video-tutorial" class="nav-link active" data-scroll-target="#installation-video-tutorial">Installation Video Tutorial</a></li>
+  <li><a href="#installing-docker-desktop" id="toc-installing-docker-desktop" class="nav-link" data-scroll-target="#installing-docker-desktop">Installing Docker Desktop</a></li>
   <li><a href="#running-the-dynr-docker-container" id="toc-running-the-dynr-docker-container" class="nav-link" data-scroll-target="#running-the-dynr-docker-container">Running the dynr Docker Container</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jeksterslab/dynr-wiki/edit/main/.setup/quarto/docker/docker-mac.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
@@ -261,11 +262,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <p>In this tutorial, we will go through the necessary steps to launch the <code>dynr</code> Docker container on macOS.</p>
+<section id="installation-video-tutorial" class="level2">
+<h2 class="anchored" data-anchor-id="installation-video-tutorial">Installation Video Tutorial</h2>
+<p><a href="https://psu.mediaspace.kaltura.com/media/Mac%3A%20Tutorial%20on%20installing%20dynr%20Docker%20/1_2ln6jawo"><strong>Click here for a video tutorial of the installation process.</strong></a></p>
 <!--
 ::: callout-note
 For a better terminal experience, you can, optionally, install `iTerm2`.  
 :::
 -->
+</section>
 <section id="installing-docker-desktop" class="level2">
 <h2 class="anchored" data-anchor-id="installing-docker-desktop">Installing Docker Desktop</h2>
 <!--
@@ -280,19 +285,25 @@ For a better terminal experience, you can, optionally, install `iTerm2`.
 <li>Download the the appropriate Docker Desktop for macOS (Intel Chip vs.&nbsp;Apple Chip) from <a href="https://www.docker.com/products/docker-desktop/">https://www.docker.com/products/docker-desktop/</a>.</li>
 <li>Double-click <code>Desktop.dmg</code> to install <code>Docker Desktop</code>.</li>
 <li>Drag <code>Docker.app</code> to the <code>Applications</code> folder.</li>
-<li>Launch <code>Docker</code> from the <code>Launchpad</code>.</li>
+<li>Launch <code>Docker</code> from the <code>Launchpad</code>.
+<ul>
 <li>Choose <code>Use recommended settings (requires password)</code> and provide your macOS user password.</li>
-<li>Accept the terms.</li>
+<li>Click the <code>Accept</code> button to accept the terms of service to continue.</li>
 <li>You may continue without creating an account or signing in.</li>
+</ul></li>
 </ul>
 </section>
 <section id="running-the-dynr-docker-container" class="level2">
 <h2 class="anchored" data-anchor-id="running-the-dynr-docker-container">Running the dynr Docker Container</h2>
 <ul>
 <li>Launch <code>Docker Desktop</code>.</li>
-<li>Type the following to launch <code>Rstudio Server</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> on your macOS terminal:</li>
+<li>On your macOS terminal, type the following to pull the latest Docker image:</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-ti</span> <span class="at">-e</span> PASSWORD=yourpassword <span class="at">-p</span> 127.0.0.1:8787:8787 jeksterslab/dynr-rocker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull jeksterslab/dynr-rocker:latest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>On your macOS terminal, type the following to launch <code>Rstudio Server</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>:</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-ti</span> <span class="at">-e</span> PASSWORD=yourpassword <span class="at">-p</span> 127.0.0.1:8787:8787 jeksterslab/dynr-rocker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Open http://localhost:8787 on your web browser to launch <code>Rstudio Server</code>.
 <ul>
