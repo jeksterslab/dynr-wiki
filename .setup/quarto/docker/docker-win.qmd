@@ -11,6 +11,10 @@ For a better terminal experience, you can, optionally, install the `Windows Term
 :::
 -->
 
+## Video Tutorial
+
+![Link](https://psu.mediaspace.kaltura.com/media/Windows%3A%20Tutorial%20on%20installing%20dynr%20Docker/1_nbwm8r54)
+
 ## Installing Windows Subsystem for Linux (WSL)
 
 - Search for `PowerShell` or `Command Prompt`. Right click to run as an administrator, then type the following:
