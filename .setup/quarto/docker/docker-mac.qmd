@@ -27,6 +27,7 @@ For a better terminal experience, you can, optionally, install `iTerm2`.
 -  Drag `Docker.app` to the `Applications` folder.
 -  Launch `Docker` from the `Launchpad`.
 -  Choose `Use recommended settings (requires password)` and provide your macOS user password.
+-  Accept the terms.
 -  You may continue without creating an account or signing in.
 
 ## Running the dynr Docker Container
