@@ -321,6 +321,7 @@ Note
 <li>Download the the appropriate Docker Desktop for Windows from <a href="https://www.docker.com/products/docker-desktop/">https://www.docker.com/products/docker-desktop/</a>.</li>
 <li>Double-click <code>Docker Desktop Installer.exe</code> to install <code>Docker Desktop</code>.</li>
 <li>Launch <code>Docker Desktop</code>.</li>
+<li>Accept the terms.</li>
 <li>You may continue without creating an account or signing in.</li>
 </ul>
 </section>
@@ -328,7 +329,7 @@ Note
 <h2 class="anchored" data-anchor-id="running-the-dynr-docker-container">Running the dynr Docker Container</h2>
 <ul>
 <li>Launch <code>Docker Desktop</code>.</li>
-<li>In <code>PowerShell</code> type the following to launch <code>Rstudio Server</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>:</li>
+<li>In <code>PowerShell</code>, type the following to launch <code>Rstudio Server</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>:</li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>docker run <span class="op">--</span>rm <span class="op">-</span>ti <span class="op">-</span>e PASSWORD<span class="op">=</span>yourpassword <span class="op">-</span>p 127<span class="op">.</span><span class="fu">0</span><span class="op">.</span><span class="fu">0</span><span class="op">.</span><span class="fu">1</span><span class="op">:</span>8787<span class="op">:</span>8787 jeksterslab<span class="op">/</span>dynr<span class="op">-</span>rocker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
