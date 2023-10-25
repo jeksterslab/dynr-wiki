@@ -229,7 +229,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#installing-windows-subsystem-for-linux-wsl" id="toc-installing-windows-subsystem-for-linux-wsl" class="nav-link active" data-scroll-target="#installing-windows-subsystem-for-linux-wsl">Installing Windows Subsystem for Linux (WSL)</a></li>
+  <li><a href="#video-tutorial" id="toc-video-tutorial" class="nav-link active" data-scroll-target="#video-tutorial">Video Tutorial</a></li>
+  <li><a href="#installing-windows-subsystem-for-linux-wsl" id="toc-installing-windows-subsystem-for-linux-wsl" class="nav-link" data-scroll-target="#installing-windows-subsystem-for-linux-wsl">Installing Windows Subsystem for Linux (WSL)</a></li>
   <li><a href="#installing-docker-desktop" id="toc-installing-docker-desktop" class="nav-link" data-scroll-target="#installing-docker-desktop">Installing Docker Desktop</a></li>
   <li><a href="#running-the-dynr-docker-container" id="toc-running-the-dynr-docker-container" class="nav-link" data-scroll-target="#running-the-dynr-docker-container">Running the dynr Docker Container</a></li>
   </ul>
@@ -267,6 +268,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 For a better terminal experience, you can, optionally, install the `Windows Terminal` from the `Microsoft Store`.  
 :::
 -->
+<section id="video-tutorial" class="level2">
+<h2 class="anchored" data-anchor-id="video-tutorial">Video Tutorial</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://psu.mediaspace.kaltura.com/media/Windows%3A%20Tutorial%20on%20installing%20dynr%20Docker/1_nbwm8r54.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Link</figcaption>
+</figure>
+</div>
+</section>
 <section id="installing-windows-subsystem-for-linux-wsl" class="level2">
 <h2 class="anchored" data-anchor-id="installing-windows-subsystem-for-linux-wsl">Installing Windows Subsystem for Linux (WSL)</h2>
 <ul>
@@ -320,18 +330,24 @@ Note
 <ul>
 <li>Download the the appropriate Docker Desktop for Windows from <a href="https://www.docker.com/products/docker-desktop/">https://www.docker.com/products/docker-desktop/</a>.</li>
 <li>Double-click <code>Docker Desktop Installer.exe</code> to install <code>Docker Desktop</code>.</li>
-<li>Launch <code>Docker Desktop</code>.</li>
-<li>Accept the terms.</li>
+<li>Launch <code>Docker Desktop</code>.
+<ul>
+<li>Click the <code>Accept</code> button to accept the terms of service to continue.</li>
 <li>You may continue without creating an account or signing in.</li>
+</ul></li>
 </ul>
 </section>
 <section id="running-the-dynr-docker-container" class="level2">
 <h2 class="anchored" data-anchor-id="running-the-dynr-docker-container">Running the dynr Docker Container</h2>
 <ul>
 <li>Launch <code>Docker Desktop</code>.</li>
+<li>In <code>PowerShell</code>, type the following to pull the latest Docker image:</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>docker pull jeksterslab<span class="op">/</span>dynr<span class="op">-</span>rocker<span class="op">:</span>latest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
 <li>In <code>PowerShell</code>, type the following to launch <code>Rstudio Server</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>:</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>docker run <span class="op">--</span>rm <span class="op">-</span>ti <span class="op">-</span>e PASSWORD<span class="op">=</span>yourpassword <span class="op">-</span>p 127<span class="op">.</span><span class="fu">0</span><span class="op">.</span><span class="fu">0</span><span class="op">.</span><span class="fu">1</span><span class="op">:</span>8787<span class="op">:</span>8787 jeksterslab<span class="op">/</span>dynr<span class="op">-</span>rocker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>docker run <span class="op">--</span>rm <span class="op">-</span>ti <span class="op">-</span>e PASSWORD<span class="op">=</span>yourpassword <span class="op">-</span>p 127<span class="op">.</span><span class="fu">0</span><span class="op">.</span><span class="fu">0</span><span class="op">.</span><span class="fu">1</span><span class="op">:</span>8787<span class="op">:</span>8787 jeksterslab<span class="op">/</span>dynr<span class="op">-</span>rocker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Open http://localhost:8787 on your web browser to launch <code>Rstudio Server</code>.
 <ul>
