@@ -7,7 +7,7 @@ In this tutorial, we will go through the necessary steps to launch the `dynr` Do
 
 ## Installation Video Tutorial
 
-[**Click here for a video tutorial of the installation process.**](https://psu.mediaspace.kaltura.com/media/Windows%3A%20Tutorial%20on%20installing%20dynr%20Docker/1_nbwm8r54)
+[**Click here for a video tutorial of the installation process.**](https://psu.mediaspace.kaltura.com/media/Windows%3A%20Tutorial%20on%20installing%20dynr%20Docker/1_nbwm8r54){target="_blank"}
 
 <!--
 ::: callout-note
