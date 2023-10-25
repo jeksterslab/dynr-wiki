@@ -55,12 +55,18 @@ If the above instructions fail, you might be using an older version of Windows. 
 -  Download the the appropriate Docker Desktop for Windows from [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/).
 -  Double-click `Docker Desktop Installer.exe` to install `Docker Desktop`.
 -  Launch `Docker Desktop`.
--  Accept the terms.
--  You may continue without creating an account or signing in.
+    -  Click the `Accept` button to accept the terms of service to continue.
+    -  You may continue without creating an account or signing in.
 
 ## Running the dynr Docker Container
 
 -  Launch `Docker Desktop`.
+-  In `PowerShell`, type the following to pull the latest Docker image:
+
+```powershell
+docker pull jeksterslab/dynr-rocker:latest
+```
+
 -  In `PowerShell`, type the following to launch `Rstudio Server`[^docker-win-1]:
 
 [^docker-win-1]: Note for developers only: Replace `jeksterslab/dynr-rocker` with `jeksterslab/dynr-arma-rocker` to use the `arma` branch.
