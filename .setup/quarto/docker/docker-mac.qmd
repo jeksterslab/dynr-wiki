@@ -5,6 +5,10 @@ author: Ivan Jacob Agaloos Pesigan
 
 In this tutorial, we will go through the necessary steps to launch the `dynr` Docker container on macOS.
 
+## Installation Video Tutorial
+
+[**Click here for a video tutorial of the installation process.**](https://psu.mediaspace.kaltura.com/media/Mac%3A%20Tutorial%20on%20installing%20dynr%20Docker%20/1_2ln6jawo)
+
 <!--
 ::: callout-note
 For a better terminal experience, you can, optionally, install `iTerm2`.  
@@ -26,14 +30,20 @@ For a better terminal experience, you can, optionally, install `iTerm2`.
 -  Double-click `Desktop.dmg` to install `Docker Desktop`.
 -  Drag `Docker.app` to the `Applications` folder.
 -  Launch `Docker` from the `Launchpad`.
--  Choose `Use recommended settings (requires password)` and provide your macOS user password.
--  Accept the terms.
--  You may continue without creating an account or signing in.
+    -  Choose `Use recommended settings (requires password)` and provide your macOS user password.
+    -  Click the `Accept` button to accept the terms of service to continue.
+    -  You may continue without creating an account or signing in.
 
 ## Running the dynr Docker Container
 
 -  Launch `Docker Desktop`.
--  Type the following to launch `Rstudio Server`[^dynr-rocker-mac-1] on your macOS terminal:
+-  On your macOS terminal, type the following to pull the latest Docker image:
+
+```bash
+docker pull jeksterslab/dynr-rocker:latest
+```
+
+-  On your macOS terminal, type the following to launch `Rstudio Server`[^dynr-rocker-mac-1]:
 
 [^dynr-rocker-mac-1]: Note for developers only: Replace `jeksterslab/dynr-rocker` with `jeksterslab/dynr-arma-rocker` to use the `arma` branch.
 
