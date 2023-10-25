@@ -3,17 +3,14 @@ title: Windows using WSL 2
 author: Ivan Jacob Agaloos Pesigan
 ---
 
-In this tutorial, we will go through the necessary steps to launch the `dynr` Docker container on Windows 10. Installation on Windows 11 should be similar.
+In this tutorial, we will go through the necessary steps to launch the `dynr` Docker container on Windows.
+[Click here for a video tutorial of the installation process.](https://psu.mediaspace.kaltura.com/media/Windows%3A%20Tutorial%20on%20installing%20dynr%20Docker/1_nbwm8r54)
 
 <!--
 ::: callout-note
 For a better terminal experience, you can, optionally, install the `Windows Terminal` from the `Microsoft Store`.  
 :::
 -->
-
-## Video Tutorial
-
-![Link](https://psu.mediaspace.kaltura.com/media/Windows%3A%20Tutorial%20on%20installing%20dynr%20Docker/1_nbwm8r54)
 
 ## Installing Windows Subsystem for Linux (WSL)
 
