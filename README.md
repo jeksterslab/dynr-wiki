@@ -1,7 +1,7 @@
 dynr Wiki
 ================
 Ivan Jacob Agaloos Pesigan
-2023-10-25
+2023-11-02
 
 <!-- README.md is generated from .setup/readme/README.Rmd. Please edit that file -->
 <!-- badges: start -->
