@@ -310,7 +310,10 @@ For a better terminal experience, you can, optionally, install `iTerm2`.
 <li>username: rstudio</li>
 <li>password: yourpassword<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
 </ul></li>
+<li>For users with Apple Silicon (M1, M2, or M3), you may need to specify the architecture of the container as follows:</li>
 </ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull <span class="at">--platform</span> linux/x86_64 jeksterslab/dynr-rocker:latest</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">--platform</span> linux/x86_64 <span class="at">-ti</span> <span class="at">-e</span> PASSWORD=yourpassword <span class="at">-p</span> 127.0.0.1:8787:8787 jeksterslab/dynr-rocker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
