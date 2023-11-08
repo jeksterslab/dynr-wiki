@@ -55,11 +55,4 @@ docker run --rm -ti -e PASSWORD=yourpassword -p 127.0.0.1:8787:8787 jeksterslab/
     -  username: rstudio
     -  password: yourpassword[^docker-mac-2]
 
-- For users with Apple Silicon (M1, M2, or M3), you may need to specify the architecture of the container as follows:
-
-```bash
-docker pull --platform linux/x86_64 jeksterslab/dynr-rocker:latest
-docker run --rm --platform linux/x86_64 -ti -e PASSWORD=yourpassword -p 127.0.0.1:8787:8787 jeksterslab/dynr-rocker
-```
-
 [^docker-mac-2]: You can change the password by replacing `yourpassword` in `PASSWORD=yourpassword`.
