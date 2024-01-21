@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Ivan Jacob Agaloos Pesigan">
 
-<title>dynr Wiki - Ornstein–Uhlenbeck Model</title>
+<title>dynr Wiki - The Ornstein–Uhlenbeck Model</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -55,7 +55,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -110,7 +129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../.setup/quarto/examples/var.html">Examples</a></li><li class="breadcrumb-item"><a href="../../../.setup/quarto/examples/ou.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ornstein–Uhlenbeck Model</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../.setup/quarto/examples/lin-growth.html">Examples</a></li><li class="breadcrumb-item"><a href="../../../.setup/quarto/examples/ou.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The Ornstein–Uhlenbeck Model</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -190,12 +209,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../.setup/quarto/examples/var.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Vector Autoregressive Model</span></a>
+  <a href="../../../.setup/quarto/examples/lin-growth.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">The Linear Growth Curve Model</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../.setup/quarto/examples/ou.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Ornstein–Uhlenbeck Model</span></a>
+  <a href="../../../.setup/quarto/examples/var.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">The Vector Autoregressive Model</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../.setup/quarto/examples/ou.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">The Ornstein–Uhlenbeck Model</span></a>
   </div>
 </li>
       </ul>
@@ -231,12 +255,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-ornsteinuhlenbeck-model" id="toc-the-ornsteinuhlenbeck-model" class="nav-link active" data-scroll-target="#the-ornsteinuhlenbeck-model">The Ornstein–Uhlenbeck Model</a></li>
+  <li><a href="#model" id="toc-model" class="nav-link active" data-scroll-target="#model">Model</a></li>
   <li><a href="#data-generation" id="toc-data-generation" class="nav-link" data-scroll-target="#data-generation">Data Generation</a>
   <ul class="collapse">
   <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation">Notation</a></li>
   <li><a href="#r-function-arguments" id="toc-r-function-arguments" class="nav-link" data-scroll-target="#r-function-arguments">R Function Arguments</a></li>
-  <li><a href="#using-the-simstatespacesimssmvarfixed-function-to-simulate-data" id="toc-using-the-simstatespacesimssmvarfixed-function-to-simulate-data" class="nav-link" data-scroll-target="#using-the-simstatespacesimssmvarfixed-function-to-simulate-data">Using the simStateSpace::SimSSMVARFixed Function to Simulate Data</a></li>
+  <li><a href="#using-the-simssmoufixed-function-to-simulate-data" id="toc-using-the-simssmoufixed-function-to-simulate-data" class="nav-link" data-scroll-target="#using-the-simssmoufixed-function-to-simulate-data">Using the SimSSMOUFixed Function to Simulate Data</a></li>
   </ul></li>
   <li><a href="#model-fitting" id="toc-model-fitting" class="nav-link" data-scroll-target="#model-fitting">Model Fitting</a>
   <ul class="collapse">
@@ -250,9 +274,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a>
   <ul class="collapse">
-  <li><a href="#estimated-coefficients" id="toc-estimated-coefficients" class="nav-link" data-scroll-target="#estimated-coefficients">Estimated Coefficients</a></li>
-  <li><a href="#discrepancy-between-estimated-and-population-coefficients" id="toc-discrepancy-between-estimated-and-population-coefficients" class="nav-link" data-scroll-target="#discrepancy-between-estimated-and-population-coefficients">Discrepancy Between Estimated and Population Coefficients</a></li>
+  <li><a href="#parameter-estimates" id="toc-parameter-estimates" class="nav-link" data-scroll-target="#parameter-estimates">Parameter Estimates</a></li>
   </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jeksterslab/dynr-wiki/edit/main/.setup/quarto/examples/ou.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
@@ -261,7 +285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Ornstein–Uhlenbeck Model</span></h1>
+<h1 class="title"><span class="chapter-title">The Ornstein–Uhlenbeck Model</span></h1>
 </div>
 
 
@@ -282,8 +306,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="the-ornsteinuhlenbeck-model" class="level2">
-<h2 class="anchored" data-anchor-id="the-ornsteinuhlenbeck-model">The Ornstein–Uhlenbeck Model</h2>
+<section id="model" class="level2">
+<h2 class="anchored" data-anchor-id="model">Model</h2>
 <p>The measurement model is given by</p>
 <p><span class="math display">\[\begin{equation}
   \mathbf{y}_{i, t}
@@ -328,7 +352,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="data-generation">Data Generation</h2>
 <section id="notation" class="level3">
 <h3 class="anchored" data-anchor-id="notation">Notation</h3>
-<p>Let <span class="math inline">\(t = 500\)</span> be the number of time points and <span class="math inline">\(n = 5\)</span> be the number of individuals.</p>
+<p>Let <span class="math inline">\(t = 1000\)</span> be the number of time points and <span class="math inline">\(n = 5\)</span> be the number of individuals.</p>
 <p>Let the measurement model intecept vector <span class="math inline">\(\boldsymbol{\nu}\)</span> be given by</p>
 <p><span class="math display">\[\begin{equation}
 \boldsymbol{\nu}
@@ -438,7 +462,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>time</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 500</code></pre>
+<pre><code>[1] 1000</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>delta_t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -493,40 +517,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="using-the-simstatespacesimssmvarfixed-function-to-simulate-data" class="level3">
-<h3 class="anchored" data-anchor-id="using-the-simstatespacesimssmvarfixed-function-to-simulate-data">Using the simStateSpace::SimSSMVARFixed Function to Simulate Data</h3>
+<section id="using-the-simssmoufixed-function-to-simulate-data" class="level3">
+<h3 class="anchored" data-anchor-id="using-the-simssmoufixed-function-to-simulate-data">Using the SimSSMOUFixed Function to Simulate Data</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"remotes"</span>)) <span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"ijapesigan/simStateSpace"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(simStateSpace)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">Sim2Matrix</span>(</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">SimSSMOUFixed</span>(</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> n,</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu0 =</span> mu0,</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">sigma0_sqrt =</span> <span class="fu">chol</span>(sigma0),</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu =</span> mu,</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">phi =</span> phi,</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">sigma_sqrt =</span> <span class="fu">chol</span>(sigma),</span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">nu =</span> nu,</span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">lambda =</span> lambda,</span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">theta_sqrt =</span> <span class="fu">chol</span>(theta),</span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">delta_t =</span> delta_t,</span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">time =</span> time,</span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">burn_in =</span> <span class="dv">0</span></span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(simStateSpace)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>sim <span class="ot">&lt;-</span> <span class="fu">SimSSMOUFixed</span>(</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> n,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mu0 =</span> mu0,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">sigma0 =</span> sigma0,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">mu =</span> mu,</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">phi =</span> phi,</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">sigma =</span> sigma,</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">nu =</span> nu,</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">lambda =</span> lambda,</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">theta =</span> theta,</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">delta_t =</span> delta_t,</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">time =</span> time,</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">burn_in =</span> <span class="dv">0</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(sim)</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>             y1        y2       y3 time id
-[1,] -0.2452235 0.3791894 2.916196  0.0  1
-[2,] -0.6408937 1.7824870 1.400803  0.1  1
-[3,] -0.9755917 2.0512793 2.498214  0.2  1
-[4,] -2.5120801 0.7969752 2.234649  0.3  1
-[5,] -1.7204259 0.6404276 2.053562  0.4  1
-[6,]  0.4753620 1.3252011 2.114403  0.5  1</code></pre>
+<pre><code>  id time         y1        y2       y3
+1  1  0.0 -0.2452235 0.3791894 2.916196
+2  1  0.1 -0.6408937 1.7824870 1.400803
+3  1  0.2 -0.9755917 2.0512793 2.498214
+4  1  0.3 -2.5120801 0.7969752 2.234649
+5  1  0.4 -1.7204259 0.6404276 2.053562
+6  1  0.5  0.4753620 1.3252011 2.114403</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="ou_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="ou_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="ou_files/figure-html/unnamed-chunk-3-3.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -548,9 +576,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="prepare-initial-condition">Prepare Initial Condition</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>dynr_initial <span class="ot">&lt;-</span> dynr<span class="sc">::</span><span class="fu">prep.initial</span>(</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.inistate =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>),</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.inistate =</span> mu0,</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">params.inistate =</span> <span class="fu">c</span>(<span class="st">"mu0_1"</span>, <span class="st">"mu0_2"</span>, <span class="st">"mu0_3"</span>),</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.inicov =</span> <span class="fu">diag</span>(<span class="dv">3</span>),</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.inicov =</span> sigma0,</span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">params.inicov =</span> <span class="fu">matrix</span>(</span>
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">c</span>(</span>
 <span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"sigma0_11"</span>, <span class="st">"sigma0_12"</span>, <span class="st">"sigma0_13"</span>,</span>
@@ -596,7 +624,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="prepare-process-noise">Prepare Process Noise</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>dynr_noise <span class="ot">&lt;-</span> dynr<span class="sc">::</span><span class="fu">prep.noise</span>(</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.latent =</span> <span class="fu">diag</span>(<span class="dv">3</span>),</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.latent =</span> sigma,</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">params.latent =</span> <span class="fu">matrix</span>(</span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">c</span>(</span>
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"sigma_11"</span>, <span class="st">"sigma_12"</span>, <span class="st">"sigma_13"</span>,</span>
@@ -605,7 +633,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
 <span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">nrow =</span> <span class="dv">3</span></span>
 <span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.observed =</span> <span class="fu">diag</span>(<span class="dv">3</span>),</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.observed =</span> theta,</span>
 <span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">params.observed =</span> <span class="fu">matrix</span>(</span>
 <span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">c</span>(</span>
 <span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">"theta_11"</span>, <span class="st">"fixed"</span>, <span class="st">"fixed"</span>,</span>
@@ -629,13 +657,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">outfile =</span> <span class="st">"ou.c"</span></span>
 <span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Add lower and upper bounds to aid in the optimization.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>dynr<span class="sc">::</span><span class="fu">plotFormula</span>(</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">dynrModel =</span> model,</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ParameterAs =</span> model<span class="sc">$</span><span class="st">"param.names"</span>,</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">printDyn =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">printMeas =</span> <span class="cn">TRUE</span></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>model<span class="sc">$</span>lb[</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_11"</span>,</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_12"</span>,</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_13"</span>,</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_21"</span>,</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_22"</span>,</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_23"</span>,</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_31"</span>,</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_32"</span>,</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_33"</span></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>] <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">1.5</span></span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>model<span class="sc">$</span>ub[</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_11"</span>,</span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_12"</span>,</span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_13"</span>,</span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_21"</span>,</span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_22"</span>,</span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_23"</span>,</span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_31"</span>,</span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_32"</span>,</span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_33"</span></span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a>] <span class="ot">&lt;-</span> <span class="sc">+</span><span class="fl">1.5</span></span>
+<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a>model<span class="sc">$</span>lb[</span>
+<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
+<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sigma_11"</span>,</span>
+<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sigma_22"</span>,</span>
+<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sigma_33"</span>,</span>
+<span id="cb32-32"><a href="#cb32-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">"theta_11"</span>,</span>
+<span id="cb32-33"><a href="#cb32-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">"theta_22"</span>,</span>
+<span id="cb32-34"><a href="#cb32-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">"theta_33"</span></span>
+<span id="cb32-35"><a href="#cb32-35" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb32-36"><a href="#cb32-36" aria-hidden="true" tabindex="-1"></a>] <span class="ot">&lt;-</span> .Machine<span class="sc">$</span>double.xmin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output-display">
 <p><img src="ou_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -658,22 +719,22 @@ Finished Hessian calculation.
 Original exit flag:  3 
 Modified exit flag:  3 
 Optimization terminated successfully: ftol_rel or ftol_abs was reached. 
-Original fitted parameters:  -0.08910471 -0.08367376 -0.04741639 0.5268201 
--0.01518432 -0.01161192 -0.6617947 0.4292965 0.04812768 0.4089657 -0.6334951 
-0.6340193 0.02359898 -0.02212358 -0.1514672 -0.0311468 -0.09918505 -0.1406342 
--0.7225335 -0.6846349 -0.7230988 -0.2131295 -0.1846773 1.010237 0.4542493 
--0.3894603 0.01039467 -0.7153645 0.304529 -0.1726434 
+Original fitted parameters:  0.06170586 0.1539591 0.1503428 0.447179 
+0.006878862 -0.02237471 -0.7084987 0.4865505 -0.02687934 0.4085459 -0.6572728 
+0.6798754 0.08775009 -0.02513747 -0.09408974 0.07669431 -0.0564341 -0.07153665 
+-0.7087437 -0.7459179 -0.7041478 0.8982052 0.1539088 0.6066994 -0.3401838 
+0.04180542 -1.211941 0.6758595 -0.09317225 -0.4372129 
 
-Transformed fitted parameters:  -0.08910471 -0.08367376 -0.04741639 0.5268201 
--0.01518432 -0.01161192 -0.6617947 0.4292965 0.04812768 0.4089657 -0.6334951 
-0.6340193 1.02388 -0.02265188 -0.1550841 0.9698344 -0.09271235 0.9018332 
-0.4855206 0.5042743 0.4852462 -0.2131295 -0.1846773 1.010237 1.574991 
--0.6133963 0.0163715 0.7279073 0.1425429 0.886958 
+Transformed fitted parameters:  0.06170586 0.1539591 0.1503428 0.447179 
+0.006878862 -0.02237471 -0.7084987 0.4865505 -0.02687934 0.4085459 -0.6572728 
+0.6798754 1.091715 -0.02744295 -0.1027192 1.080402 -0.05835047 0.9440657 
+0.4922622 0.4742987 0.4945298 0.8982052 0.1539088 0.6066994 0.7116395 
+0.02975039 -0.8624653 1.966966 -0.2192064 1.708156 
 
 Doing end processing
 Successful trial
-Total Time: 3.56771 
-Backend Time: 3.556571 </code></pre>
+Total Time: 3.904849 
+Backend Time: 3.896732 </code></pre>
 </div>
 </div>
 </section>
@@ -684,126 +745,116 @@ Backend Time: 3.556571 </code></pre>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Coefficients:
-          Estimate Std. Error t value ci.lower ci.upper Pr(&gt;|t|)    
-mu_1      -0.08910    0.12979  -0.687 -0.34349  0.16528   0.2462    
-mu_2      -0.08367    0.23345  -0.358 -0.54122  0.37387   0.3600    
-mu_3      -0.04742    0.17662  -0.268 -0.39359  0.29876   0.3942    
-phi_11     0.52682    0.11942   4.412  0.29277  0.76087   &lt;2e-16 ***
-phi_12    -0.01518    0.08231  -0.184 -0.17651  0.14615   0.4268    
-phi_13    -0.01161    0.07697  -0.151 -0.16247  0.13925   0.4400    
-phi_21    -0.66179    0.11308  -5.852 -0.88343 -0.44016   &lt;2e-16 ***
-phi_22     0.42930    0.08488   5.057  0.26293  0.59567   &lt;2e-16 ***
-phi_23     0.04813    0.07747   0.621 -0.10372  0.19997   0.2673    
-phi_31     0.40897    0.10709   3.819  0.19907  0.61886   0.0001 ***
-phi_32    -0.63350    0.07821  -8.100 -0.78678 -0.48021   &lt;2e-16 ***
-phi_33     0.63402    0.07678   8.258  0.48353  0.78450   &lt;2e-16 ***
-sigma_11   1.02388    0.12721   8.049  0.77456  1.27320   &lt;2e-16 ***
-sigma_12  -0.02265    0.07711  -0.294 -0.17378  0.12847   0.3845    
-sigma_13  -0.15508    0.07315  -2.120 -0.29845 -0.01172   0.0170 *  
-sigma_22   0.96983    0.11872   8.169  0.73714  1.20253   &lt;2e-16 ***
-sigma_23  -0.09271    0.07107  -1.305 -0.23200  0.04657   0.0961 .  
-sigma_33   0.90183    0.10649   8.469  0.69312  1.11055   &lt;2e-16 ***
-theta_11   0.48552    0.01909  25.428  0.44810  0.52294   &lt;2e-16 ***
-theta_22   0.50427    0.01978  25.492  0.46550  0.54305   &lt;2e-16 ***
-theta_33   0.48525    0.01871  25.939  0.44858  0.52191   &lt;2e-16 ***
-mu0_1     -0.21313    0.58547  -0.364 -1.36063  0.93437   0.3579    
-mu0_2     -0.18468    0.42287  -0.437 -1.01348  0.64412   0.3312    
-mu0_3      1.01024    0.46354   2.179  0.10172  1.91876   0.0147 *  
-sigma0_11  1.57499    1.10306   1.428 -0.58696  3.73694   0.0767 .  
-sigma0_12 -0.61340    0.62910  -0.975 -1.84640  0.61961   0.1648    
-sigma0_13  0.01637    0.61999   0.026 -1.19878  1.23152   0.4895    
-sigma0_22  0.72791    0.58401   1.246 -0.41673  1.87254   0.1064    
-sigma0_23  0.14254    0.44078   0.323 -0.72137  1.00645   0.3732    
-sigma0_33  0.88696    0.67605   1.312 -0.43808  2.21199   0.0948 .  
+           Estimate Std. Error t value  ci.lower  ci.upper Pr(&gt;|t|)    
+mu_1       0.061706   0.107721   0.573 -0.149424  0.272836   0.2834    
+mu_2       0.153959   0.191496   0.804 -0.221366  0.529285   0.2107    
+mu_3       0.150343   0.146024   1.030 -0.135859  0.436544   0.1516    
+phi_11     0.447179   0.081386   5.495  0.287665  0.606693   &lt;2e-16 ***
+phi_12     0.006879   0.061876   0.111 -0.114397  0.128154   0.4557    
+phi_13    -0.022375   0.058038  -0.386 -0.136127  0.091377   0.3499    
+phi_21    -0.708499   0.076857  -9.218 -0.859136 -0.557862   &lt;2e-16 ***
+phi_22     0.486550   0.062938   7.731  0.363194  0.609907   &lt;2e-16 ***
+phi_23    -0.026879   0.058559  -0.459 -0.141653  0.087894   0.3231    
+phi_31     0.408546   0.071559   5.709  0.268293  0.548799   &lt;2e-16 ***
+phi_32    -0.657273   0.057579 -11.415 -0.770126 -0.544420   &lt;2e-16 ***
+phi_33     0.679875   0.056593  12.013  0.568955  0.790796   &lt;2e-16 ***
+sigma_11   1.091715   0.094471  11.556  0.906556  1.276874   &lt;2e-16 ***
+sigma_12  -0.027443   0.056632  -0.485 -0.138440  0.083554   0.3140    
+sigma_13  -0.102719   0.053361  -1.925 -0.207305  0.001866   0.0271 *  
+sigma_22   1.080402   0.085756  12.599  0.912322  1.248481   &lt;2e-16 ***
+sigma_23  -0.058350   0.051216  -1.139 -0.158733  0.042032   0.1273    
+sigma_33   0.944066   0.076705  12.308  0.793727  1.094404   &lt;2e-16 ***
+theta_11   0.492262   0.013856  35.526  0.465104  0.519420   &lt;2e-16 ***
+theta_22   0.474299   0.013247  35.804  0.448335  0.500263   &lt;2e-16 ***
+theta_33   0.494530   0.013363  37.008  0.468339  0.520720   &lt;2e-16 ***
+mu0_1      0.898205   0.413539   2.172  0.087684  1.708727   0.0150 *  
+mu0_2      0.153909   0.649164   0.237 -1.118430  1.426248   0.4063    
+mu0_3      0.606699   0.595128   1.019 -0.559729  1.773128   0.1540    
+sigma0_11  0.711640   0.583317   1.220 -0.431642  1.854921   0.1113    
+sigma0_12  0.029750   0.614325   0.048 -1.174305  1.233806   0.4807    
+sigma0_13 -0.862465   0.674820  -1.278 -2.185088  0.460157   0.1006    
+sigma0_22  1.966966   1.353099   1.454 -0.685060  4.618992   0.0730 .  
+sigma0_23 -0.219206   0.906841  -0.242 -1.996583  1.558170   0.4045    
+sigma0_33  1.708156   1.195713   1.429 -0.635399  4.051710   0.0766 .  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
--2 log-likelihood value at convergence = 18898.86
-AIC = 18958.86
-BIC = 19133.58</code></pre>
+-2 log-likelihood value at convergence = 37920.34
+AIC = 37980.34
+BIC = 38175.86</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.2131295 -0.1846773  1.0102372</code></pre>
+<pre><code>[1] 0.8982052 0.1539088 0.6066994</code></pre>
 </div>
 </div>
-<section id="estimated-coefficients" class="level3">
-<h3 class="anchored" data-anchor-id="estimated-coefficients">Estimated Coefficients</h3>
+<section id="parameter-estimates" class="level3">
+<h3 class="anchored" data-anchor-id="parameter-estimates">Parameter Estimates</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>mu_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.08910471 -0.08367376 -0.04741639</code></pre>
+<pre><code>[1] 0.06170586 0.15395914 0.15034276</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>phi_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           [,1]        [,2]        [,3]
-[1,]  0.5268201 -0.01518432 -0.01161192
-[2,] -0.6617947  0.42929651  0.04812768
-[3,]  0.4089657 -0.63349511  0.63401929</code></pre>
+<pre><code>           [,1]         [,2]        [,3]
+[1,]  0.4471790  0.006878862 -0.02237471
+[2,] -0.7084987  0.486550483 -0.02687934
+[3,]  0.4085459 -0.657272797  0.67987544</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>sigma_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            [,1]        [,2]        [,3]
-[1,]  1.02387964 -0.02265188 -0.15508414
-[2,] -0.02265188  0.96983441 -0.09271235
-[3,] -0.15508414 -0.09271235  0.90183316</code></pre>
+[1,]  1.09171525 -0.02744295 -0.10271920
+[2,] -0.02744295  1.08040181 -0.05835047
+[3,] -0.10271920 -0.05835047  0.94406565</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>mu0_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.2131295 -0.1846773  1.0102372</code></pre>
+<pre><code>[1] 0.8982052 0.1539088 0.6066994</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>sigma0_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           [,1]       [,2]      [,3]
-[1,]  1.5749906 -0.6133963 0.0163715
-[2,] -0.6133963  0.7279073 0.1425429
-[3,]  0.0163715  0.1425429 0.8869580</code></pre>
+<pre><code>            [,1]        [,2]       [,3]
+[1,]  0.71163955  0.02975039 -0.8624653
+[2,]  0.02975039  1.96696553 -0.2192064
+[3,] -0.86246527 -0.21920645  1.7081557</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>beta_var1_hat <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  Matrix<span class="sc">::</span><span class="fu">expm</span>(<span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> phi_hat)</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>beta_var1_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           [,1]      [,2]         [,3]
-[1,]  0.5926957 0.0115443  0.006260983
-[2,]  0.4146870 0.6453858 -0.025960873
-[3,] -0.1048329 0.3696272  0.520995712</code></pre>
+<pre><code>            [,1]          [,2]       [,3]
+[1,]  0.63622735 -1.550278e-05 0.01272285
+[2,]  0.44143560  6.193595e-01 0.01967659
+[3,] -0.09708627  3.685841e-01 0.50994073</code></pre>
 </div>
 </div>
 </section>
-<section id="discrepancy-between-estimated-and-population-coefficients" class="level3">
-<h3 class="anchored" data-anchor-id="discrepancy-between-estimated-and-population-coefficients">Discrepancy Between Estimated and Population Coefficients</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(mu <span class="sc">-</span> mu_hat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.08910471 0.08367376 0.04741639</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(phi <span class="sc">-</span> phi_hat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>           [,1]       [,2]       [,3]
-[1,] 0.16982007 0.01518432 0.01161192
-[2,] 0.10920529 0.08170349 0.04812768
-[3,] 0.04103434 0.09550489 0.05898071</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(beta_var1 <span class="sc">-</span> beta_var1_hat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>            [,1]       [,2]        [,3]
-[1,] 0.107076761 0.01154430 0.006260983
-[2,] 0.085347120 0.04549043 0.025960873
-[3,] 0.004794494 0.03020840 0.020922117</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(sigma <span class="sc">-</span> sigma_hat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>           [,1]       [,2]       [,3]
-[1,] 0.02387964 0.02265188 0.15508414
-[2,] 0.02265188 0.03016559 0.09271235
-[3,] 0.15508414 0.09271235 0.09816684</code></pre>
-</div>
-</div>
-
-
 </section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-Chow-Ho-Hamaker-etal-2010" class="csl-entry" role="listitem">
+Chow, S.-M., Ho, M. R., Hamaker, E. L., &amp; Dolan, C. V. (2010). Equivalence and differences between structural equation modeling and state-space modeling techniques. <em>Structural Equation Modeling: A Multidisciplinary Journal</em>, <em>17</em>(2), 303–332. <a href="https://doi.org/10.1080/10705511003661553">https://doi.org/10.1080/10705511003661553</a>
+</div>
+<div id="ref-Chow-Losardo-Park-etal-2023" class="csl-entry" role="listitem">
+Chow, S.-M., Losardo, D., Park, J., &amp; Molenaar, P. C. M. (2023). Continuous-time dynamic models: Connections to structural equation models and other discrete-time models. In R. H. Hoyle (Ed.), <em>Handbook of structural equation modeling</em> (2nd ed.). The Guilford Press.
+</div>
+<div id="ref-Ou-Hunter-Chow-2019" class="csl-entry" role="listitem">
+Ou, L., Hunter, M. D., &amp; Chow, S.-M. (2019). What’s for <span class="nocase">dynr</span>: A package for linear and nonlinear dynamic modeling in <span>R</span>. <em>The R Journal</em>, <em>11</em>(1), 91. <a href="https://doi.org/10.32614/rj-2019-012">https://doi.org/10.32614/rj-2019-012</a>
+</div>
+<div id="ref-RCoreTeam-2023" class="csl-entry" role="listitem">
+R Core Team. (2023). <em><span>R</span>: A language and environment for statistical computing</em>. R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>
+</div>
+<div id="ref-Uhlenbeck-Ornstein-1930" class="csl-entry" role="listitem">
+Uhlenbeck, G. E., &amp; Ornstein, L. S. (1930). On the theory of the brownian motion. <em>Physical Review</em>, <em>36</em>(5), 823–841. <a href="https://doi.org/10.1103/physrev.36.823">https://doi.org/10.1103/physrev.36.823</a>
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -1043,7 +1094,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../../../.setup/quarto/examples/var.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Vector Autoregressive Model</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">The Vector Autoregressive Model</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
