@@ -24,6 +24,7 @@ book:
       - .setup/quarto/docker/docker-volumes.qmd
     - part: "Examples"
       chapters: 
+      - .setup/quarto/examples/lin-growth.qmd
       - .setup/quarto/examples/var.qmd
       - .setup/quarto/examples/ou.qmd
     - .setup/quarto/references/references.qmd
