@@ -1,11 +1,6 @@
 ---
 title: "The Vector Autoregressive Model"
 author: "Ivan Jacob Agaloos Pesigan"
-nocite: |
-  @RCoreTeam-2023
-  @Shumway-Stoffer-2017
-  @Ou-Hunter-Chow-2019
-  @Chow-Ho-Hamaker-etal-2010
 ---
 
 ## Model
@@ -393,5 +388,3 @@ alpha_hat
 beta_hat
 psi_hat
 ```
-
-## References

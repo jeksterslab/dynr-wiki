@@ -1,11 +1,6 @@
 ---
 title: "The Linear Growth Curve Model"
 author: "Ivan Jacob Agaloos Pesigan"
-nocite: |
-  @RCoreTeam-2023
-  @Ou-Hunter-Chow-2019
-  @Chow-Ho-Hamaker-etal-2010
-  @Rosseel-2012
 ---
 
 ## Model
@@ -390,5 +385,3 @@ fit <- lavaan::growth(
 )
 lavaan::summary(fit)
 ```
-
-## References
