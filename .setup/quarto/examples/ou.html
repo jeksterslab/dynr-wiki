@@ -332,7 +332,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="data-generation">Data Generation</h2>
 <section id="notation" class="level3">
 <h3 class="anchored" data-anchor-id="notation">Notation</h3>
-<p>Let <span class="math inline">\(t = 1000\)</span> be the number of time points and <span class="math inline">\(n = 5\)</span> be the number of individuals.</p>
+<p>Let <span class="math inline">\(t = 1000\)</span> be the number of time points and <span class="math inline">\(n = 100\)</span> be the number of individuals.</p>
 <p>Let the measurement model intecept vector <span class="math inline">\(\boldsymbol{\nu}\)</span> be given by</p>
 <p><span class="math display">\[\begin{equation}
 \boldsymbol{\nu}
@@ -438,7 +438,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 5</code></pre>
+<pre><code>[1] 100</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>time</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -699,22 +699,22 @@ Finished Hessian calculation.
 Original exit flag:  3 
 Modified exit flag:  3 
 Optimization terminated successfully: ftol_rel or ftol_abs was reached. 
-Original fitted parameters:  0.06170586 0.1539591 0.1503428 0.447179 
-0.006878862 -0.02237471 -0.7084987 0.4865505 -0.02687934 0.4085459 -0.6572728 
-0.6798754 0.08775009 -0.02513747 -0.09408974 0.07669431 -0.0564341 -0.07153665 
--0.7087437 -0.7459179 -0.7041478 0.8982052 0.1539088 0.6066994 -0.3401838 
-0.04180542 -1.211941 0.6758595 -0.09317225 -0.4372129 
+Original fitted parameters:  0.004814222 0.002625808 0.01942997 0.3434574 
+-0.007649235 0.01707495 -0.7544641 0.5063226 -0.005714578 0.4684295 -0.7395405 
+0.6996856 -0.006010974 -0.001991211 0.001078439 0.002580174 -0.009100805 
+-0.0126631 -0.698833 -0.6941359 -0.6868997 0.0007194603 -0.0422543 0.128662 
+0.159561 0.1825632 0.001347175 0.0218653 0.03003386 -0.05118687 
 
-Transformed fitted parameters:  0.06170586 0.1539591 0.1503428 0.447179 
-0.006878862 -0.02237471 -0.7084987 0.4865505 -0.02687934 0.4085459 -0.6572728 
-0.6798754 1.091715 -0.02744295 -0.1027192 1.080402 -0.05835047 0.9440657 
-0.4922622 0.4742987 0.4945298 0.8982052 0.1539088 0.6066994 0.7116395 
-0.02975039 -0.8624653 1.966966 -0.2192064 1.708156 
+Transformed fitted parameters:  0.004814222 0.002625808 0.01942997 0.3434574 
+-0.007649235 0.01707495 -0.7544641 0.5063226 -0.005714578 0.4684295 -0.7395405 
+0.6996856 0.9940071 -0.001979278 0.001071976 1.002587 -0.009126452 0.9875009 
+0.4971652 0.4995059 0.5031335 0.0007194603 -0.0422543 0.128662 1.172996 
+0.2141458 0.001580231 1.061201 0.03098629 0.9510252 
 
 Doing end processing
 Successful trial
-Total Time: 3.805168 
-Backend Time: 3.797072 </code></pre>
+Total Time: 1.769818 
+Backend Time: 1.769684 </code></pre>
 </div>
 </div>
 </section>
@@ -725,48 +725,48 @@ Backend Time: 3.797072 </code></pre>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Coefficients:
-           Estimate Std. Error t value  ci.lower  ci.upper Pr(&gt;|t|)    
-mu_1       0.061706   0.107721   0.573 -0.149424  0.272836   0.2834    
-mu_2       0.153959   0.191496   0.804 -0.221366  0.529285   0.2107    
-mu_3       0.150343   0.146024   1.030 -0.135859  0.436544   0.1516    
-phi_11     0.447179   0.081386   5.495  0.287665  0.606693   &lt;2e-16 ***
-phi_12     0.006879   0.061876   0.111 -0.114397  0.128154   0.4557    
-phi_13    -0.022375   0.058038  -0.386 -0.136127  0.091377   0.3499    
-phi_21    -0.708499   0.076857  -9.218 -0.859136 -0.557862   &lt;2e-16 ***
-phi_22     0.486550   0.062938   7.731  0.363194  0.609907   &lt;2e-16 ***
-phi_23    -0.026879   0.058559  -0.459 -0.141653  0.087894   0.3231    
-phi_31     0.408546   0.071559   5.709  0.268293  0.548799   &lt;2e-16 ***
-phi_32    -0.657273   0.057579 -11.415 -0.770126 -0.544420   &lt;2e-16 ***
-phi_33     0.679875   0.056593  12.013  0.568955  0.790796   &lt;2e-16 ***
-sigma_11   1.091715   0.094471  11.556  0.906556  1.276874   &lt;2e-16 ***
-sigma_12  -0.027443   0.056632  -0.485 -0.138440  0.083554   0.3140    
-sigma_13  -0.102719   0.053361  -1.925 -0.207305  0.001866   0.0271 *  
-sigma_22   1.080402   0.085756  12.599  0.912322  1.248481   &lt;2e-16 ***
-sigma_23  -0.058350   0.051216  -1.139 -0.158733  0.042032   0.1273    
-sigma_33   0.944066   0.076705  12.308  0.793727  1.094404   &lt;2e-16 ***
-theta_11   0.492262   0.013856  35.526  0.465104  0.519420   &lt;2e-16 ***
-theta_22   0.474299   0.013247  35.804  0.448335  0.500263   &lt;2e-16 ***
-theta_33   0.494530   0.013363  37.008  0.468339  0.520720   &lt;2e-16 ***
-mu0_1      0.898205   0.413539   2.172  0.087684  1.708727   0.0150 *  
-mu0_2      0.153909   0.649164   0.237 -1.118430  1.426248   0.4063    
-mu0_3      0.606699   0.595128   1.019 -0.559729  1.773128   0.1540    
-sigma0_11  0.711640   0.583317   1.220 -0.431642  1.854921   0.1113    
-sigma0_12  0.029750   0.614325   0.048 -1.174305  1.233806   0.4807    
-sigma0_13 -0.862465   0.674820  -1.278 -2.185088  0.460157   0.1006    
-sigma0_22  1.966966   1.353099   1.454 -0.685060  4.618992   0.0730 .  
-sigma0_23 -0.219206   0.906841  -0.242 -1.996583  1.558170   0.4045    
-sigma0_33  1.708156   1.195713   1.429 -0.635399  4.051710   0.0766 .  
+            Estimate Std. Error t value   ci.lower   ci.upper Pr(&gt;|t|)    
+mu_1       0.0048142  0.0303586   0.159 -0.0546875  0.0643160   0.4370    
+mu_2       0.0026258  0.0501665   0.052 -0.0956987  0.1009503   0.4791    
+mu_3       0.0194300  0.0381227   0.510 -0.0552892  0.0941491   0.3051    
+phi_11     0.3434574  0.0180288  19.050  0.3081215  0.3787933   &lt;2e-16 ***
+phi_12    -0.0076492  0.0148799  -0.514 -0.0368132  0.0215148   0.3036    
+phi_13     0.0170750  0.0122686   1.392 -0.0069710  0.0411209   0.0820 .  
+phi_21    -0.7544641  0.0168679 -44.728 -0.7875246 -0.7214035   &lt;2e-16 ***
+phi_22     0.5063226  0.0147452  34.338  0.4774225  0.5352227   &lt;2e-16 ***
+phi_23    -0.0057146  0.0124191  -0.460 -0.0300556  0.0186264   0.3227    
+phi_31     0.4684295  0.0173570  26.988  0.4344103  0.5024486   &lt;2e-16 ***
+phi_32    -0.7395405  0.0152327 -48.550 -0.7693959 -0.7096850   &lt;2e-16 ***
+phi_33     0.6996856  0.0131512  53.203  0.6739097  0.7254614   &lt;2e-16 ***
+sigma_11   0.9940071  0.0196018  50.710  0.9555882  1.0324259   &lt;2e-16 ***
+sigma_12  -0.0019793  0.0121298  -0.163 -0.0257532  0.0217946   0.4352    
+sigma_13   0.0010720  0.0118887   0.090 -0.0222294  0.0243734   0.4641    
+sigma_22   1.0025874  0.0185460  54.060  0.9662380  1.0389369   &lt;2e-16 ***
+sigma_23  -0.0091265  0.0117955  -0.774 -0.0322452  0.0139923   0.2195    
+sigma_33   0.9875009  0.0181232  54.488  0.9519802  1.0230217   &lt;2e-16 ***
+theta_11   0.4971652  0.0030494 163.039  0.4911885  0.5031418   &lt;2e-16 ***
+theta_22   0.4995059  0.0030440 164.094  0.4935397  0.5054720   &lt;2e-16 ***
+theta_33   0.5031335  0.0030618 164.325  0.4971325  0.5091346   &lt;2e-16 ***
+mu0_1      0.0007195  0.1180811   0.006 -0.2307153  0.2321542   0.4976    
+mu0_2     -0.0422543  0.1176530  -0.359 -0.2728499  0.1883413   0.3597    
+mu0_3      0.1286620  0.1108208   1.161 -0.0885427  0.3458668   0.1228    
+sigma0_11  1.1729958  0.1960371   5.984  0.7887701  1.5572215   &lt;2e-16 ***
+sigma0_12  0.2141458  0.1400042   1.530 -0.0602574  0.4885490   0.0631 .  
+sigma0_13  0.0015802  0.1252286   0.013 -0.2438633  0.2470238   0.4950    
+sigma0_22  1.0612012  0.1938725   5.474  0.6812181  1.4411844   &lt;2e-16 ***
+sigma0_23  0.0309863  0.1227729   0.252 -0.2096442  0.2716168   0.4004    
+sigma0_33  0.9510252  0.1738267   5.471  0.6103312  1.2917192   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
--2 log-likelihood value at convergence = 37920.34
-AIC = 37980.34
-BIC = 38175.86</code></pre>
+-2 log-likelihood value at convergence = 762646.90
+AIC = 762706.90
+BIC = 762992.29</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.8982052 0.1539088 0.6066994</code></pre>
+<pre><code>[1]  0.0007194603 -0.0422542976  0.1286620498</code></pre>
 </div>
 </div>
 <section id="parameter-estimates" class="level3">
@@ -774,42 +774,42 @@ BIC = 38175.86</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>mu_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.06170586 0.15395914 0.15034276</code></pre>
+<pre><code>[1] 0.004814222 0.002625808 0.019429969</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>phi_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           [,1]         [,2]        [,3]
-[1,]  0.4471790  0.006878862 -0.02237471
-[2,] -0.7084987  0.486550483 -0.02687934
-[3,]  0.4085459 -0.657272797  0.67987544</code></pre>
+<pre><code>           [,1]         [,2]         [,3]
+[1,]  0.3434574 -0.007649235  0.017074954
+[2,] -0.7544641  0.506322583 -0.005714578
+[3,]  0.4684295 -0.739540476  0.699685568</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>sigma_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>            [,1]        [,2]        [,3]
-[1,]  1.09171525 -0.02744295 -0.10271920
-[2,] -0.02744295  1.08040181 -0.05835047
-[3,] -0.10271920 -0.05835047  0.94406565</code></pre>
+<pre><code>             [,1]         [,2]         [,3]
+[1,]  0.994007056 -0.001979278  0.001071976
+[2,] -0.001979278  1.002587447 -0.009126452
+[3,]  0.001071976 -0.009126452  0.987500934</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>mu0_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.8982052 0.1539088 0.6066994</code></pre>
+<pre><code>[1]  0.0007194603 -0.0422542976  0.1286620498</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>sigma0_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>            [,1]        [,2]       [,3]
-[1,]  0.71163955  0.02975039 -0.8624653
-[2,]  0.02975039  1.96696553 -0.2192064
-[3,] -0.86246527 -0.21920645  1.7081557</code></pre>
+<pre><code>            [,1]       [,2]        [,3]
+[1,] 1.172995787 0.21414581 0.001580231
+[2,] 0.214145807 1.06120123 0.030986288
+[3,] 0.001580231 0.03098629 0.951025213</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>beta_var1_hat <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  Matrix<span class="sc">::</span><span class="fu">expm</span>(<span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> phi_hat)</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>beta_var1_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>            [,1]          [,2]       [,3]
-[1,]  0.63622735 -1.550278e-05 0.01272285
-[2,]  0.44143560  6.193595e-01 0.01967659
-[3,] -0.09708627  3.685841e-01 0.50994073</code></pre>
+<pre><code>           [,1]        [,2]         [,3]
+[1,]  0.7127931 0.001237504 -0.010202702
+[2,]  0.4942798 0.604790723 -0.000718027
+[3,] -0.1131503 0.405314226  0.499202264</code></pre>
 </div>
 </div>
 
