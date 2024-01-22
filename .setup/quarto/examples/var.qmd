@@ -62,7 +62,7 @@ $\boldsymbol{\zeta}_{i, t}$.
 production <- TRUE
 if (production) {
   time <- 1000
-  n <- 1000
+  n <- 100
 } else {
   time <- 1000
   n <- 5
