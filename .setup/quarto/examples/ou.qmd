@@ -579,8 +579,6 @@ beta_var1_hat <- expm::expm(phi_hat)
 beta_var1_hat
 ```
 
-## References
-
 ```{r}
 #| include = FALSE
 rm(list = ls())

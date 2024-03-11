@@ -431,8 +431,6 @@ sigma0_hat
 theta_hat
 ```
 
-## References
-
 ```{r}
 #| include = FALSE
 rm(list = ls())

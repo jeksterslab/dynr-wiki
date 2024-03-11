@@ -457,8 +457,6 @@ mu0_hat
 sigma0_hat
 ```
 
-## References
-
 ```{r}
 #| include = FALSE
 rm(list = ls())
