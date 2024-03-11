@@ -3,19 +3,56 @@ title: "The Ornstein–Uhlenbeck Model"
 author: "Ivan Jacob Agaloos Pesigan"
 ---
 
+```{r}
+#| echo = FALSE
+set.seed(42)
+n <- 5
+time <- 100
+delta_t <- 0.10
+k <- p <- 3
+iden <- diag(k)
+null_vec <- rep(x = 0, times = k)
+mu0 <- null_vec
+sigma0 <- 0.001 * iden
+sigma0_l <- t(chol(sigma0))
+mu <- null_vec
+phi <- matrix(
+  data = c(
+    -0.357,
+    0.771,
+    -0.450,
+    0.0,
+    -0.511,
+    0.729,
+    0,
+    0,
+    -0.693
+  ),
+  nrow = k
+)
+beta_var1 <- expm::expm(
+  phi
+)
+sigma <- 0.001 * iden
+sigma_l <- t(chol(sigma))
+nu <- null_vec
+lambda <- iden
+theta <- 0.001 * iden
+theta_l <- t(chol(theta))
+```
+
 ## Model
 
 The measurement model is given by
-
 \begin{equation}
   \mathbf{y}_{i, t}
   =
   \boldsymbol{\nu}
   +
   \boldsymbol{\Lambda}
-  \boldsymbol{\eta}_{i, t} 
+  \boldsymbol{\eta}_{i, t}
   +
-  \boldsymbol{\varepsilon}_{i, t}
+  \boldsymbol{\varepsilon}_{i, t},
   \quad
   \mathrm{with}
   \quad
@@ -27,30 +64,63 @@ The measurement model is given by
   \boldsymbol{\Theta}
   \right)
 \end{equation}
-
-where $\mathbf{y}_{i, t}$, $\boldsymbol{\eta}_{i, t}$,
-and $\boldsymbol{\varepsilon}_{i, t}$
-are random variables and $\boldsymbol{\nu}$,
+where
+$\mathbf{y}_{i, t}$,
+$\boldsymbol{\eta}_{i, t}$,
+and
+$\boldsymbol{\varepsilon}_{i, t}$
+are random variables
+and
+$\boldsymbol{\nu}$,
 $\boldsymbol{\Lambda}$,
-and $\boldsymbol{\Theta}$ are model parameters.
-$\mathbf{y}_{i, t}$ is a vector of observed random variables
-at time $t$ and individual $i$,
-$\boldsymbol{\eta}_{i, t}$ is a vector of latent random variables
-at time $t$ and individual $i$,
-and $\boldsymbol{\varepsilon}_{i, t}$
-is a vector of random measurement errors
-at time $t$ and individual $i$,
-while $\boldsymbol{\nu}$ is a vector of intercept,
-$\boldsymbol{\Lambda}$ is a matrix of factor loadings,
-and $\boldsymbol{\Theta}$ is the covariance matrix of
+and
+$\boldsymbol{\Theta}$
+are model parameters.
+$\mathbf{y}_{i, t}$
+represents a vector of observed random variables,
+$\boldsymbol{\eta}_{i, t}$
+a vector of latent random variables,
+and
+$\boldsymbol{\varepsilon}_{i, t}$
+a vector of random measurement errors,
+at time $t$ and individual $i$.
+$\boldsymbol{\nu}$
+denotes a vector of intercepts,
+$\boldsymbol{\Lambda}$
+a matrix of factor loadings,
+and
+$\boldsymbol{\Theta}$
+the covariance matrix of
 $\boldsymbol{\varepsilon}$.
 
-The dynamic structure is given by
+An alternative representation of the measurement error
+is given by
+\begin{equation}
+  \boldsymbol{\varepsilon}_{i, t}
+  =
+  \boldsymbol{\Theta}^{\frac{1}{2}}
+  \mathbf{z}_{i, t},
+  \quad
+  \mathrm{with}
+  \quad
+  \mathbf{z}_{i, t}
+  \sim
+  \mathcal{N}
+  \left(
+  \mathbf{0},
+  \mathbf{I}
+  \right)
+\end{equation}
+where
+$\mathbf{z}_{i, t}$ is a vector of
+independent standard normal random variables and
+$\left( \boldsymbol{\Theta}^{\frac{1}{2}} \right) \left( \boldsymbol{\Theta}^{\frac{1}{2}} \right)^{\prime} = \boldsymbol{\Theta}$ .
 
+The dynamic structure is given by
 \begin{equation}
   \mathrm{d} \boldsymbol{\eta}_{i, t}
   =
-  \boldsymbol{\Phi}
+  - \boldsymbol{\Phi}
   \left(
   \boldsymbol{\mu}
   -
@@ -62,62 +132,22 @@ The dynamic structure is given by
   \mathrm{d}
   \mathbf{W}_{i, t}
 \end{equation}
-
-where $\boldsymbol{\mu}$ is the long-term mean or equilibrium level,
-$\boldsymbol{\Phi}$ is the rate of mean reversion,
+where
+$\boldsymbol{\mu}$
+is the long-term mean or equilibrium level,
+$- \boldsymbol{\Phi}$
+is the rate of mean reversion,
 determining how quickly the variable returns to its mean,
-$\boldsymbol{\Sigma}$ is the matrix of volatility
-or randomness in the process, and $\mathrm{d}\boldsymbol{W}$
+$\boldsymbol{\Sigma}$
+is the matrix of volatility
+or randomness in the process, and
+$\mathrm{d}\boldsymbol{W}$
 is a Wiener process or Brownian motion,
 which represents random fluctuations.
 
 ## Data Generation
 
 ### Notation
-
-```{r}
-#| echo = FALSE
-production <- TRUE
-if (production) {
-  time <- 1000
-  n <- 100
-} else {
-  time <- 1000
-  n <- 5
-}
-set.seed(42)
-delta_t <- 0.10
-k <- p <- 3
-iden <- diag(k)
-null_vec <- rep(x = 0, times = k)
-mu0 <- null_vec
-sigma0 <- iden
-mu <- null_vec
-phi <- matrix(
-  data = c(
-    0.357,
-    -0.771,
-    0.450,
-    0.0,
-    0.511,
-    -0.729,
-    0,
-    0,
-    0.693
-  ),
-  nrow = k
-)
-beta_var1 <- as.matrix(
-  Matrix::expm(
-    -1 * phi
-  )
-)
-psi <- iden
-sigma <- iden
-nu <- null_vec
-lambda <- iden
-theta <- 0.5 * iden
-```
 
 Let $t = `r time`$ be the number of time points and $n = `r n`$ be the number of individuals.
 
@@ -209,16 +239,16 @@ Let the long-term mean vector $\boldsymbol{\mu}$ be given by
 \right) .
 \end{equation}
 
-Let the rate of mean reversion matrix $\boldsymbol{\Phi}$ be given by
+Let the rate of mean reversion matrix $- \boldsymbol{\Phi}$ be given by
 
 \begin{equation}
-\boldsymbol{\Phi}
+- \boldsymbol{\Phi}
 =
 \left(
 \begin{array}{ccc}
-  `r phi[1, 1]` & `r phi[1, 2]` & `r phi[1, 3]` \\
-  `r phi[2, 1]` & `r phi[2, 2]` & `r phi[2, 3]` \\
-  `r phi[3, 1]` & `r phi[3, 2]` & `r phi[3, 3]` \\
+  `r -phi[1, 1]` & `r -phi[1, 2]` & `r -phi[1, 3]` \\
+  `r -phi[2, 1]` & `r -phi[2, 2]` & `r -phi[2, 3]` \\
+  `r -phi[3, 1]` & `r -phi[3, 2]` & `r -phi[3, 3]` \\
 \end{array}
 \right) .
 \end{equation}
@@ -237,7 +267,7 @@ Let the dynamic process noise covariance matrix $\boldsymbol{\Sigma}$ be given b
 \right) .
 \end{equation}
 
-Let $\Delta_{t} = `r delta_t`$.
+Let $\Delta t = `r delta_t`$.
 
 ### R Function Arguments
 
@@ -255,23 +285,53 @@ lambda
 theta
 ```
 
+### Visualizing the Dynamics Without Measurement Error and Process Noise ($n = 5$ with Different Initial Condition)
+
+```{r no-error}
+#| echo = FALSE
+library(simStateSpace)
+sim <- SimSSMOUFixed(
+  n = 5,
+  time = length(seq(from = 0, to = 20, by = delta_t)),
+  delta_t = delta_t,
+  mu0 = mu0,
+  sigma0_l = sigma0_l,
+  mu = mu,
+  phi = phi,
+  sigma_l = matrix(
+    data = 0,
+    nrow = p,
+    ncol = p
+  ),
+  nu = nu,
+  lambda = lambda,
+  theta_l = matrix(
+    data = 0,
+    nrow = k,
+    ncol = k
+  ),
+  type = 0
+)
+plot(sim, type = "l")
+```
+
 ### Using the SimSSMOUFixed Function from the simStateSpace Package to Simulate Data
 
-```{r}
+```{r error}
 library(simStateSpace)
 sim <- SimSSMOUFixed(
   n = n,
+  time = time,
+  delta_t = delta_t,
   mu0 = mu0,
-  sigma0 = sigma0,
+  sigma0_l = sigma0_l,
   mu = mu,
   phi = phi,
-  sigma = sigma,
+  sigma_l = sigma_l,
   nu = nu,
   lambda = lambda,
-  theta = theta,
-  delta_t = delta_t,
-  time = time,
-  burn_in = 0
+  theta_l = theta_l,
+  type = 0
 )
 data <- as.data.frame(sim)
 head(data)
@@ -324,16 +384,16 @@ dynr_measurement <- dynr::prep.measurement(
 
 ```{r}
 dynr_dynamics <- dynr::prep.formulaDynamics(
-  formula = list(
-    eta_1 ~ phi_11 * (mu_1 - eta_1) + phi_12 * (mu_2 - eta_2) + phi_13 * (mu_3 - eta_3),
-    eta_2 ~ phi_21 * (mu_1 - eta_1) + phi_22 * (mu_2 - eta_2) + phi_23 * (mu_3 - eta_3),
-    eta_3 ~ phi_31 * (mu_1 - eta_1) + phi_32 * (mu_2 - eta_2) + phi_33 * (mu_3 - eta_3)
+  formula = list(  
+    eta_1 ~ (-phi_11 * (mu_1 - eta_1)) + (-phi_12 * (mu_2 - eta_2)) + (-phi_13 * (mu_3 - eta_3)),
+    eta_2 ~ (-phi_21 * (mu_1 - eta_1)) + (-phi_22 * (mu_2 - eta_2)) + (-phi_23 * (mu_3 - eta_3)),
+    eta_3 ~ (-phi_31 * (mu_1 - eta_1)) + (-phi_32 * (mu_2 - eta_2)) + (-phi_33 * (mu_3 - eta_3))
   ),
   startval = c(
-    mu_1 = 0, mu_2 = 0, mu_3 = 0,
-    phi_11 = 0, phi_12 = 0, phi_13 = 0,
-    phi_21 = 0, phi_22 = 0, phi_23 = 0,
-    phi_31 = 0, phi_32 = 0, phi_33 = 0
+    mu_1 = mu[1], mu_2 = mu[2], mu_3 = mu[3],
+    phi_11 = phi[1, 1], phi_12 = phi[1, 2], phi_13 = phi[1, 3],
+    phi_21 = phi[2, 1], phi_22 = phi[2, 2], phi_23 = phi[2, 3],
+    phi_31 = phi[3, 1], phi_32 = phi[3, 2], phi_33 = phi[3, 3]
   ),
   isContinuousTime = TRUE
 )
@@ -406,19 +466,9 @@ model$ub[
     "phi_33"
   )
 ] <- +1.5
-model$lb[
-  c(
-    "sigma_11",
-    "sigma_22",
-    "sigma_33",
-    "theta_11",
-    "theta_22",
-    "theta_33"
-  )
-] <- .Machine$double.xmin
 ```
 
-```{r}
+```{r model}
 #| echo = FALSE
 dynr::plotFormula(
   dynrModel = model,
@@ -525,8 +575,13 @@ phi_hat
 sigma_hat
 mu0_hat
 sigma0_hat
-beta_var1_hat <- as.matrix(
-  Matrix::expm(-1 * phi_hat)
-)
+beta_var1_hat <- expm::expm(phi_hat)
 beta_var1_hat
+```
+
+## References
+
+```{r}
+#| include = FALSE
+rm(list = ls())
 ```

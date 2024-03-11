@@ -3,11 +3,31 @@ title: "The Linear Growth Curve Model"
 author: "Ivan Jacob Agaloos Pesigan"
 ---
 
+```{r}
+#| echo = FALSE
+set.seed(42)
+n <- 10000
+mu0 <- c(0.615, 1.006)
+sigma0 <- matrix(
+  data = c(
+    1.932,
+    0.618,
+    0.618,
+    0.587
+  ),
+  nrow = 2
+)
+sigma0_l <- t(chol(sigma0))
+theta <- 0.6
+theta_l <- sqrt(theta)
+time <- 5
+```
+
 ## Model
 
 The measurement model is given by
 \begin{equation}
-  y_{i, t}
+  Y_{i, t}
   =
   \left(
   \begin{array}{cc}
@@ -21,7 +41,7 @@ The measurement model is given by
   \end{array}
   \right)
   +
-  \boldsymbol{\varepsilon}_{i, t}
+  \boldsymbol{\varepsilon}_{i, t},
   \quad
   \mathrm{with}
   \quad
@@ -33,19 +53,20 @@ The measurement model is given by
   \theta
   \right)
 \end{equation}
-where $y_{i, t}$, $\eta_{0_{i, t}}$,
+where $Y_{i, t}$, $\eta_{0_{i, t}}$,
 $\eta_{1_{i, t}}$,
 and $\boldsymbol{\varepsilon}_{i, t}$
 are random variables and
 $\theta$ is a model parameter.
-$y_{i, t}$ is a vector of observed random variables
+$Y_{i, t}$ is the observed random variable
 at time $t$ and individual $i$,
 $\eta_{0_{i, t}}$ (intercept)
 and
-$\eta_{1_{i, t}}$ (slope) form a vector of latent random variables
+$\eta_{1_{i, t}}$ (slope)
+form a vector of latent random variables
 at time $t$ and individual $i$,
 and $\boldsymbol{\varepsilon}_{i, t}$
-is a vector of random measurement errors
+a vector of random measurement errors
 at time $t$ and individual $i$.
 $\theta$ is the variance of
 $\boldsymbol{\varepsilon}$.
@@ -104,42 +125,6 @@ of the initial condition given by
 
 ### Notation
 
-```{r}
-#| echo = FALSE
-production <- TRUE
-if (production) {
-  n <- 10000
-} else {
-  n <- 100
-}
-set.seed(42)
-mu0 <- c(0.615, 1.006)
-sigma0 <- matrix(
-  data = c(
-    1.932,
-    0.618,
-    0.618,
-    0.587
-  ),
-  nrow = 2
-)
-theta <- 0.6
-time <- 5
-gamma_y <- matrix(data = 0.10, nrow = 1, ncol = 2)
-gamma_eta <- matrix(data = 0.10, nrow = 2, ncol = 2)
-x <- lapply(
-  X = seq_len(n),
-  FUN = function(i) {
-    return(
-      matrix(
-        data = rnorm(n = 2 * time),
-        ncol = 2
-      )
-    )
-  }
-)
-```
-
 Let $t = `r time`$ be the number of time points and $n = `r n`$ be the number of individuals.
 
 Let the measurement error variance $\theta$ be given by
@@ -193,20 +178,38 @@ n
 time
 mu0
 sigma0
+sigma0_l
 theta
+theta_l
+```
+
+### Visualizing the Dynamics Without Measurement Error ($n = 5$ with Different Initial Condition)
+
+```{r no-error}
+#| echo = FALSE
+library(simStateSpace)
+sim <- SimSSMLinGrowth(
+  n = 5,
+  time = time,
+  mu0 = mu0,
+  sigma0_l = sigma0_l,
+  theta_l = 0,
+  type = 0
+)
+plot(sim, type = "l")
 ```
 
 ### Using the SimSSMLinGrowth Function from the simStateSpace Package to Simulate Data
 
-```{r}
+```{r error}
 library(simStateSpace)
 sim <- SimSSMLinGrowth(
   n = n,
+  time = time,
   mu0 = mu0,
-  sigma0 = sigma0,
-  theta = theta,
-  type = 0,
-  time = time
+  sigma0_l = sigma0_l,
+  theta_l = theta_l,
+  type = 0
 )
 data <- as.data.frame(sim)
 head(data)
@@ -290,7 +293,7 @@ model <- dynr::dynr.model(
 )
 ```
 
-```{r}
+```{r model}
 #| echo = FALSE
 dynr::plotFormula(
   dynrModel = model,
@@ -349,15 +352,6 @@ theta_hat <- estimates["theta"]
 mu0_hat
 sigma0_hat
 theta_hat
-```
-
-## Linear Growth Curve Model in Structural Equation Modeling
-
-### Wide Data Set
-
-```{r}
-data <- as.data.frame(sim, long = FALSE)
-head(data)
 ```
 
 ## Linear Growth Curve Model in Structural Equation Modeling
@@ -435,4 +429,11 @@ theta_hat <- unname(
 mu0_hat
 sigma0_hat
 theta_hat
+```
+
+## References
+
+```{r}
+#| include = FALSE
+rm(list = ls())
 ```
