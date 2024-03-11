@@ -19,7 +19,8 @@ project <- "dynr-wiki"
 
 pkg_cran <- c(
   "lavaan",
-  "simStateSpace"
+  "simStateSpace",
+  "expm"
 )
 
 pkg_github <- c()
