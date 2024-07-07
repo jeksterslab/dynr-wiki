@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -23,7 +23,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,6 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -99,6 +106,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 </head>
 
 <body class="nav-sidebar floating">
@@ -107,12 +141,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../.setup/quarto/examples/lin-growth.html">Examples</a></li><li class="breadcrumb-item"><a href="../../../.setup/quarto/examples/var.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">The Vector Autoregressive Model</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../.setup/quarto/examples/lin-growth.html">Examples</a></li><li class="breadcrumb-item"><a href="../../../.setup/quarto/examples/var.html"><span class="chapter-title">The Vector Autoregressive Model</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -122,12 +156,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../../../">dynr Wiki</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/jeksterslab/dynr-wiki" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/jeksterslab/dynr-wiki" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
     </div>
       </div>
@@ -229,7 +263,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -241,8 +275,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation">Notation</a></li>
   <li><a href="#r-function-arguments" id="toc-r-function-arguments" class="nav-link" data-scroll-target="#r-function-arguments">R Function Arguments</a></li>
-  <li><a href="#visualizing-the-dynamics-without-process-noise-n-5-with-different-initial-condition" id="toc-visualizing-the-dynamics-without-process-noise-n-5-with-different-initial-condition" class="nav-link" data-scroll-target="#visualizing-the-dynamics-without-process-noise-n-5-with-different-initial-condition">Visualizing the Dynamics Without Process Noise (<span class="math inline">\(n = 5\)</span> with Different Initial Condition)</a></li>
-  <li><a href="#using-the-simssmvarfixed-function-from-the-simstatespace-package-to-simulate-data" id="toc-using-the-simssmvarfixed-function-from-the-simstatespace-package-to-simulate-data" class="nav-link" data-scroll-target="#using-the-simssmvarfixed-function-from-the-simstatespace-package-to-simulate-data">Using the SimSSMVARFixed Function from the simStateSpace Package to Simulate Data</a></li>
+  <li><a href="#visualizing-the-dynamics-without-process-noise-n-5-with-different-initial-condition" id="toc-visualizing-the-dynamics-without-process-noise-n-5-with-different-initial-condition" class="nav-link" data-scroll-target="#visualizing-the-dynamics-without-process-noise-n-5-with-different-initial-condition">Visualizing the Dynamics Without Process Noise (n = 5 with Different Initial Condition)</a></li>
+  <li><a href="#using-the-simssmvarfixed-function-from-the-simstatespace-package-to-simulate-data" id="toc-using-the-simssmvarfixed-function-from-the-simstatespace-package-to-simulate-data" class="nav-link" data-scroll-target="#using-the-simssmvarfixed-function-from-the-simstatespace-package-to-simulate-data">Using the <code>SimSSMVARFixed</code> Function from the <code>simStateSpace</code> Package to Simulate Data</a></li>
   </ul></li>
   <li><a href="#model-fitting" id="toc-model-fitting" class="nav-link" data-scroll-target="#model-fitting">Model Fitting</a>
   <ul class="collapse">
@@ -259,12 +293,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#parameter-estimates" id="toc-parameter-estimates" class="nav-link" data-scroll-target="#parameter-estimates">Parameter Estimates</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jeksterslab/dynr-wiki/edit/main/.setup/quarto/examples/var.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/jeksterslab/dynr-wiki/edit/main/.setup/quarto/examples/var.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../.setup/quarto/examples/lin-growth.html">Examples</a></li><li class="breadcrumb-item"><a href="../../../.setup/quarto/examples/var.html"><span class="chapter-title">The Vector Autoregressive Model</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-title">The Vector Autoregressive Model</span></h1>
 </div>
@@ -285,7 +319,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <section id="model" class="level2">
 <h2 class="anchored" data-anchor-id="model">Model</h2>
@@ -356,9 +392,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 =
 \left(
 \begin{array}{ccc}
-  0.001 &amp; 0 &amp; 0 \\
-  0 &amp; 0.001 &amp; 0 \\
-  0 &amp; 0 &amp; 0.001 \\
+  1 &amp; 0.2 &amp; 0.2 \\
+  0.2 &amp; 1 &amp; 0.2 \\
+  0.2 &amp; 0.2 &amp; 1 \\
 \end{array}
 \right) .
 \end{equation}\]</span></p>
@@ -392,9 +428,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 =
 \left(
 \begin{array}{ccc}
-  0.001 &amp; 0 &amp; 0 \\
-  0 &amp; 0.001 &amp; 0 \\
-  0 &amp; 0 &amp; 0.001 \\
+  0.1 &amp; 0 &amp; 0 \\
+  0 &amp; 0.1 &amp; 0 \\
+  0 &amp; 0 &amp; 0.1 \\
 \end{array}
 \right) .
 \end{equation}\]</span></p>
@@ -416,17 +452,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sigma0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      [,1]  [,2]  [,3]
-[1,] 0.001 0.000 0.000
-[2,] 0.000 0.001 0.000
-[3,] 0.000 0.000 0.001</code></pre>
+<pre><code>     [,1] [,2] [,3]
+[1,]  1.0  0.2  0.2
+[2,]  0.2  1.0  0.2
+[3,]  0.2  0.2  1.0</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sigma0_l</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           [,1]       [,2]       [,3]
-[1,] 0.03162278 0.00000000 0.00000000
-[2,] 0.00000000 0.03162278 0.00000000
-[3,] 0.00000000 0.00000000 0.03162278</code></pre>
+<pre><code>     [,1]      [,2]      [,3]
+[1,]  1.0 0.0000000 0.0000000
+[2,]  0.2 0.9797959 0.0000000
+[3,]  0.2 0.1632993 0.9660918</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>alpha</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -441,36 +477,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>psi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      [,1]  [,2]  [,3]
-[1,] 0.001 0.000 0.000
-[2,] 0.000 0.001 0.000
-[3,] 0.000 0.000 0.001</code></pre>
+<pre><code>     [,1] [,2] [,3]
+[1,]  0.1  0.0  0.0
+[2,]  0.0  0.1  0.0
+[3,]  0.0  0.0  0.1</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>psi_l</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           [,1]       [,2]       [,3]
-[1,] 0.03162278 0.00000000 0.00000000
-[2,] 0.00000000 0.03162278 0.00000000
-[3,] 0.00000000 0.00000000 0.03162278</code></pre>
+<pre><code>          [,1]      [,2]      [,3]
+[1,] 0.3162278 0.0000000 0.0000000
+[2,] 0.0000000 0.3162278 0.0000000
+[3,] 0.0000000 0.0000000 0.3162278</code></pre>
 </div>
 </div>
 </section>
 <section id="visualizing-the-dynamics-without-process-noise-n-5-with-different-initial-condition" class="level3">
-<h3 class="anchored" data-anchor-id="visualizing-the-dynamics-without-process-noise-n-5-with-different-initial-condition">Visualizing the Dynamics Without Process Noise (<span class="math inline">\(n = 5\)</span> with Different Initial Condition)</h3>
+<h3 class="anchored" data-anchor-id="visualizing-the-dynamics-without-process-noise-n-5-with-different-initial-condition">Visualizing the Dynamics Without Process Noise (n = 5 with Different Initial Condition)</h3>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="var_files/figure-html/no-error-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="var_files/figure-html/no-error-var-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="var_files/figure-html/no-error-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="var_files/figure-html/no-error-var-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="var_files/figure-html/no-error-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="var_files/figure-html/no-error-var-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
 <section id="using-the-simssmvarfixed-function-from-the-simstatespace-package-to-simulate-data" class="level3">
-<h3 class="anchored" data-anchor-id="using-the-simssmvarfixed-function-from-the-simstatespace-package-to-simulate-data">Using the SimSSMVARFixed Function from the simStateSpace Package to Simulate Data</h3>
+<h3 class="anchored" data-anchor-id="using-the-simssmvarfixed-function-from-the-simstatespace-package-to-simulate-data">Using the <code>SimSSMVARFixed</code> Function from the <code>simStateSpace</code> Package to Simulate Data</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(simStateSpace)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>sim <span class="ot">&lt;-</span> <span class="fu">SimSSMVARFixed</span>(</span>
@@ -485,23 +533,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(sim)</span>
 <span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  id time           y1          y2           y3
-1  1    0 -0.058366001  0.03068304  0.033269990
-2  1    1 -0.045910224 -0.06557808  0.051479188
-3  1    2  0.004716282 -0.04377407 -0.001013781
-4  1    3 -0.001160920 -0.02362650 -0.014519392
-5  1    4  0.001505236 -0.05605605 -0.004836346
-6  1    5  0.022833823 -0.06876928 -0.060505721</code></pre>
+<pre><code>  id time          y1         y2         y3
+1  1    0 -1.84569501  0.5815402  0.8057225
+2  1    1 -1.34252674 -1.1219724  0.9873906
+3  1    2 -0.57123433 -1.1591679  0.1280274
+4  1    3 -0.44448720 -0.9783200 -0.3028425
+5  1    4 -0.28796224 -1.2222325 -0.3807219
+6  1    5  0.01622801 -1.2362032 -1.0056038</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="var_files/figure-html/error-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="var_files/figure-html/error-var-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="var_files/figure-html/error-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="var_files/figure-html/error-var-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="var_files/figure-html/error-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="var_files/figure-html/error-var-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -599,7 +659,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="var_files/figure-html/model-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="var_files/figure-html/model-var-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -620,22 +684,22 @@ Finished Hessian calculation.
 Original exit flag:  3 
 Modified exit flag:  3 
 Optimization terminated successfully: ftol_rel or ftol_abs was reached. 
-Original fitted parameters:  -0.001839317 0.0007013471 0.00079572 0.7027877 
-0.00263031 0.03435549 0.4590774 0.6518206 -0.01810246 -0.1172585 0.431871 
-0.4869042 -6.97301 -0.08070752 -0.01453128 -6.827749 -0.09349972 -6.99225 
--0.01314957 0.0004109469 0.007857857 -7.480008 -0.3864116 -0.5179974 -7.3445 
-0.2721754 -7.788466 
+Original fitted parameters:  -0.01780361 0.007988374 0.007653975 0.7000363 
+0.003324985 0.03447235 0.4709436 0.6460795 -0.01889653 -0.1191479 0.423746 
+0.4788747 -2.366484 -0.08040767 -0.01334399 -2.219775 -0.09185627 -2.384591 
+-0.4153391 -0.06883323 0.1606552 -0.5715268 -0.1790723 -0.362347 -0.4746303 
+0.4357563 -0.9470132 
 
-Transformed fitted parameters:  -0.001839317 0.0007013471 0.00079572 0.7027877 
-0.00263031 0.03435549 0.4590774 0.6518206 -0.01810246 -0.1172585 0.431871 
-0.4869042 0.0009368287 -7.560912e-05 -1.361332e-05 0.001089396 -0.0001001889 
-0.0009286447 -0.01314957 0.0004109469 0.007857857 0.0005642527 -0.0002180337 
--0.0002922814 0.0007303872 0.0002888033 0.0006137548 
+Transformed fitted parameters:  -0.01780361 0.007988374 0.007653975 0.7000363 
+0.003324985 0.03447235 0.4709436 0.6460795 -0.01889653 -0.1191479 0.423746 
+0.4788747 0.09380996 -0.00754304 -0.001251799 0.1092401 -0.009878017 0.09305999 
+-0.4153391 -0.06883323 0.1606552 0.5646626 -0.1011154 -0.2046038 0.640222 
+0.3077294 0.5801649 
 
 Doing end processing
 Successful trial
-Total Time: 13.11023 
-Backend Time: 12.63284 </code></pre>
+Total Time: 12.13945 
+Backend Time: 11.6961 </code></pre>
 </div>
 </div>
 </section>
@@ -647,39 +711,39 @@ Backend Time: 12.63284 </code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Coefficients:
             Estimate Std. Error t value   ci.lower   ci.upper Pr(&gt;|t|)    
-alpha_1   -1.839e-03  1.391e-03  -1.323 -4.565e-03  8.861e-04   0.0933 .  
-alpha_2    7.013e-04  1.500e-03   0.468 -2.238e-03  3.641e-03   0.3201    
-alpha_3    7.957e-04  1.385e-03   0.575 -1.918e-03  3.510e-03   0.2829    
-beta_11    7.028e-01  3.472e-02  20.243  6.347e-01  7.708e-01   &lt;2e-16 ***
-beta_12    2.630e-03  2.811e-02   0.094 -5.247e-02  5.773e-02   0.4627    
-beta_13    3.436e-02  2.972e-02   1.156 -2.390e-02  9.261e-02   0.1242    
-beta_21    4.591e-01  3.744e-02  12.261  3.857e-01  5.325e-01   &lt;2e-16 ***
-beta_22    6.518e-01  3.031e-02  21.502  5.924e-01  7.112e-01   &lt;2e-16 ***
-beta_23   -1.810e-02  3.206e-02  -0.565 -8.093e-02  4.472e-02   0.2863    
-beta_31   -1.173e-01  3.457e-02  -3.392 -1.850e-01 -4.950e-02   0.0004 ***
-beta_32    4.319e-01  2.799e-02  15.429  3.770e-01  4.867e-01   &lt;2e-16 ***
-beta_33    4.869e-01  2.960e-02  16.451  4.289e-01  5.449e-01   &lt;2e-16 ***
-psi_11     9.368e-04  5.964e-05  15.709  8.199e-04  1.054e-03   &lt;2e-16 ***
-psi_12    -7.561e-05  4.560e-05  -1.658 -1.650e-04  1.377e-05   0.0490 *  
-psi_13    -1.361e-05  4.199e-05  -0.324 -9.592e-05  6.869e-05   0.3730    
-psi_22     1.089e-03  6.934e-05  15.710  9.535e-04  1.225e-03   &lt;2e-16 ***
-psi_23    -1.002e-04  4.550e-05  -2.202 -1.894e-04 -1.102e-05   0.0141 *  
-psi_33     9.286e-04  5.912e-05  15.708  8.128e-04  1.045e-03   &lt;2e-16 ***
-mu0_1     -1.315e-02  1.063e-02  -1.237 -3.399e-02  7.690e-03   0.1084    
-mu0_2      4.109e-04  1.209e-02   0.034 -2.329e-02  2.412e-02   0.4865    
-mu0_3      7.858e-03  1.109e-02   0.709 -1.387e-02  2.959e-02   0.2394    
-sigma0_11  5.642e-04  3.575e-04   1.578 -1.364e-04  1.265e-03   0.0576 .  
-sigma0_12 -2.180e-04  3.038e-04  -0.718 -8.136e-04  3.775e-04   0.2367    
-sigma0_13 -2.923e-04  2.944e-04  -0.993 -8.693e-04  2.848e-04   0.1607    
-sigma0_22  7.304e-04  4.627e-04   1.579 -1.764e-04  1.637e-03   0.0575 .  
-sigma0_23  2.888e-04  3.270e-04   0.883 -3.521e-04  9.297e-04   0.1888    
-sigma0_33  6.138e-04  3.891e-04   1.577 -1.489e-04  1.376e-03   0.0577 .  
+alpha_1   -0.0178036  0.0139577  -1.276 -0.0451602  0.0095530   0.1014    
+alpha_2    0.0079884  0.0150619   0.530 -0.0215325  0.0375092   0.2981    
+alpha_3    0.0076540  0.0139018   0.551 -0.0195931  0.0349010   0.2911    
+beta_11    0.7000363  0.0338300  20.693  0.6337308  0.7663418   &lt;2e-16 ***
+beta_12    0.0033250  0.0274008   0.121 -0.0503795  0.0570295   0.4517    
+beta_13    0.0344723  0.0293774   1.173 -0.0231062  0.0920509   0.1206    
+beta_21    0.4709436  0.0365064  12.900  0.3993924  0.5424948   &lt;2e-16 ***
+beta_22    0.6460795  0.0295684  21.850  0.5881265  0.7040324   &lt;2e-16 ***
+beta_23   -0.0188965  0.0317015  -0.596 -0.0810303  0.0432373   0.2757    
+beta_31   -0.1191479  0.0336946  -3.536 -0.1851881 -0.0531076   0.0002 ***
+beta_32    0.4237460  0.0272911  15.527  0.3702565  0.4772356   &lt;2e-16 ***
+beta_33    0.4788747  0.0292598  16.366  0.4215266  0.5362228   &lt;2e-16 ***
+psi_11     0.0938100  0.0059629  15.732  0.0821229  0.1054970   &lt;2e-16 ***
+psi_12    -0.0075430  0.0045626  -1.653 -0.0164855  0.0013994   0.0495 *  
+psi_13    -0.0012518  0.0041999  -0.298 -0.0094835  0.0069799   0.3829    
+psi_22     0.1092401  0.0069437  15.732  0.0956306  0.1228495   &lt;2e-16 ***
+psi_23    -0.0098780  0.0045535  -2.169 -0.0188026 -0.0009534   0.0153 *  
+psi_33     0.0930600  0.0059153  15.732  0.0814662  0.1046538   &lt;2e-16 ***
+mu0_1     -0.4153391  0.3360264  -1.236 -1.0739387  0.2432605   0.1085    
+mu0_2     -0.0688332  0.3578281  -0.192 -0.7701635  0.6324970   0.4238    
+mu0_3      0.1606552  0.3406037   0.472 -0.5069158  0.8282263   0.3187    
+sigma0_11  0.5646626  0.3570622   1.581 -0.1351665  1.2644918   0.0572 .  
+sigma0_12 -0.1011154  0.2726400  -0.371 -0.6354801  0.4332492   0.3554    
+sigma0_13 -0.2046038  0.2717841  -0.753 -0.7372909  0.3280832   0.2260    
+sigma0_22  0.6402220  0.4047781   1.582 -0.1531286  1.4335726   0.0572 .  
+sigma0_23  0.3077294  0.3052610   1.008 -0.2905712  0.9060300   0.1570    
+sigma0_33  0.5801649  0.3667936   1.582 -0.1387374  1.2990671   0.0572 .  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
--2 log-likelihood value at convergence = -6146.37
-AIC = -6092.37
-BIC = -5978.58</code></pre>
+-2 log-likelihood value at convergence = 796.37
+AIC = 850.37
+BIC = 964.17</code></pre>
 </div>
 </div>
 <section id="parameter-estimates" class="level3">
@@ -687,32 +751,32 @@ BIC = -5978.58</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>alpha_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.0018393173  0.0007013471  0.0007957200</code></pre>
+<pre><code>[1] -0.017803606  0.007988374  0.007653975</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>beta_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           [,1]       [,2]        [,3]
-[1,]  0.7027877 0.00263031  0.03435549
-[2,]  0.4590774 0.65182064 -0.01810246
-[3,] -0.1172585 0.43187103  0.48690422</code></pre>
+<pre><code>           [,1]        [,2]        [,3]
+[1,]  0.7000363 0.003324985  0.03447235
+[2,]  0.4709436 0.646079473 -0.01889653
+[3,] -0.1191479 0.423746033  0.47887469</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>psi_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>              [,1]          [,2]          [,3]
-[1,]  9.368287e-04 -7.560912e-05 -1.361332e-05
-[2,] -7.560912e-05  1.089396e-03 -1.001889e-04
-[3,] -1.361332e-05 -1.001889e-04  9.286447e-04</code></pre>
+<pre><code>             [,1]         [,2]         [,3]
+[1,]  0.093809960 -0.007543040 -0.001251799
+[2,] -0.007543040  0.109240060 -0.009878017
+[3,] -0.001251799 -0.009878017  0.093059988</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>mu0_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.0131495693  0.0004109469  0.0078578568</code></pre>
+<pre><code>[1] -0.41533909 -0.06883323  0.16065523</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>sigma0_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>              [,1]          [,2]          [,3]
-[1,]  0.0005642527 -0.0002180337 -0.0002922814
-[2,] -0.0002180337  0.0007303872  0.0002888033
-[3,] -0.0002922814  0.0002888033  0.0006137548</code></pre>
+<pre><code>           [,1]       [,2]       [,3]
+[1,]  0.5646626 -0.1011154 -0.2046038
+[2,] -0.1011154  0.6402220  0.3077294
+[3,] -0.2046038  0.3077294  0.5801649</code></pre>
 </div>
 </div>
 
@@ -800,10 +864,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/jeksterslab\.github\.io\/dynr-wiki\/index\.html");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -813,8 +894,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -826,7 +916,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -870,6 +1083,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -895,6 +1109,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -956,12 +1196,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../.setup/quarto/examples/lin-growth.html" class="pagination-link">
+      <a href="../../../.setup/quarto/examples/lin-growth.html" class="pagination-link" aria-label="The Linear Growth Curve Model">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">The Linear Growth Curve Model</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../.setup/quarto/examples/ou.html" class="pagination-link">
+      <a href="../../../.setup/quarto/examples/ou.html" class="pagination-link" aria-label="The Ornstein–Uhlenbeck Model">
         <span class="nav-page-text"><span class="chapter-title">The Ornstein–Uhlenbeck Model</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -970,4 +1210,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jeksterslab/dynr-wiki/edit/main/.setup/quarto/examples/var.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
