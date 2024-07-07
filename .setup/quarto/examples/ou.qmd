@@ -494,7 +494,7 @@ model$ub[
 ] <- +1.5
 ```
 
-```{r model}
+```{r model-ou}
 #| echo = FALSE
 dynr::plotFormula(
   dynrModel = model,
@@ -604,8 +604,6 @@ sigma0_hat
 beta_var1_hat <- expm::expm(phi_hat)
 beta_var1_hat
 ```
-
-## References
 
 ```{r}
 #| include = FALSE
