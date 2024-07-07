@@ -1,9 +1,10 @@
 dynr Wiki
 ================
 Ivan Jacob Agaloos Pesigan
-2024-03-11
+2024-07-07
 
 <!-- README.md is generated from .setup/readme/README.Rmd. Please edit that file -->
+
 <!-- badges: start -->
 
 [![Quarto Website (GitHub

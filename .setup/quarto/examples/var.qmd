@@ -12,7 +12,20 @@ k <- p <- 3
 iden <- diag(k)
 null_vec <- rep(x = 0, times = k)
 mu0 <- null_vec
-sigma0 <- 0.001 * iden
+sigma0 <- matrix(
+  data = c(
+    1.0,
+    0.2,
+    0.2,
+    0.2,
+    1.0,
+    0.2,
+    0.2,
+    0.2,
+    1.0
+  ),
+  nrow = 3
+)
 sigma0_l <- t(chol(sigma0))
 alpha <- null_vec
 beta <- matrix(
@@ -29,7 +42,7 @@ beta <- matrix(
   ),
   nrow = k
 )
-psi <- 0.001 * iden
+psi <- 0.1 * iden
 psi_l <- t(chol(psi))
 ```
 
@@ -219,7 +232,7 @@ psi
 psi_l
 ```
 
-### Visualizing the Dynamics Without Process Noise ($n = 5$ with Different Initial Condition)
+### Visualizing the Dynamics Without Process Noise (n = 5 with Different Initial Condition)
 
 ```{r no-error}
 #| echo = FALSE
@@ -240,7 +253,7 @@ sim <- SimSSMVARFixed(
 plot(sim, type = "l")
 ```
 
-### Using the SimSSMVARFixed Function from the simStateSpace Package to Simulate Data
+### Using the `SimSSMVARFixed` Function from the `simStateSpace` Package to Simulate Data
 
 ```{r error}
 library(simStateSpace)
@@ -456,6 +469,8 @@ psi_hat
 mu0_hat
 sigma0_hat
 ```
+
+## References
 
 ```{r}
 #| include = FALSE
