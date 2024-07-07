@@ -313,7 +313,7 @@ theta
 
 ### Visualizing the Dynamics Without Measurement Error and Process Noise (n = 5 with Different Initial Condition)
 
-```{r no-error}
+```{r no-error-ou}
 #| echo = FALSE
 library(simStateSpace)
 sim <- SimSSMOUFixed(
@@ -343,7 +343,7 @@ plot(sim, type = "l")
 
 ### Using the `SimSSMOUFixed` Function from the `simStateSpace` Package to Simulate Data
 
-```{r error}
+```{r error-ou}
 library(simStateSpace)
 sim <- SimSSMOUFixed(
   n = n,
