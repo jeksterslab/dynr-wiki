@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.555">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Ivan Jacob Agaloos Pesigan">
 
-<title>dynr Wiki - The Ornstein–Uhlenbeck Model</title>
+<title>The Ornstein–Uhlenbeck Model – dynr Wiki</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -103,7 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -141,13 +141,13 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../.setup/quarto/examples/lin-growth.html">Examples</a></li><li class="breadcrumb-item"><a href="../../../.setup/quarto/examples/ou.html"><span class="chapter-title">The Ornstein–Uhlenbeck Model</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -186,7 +186,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../../../.setup/quarto/docker/docker.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">dynr Docker Container</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -215,9 +215,9 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Examples</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -246,9 +246,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -381,7 +381,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="data-generation">Data Generation</h2>
 <section id="notation" class="level3">
 <h3 class="anchored" data-anchor-id="notation">Notation</h3>
-<p>Let <span class="math inline">\(t = 100\)</span> be the number of time points and <span class="math inline">\(n = 5\)</span> be the number of individuals.</p>
+<p>Let <span class="math inline">\(t = 1000\)</span> be the number of time points and <span class="math inline">\(n = 5\)</span> be the number of individuals.</p>
 <p>Let the measurement model intecept vector <span class="math inline">\(\boldsymbol{\nu}\)</span> be given by</p>
 <p><span class="math display">\[\begin{equation}
 \boldsymbol{\nu}
@@ -491,7 +491,7 @@ window.Quarto = {
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>time</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 100</code></pre>
+<pre><code>[1] 1000</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>delta_t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -601,7 +601,24 @@ window.Quarto = {
 5  1  0.4 -1.50322069 -0.36841853 0.1821731
 6  1  0.5 -0.75049839  0.35752476 0.2862544</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       id         time             y1                 y2          
+ Min.   :1   Min.   : 0.00   Min.   :-2.25375   Min.   :-2.75152  
+ 1st Qu.:2   1st Qu.:24.98   1st Qu.:-0.41569   1st Qu.:-0.47639  
+ Median :3   Median :49.95   Median : 0.04509   Median : 0.08626  
+ Mean   :3   Mean   :49.95   Mean   : 0.03947   Mean   : 0.05358  
+ 3rd Qu.:4   3rd Qu.:74.92   3rd Qu.: 0.50782   3rd Qu.: 0.61048  
+ Max.   :5   Max.   :99.90   Max.   : 2.74461   Max.   : 3.02675  
+       y3          
+ Min.   :-2.34092  
+ 1st Qu.:-0.44476  
+ Median : 0.02716  
+ Mean   : 0.01476  
+ 3rd Qu.: 0.48321  
+ Max.   : 2.34972  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -631,127 +648,127 @@ window.Quarto = {
 <section id="prepare-data" class="level3">
 <h3 class="anchored" data-anchor-id="prepare-data">Prepare Data</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>dynr_data <span class="ot">&lt;-</span> dynr<span class="sc">::</span><span class="fu">dynr.data</span>(</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">dataframe =</span> data,</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">"id"</span>,</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">time =</span> <span class="st">"time"</span>,</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">observed =</span> <span class="fu">c</span>(<span class="st">"y1"</span>, <span class="st">"y2"</span>, <span class="st">"y3"</span>)</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>dynr_data <span class="ot">&lt;-</span> dynr<span class="sc">::</span><span class="fu">dynr.data</span>(</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">dataframe =</span> data,</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">"id"</span>,</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">time =</span> <span class="st">"time"</span>,</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">observed =</span> <span class="fu">c</span>(<span class="st">"y1"</span>, <span class="st">"y2"</span>, <span class="st">"y3"</span>)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="prepare-initial-condition" class="level3">
 <h3 class="anchored" data-anchor-id="prepare-initial-condition">Prepare Initial Condition</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>dynr_initial <span class="ot">&lt;-</span> dynr<span class="sc">::</span><span class="fu">prep.initial</span>(</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.inistate =</span> mu0,</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">params.inistate =</span> <span class="fu">c</span>(<span class="st">"mu0_1"</span>, <span class="st">"mu0_2"</span>, <span class="st">"mu0_3"</span>),</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.inicov =</span> sigma0,</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">params.inicov =</span> <span class="fu">matrix</span>(</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">c</span>(</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"sigma0_11"</span>, <span class="st">"sigma0_12"</span>, <span class="st">"sigma0_13"</span>,</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"sigma0_12"</span>, <span class="st">"sigma0_22"</span>, <span class="st">"sigma0_23"</span>,</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"sigma0_13"</span>, <span class="st">"sigma0_23"</span>, <span class="st">"sigma0_33"</span></span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">nrow =</span> <span class="dv">3</span></span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>dynr_initial <span class="ot">&lt;-</span> dynr<span class="sc">::</span><span class="fu">prep.initial</span>(</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.inistate =</span> mu0,</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">params.inistate =</span> <span class="fu">c</span>(<span class="st">"mu0_1_1"</span>, <span class="st">"mu0_2_1"</span>, <span class="st">"mu0_3_1"</span>),</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.inicov =</span> sigma0,</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">params.inicov =</span> <span class="fu">matrix</span>(</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">c</span>(</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"sigma0_1_1"</span>, <span class="st">"sigma0_2_1"</span>, <span class="st">"sigma0_3_1"</span>,</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"sigma0_2_1"</span>, <span class="st">"sigma0_2_2"</span>, <span class="st">"sigma0_3_2"</span>,</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"sigma0_3_1"</span>, <span class="st">"sigma0_3_2"</span>, <span class="st">"sigma0_3_3"</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">nrow =</span> <span class="dv">3</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="prepare-measurement-model" class="level3">
 <h3 class="anchored" data-anchor-id="prepare-measurement-model">Prepare Measurement Model</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>dynr_measurement <span class="ot">&lt;-</span> dynr<span class="sc">::</span><span class="fu">prep.measurement</span>(</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.load =</span> <span class="fu">diag</span>(<span class="dv">3</span>),</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">params.load =</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="st">"fixed"</span>, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">3</span>),</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">state.names =</span> <span class="fu">c</span>(<span class="st">"eta_1"</span>, <span class="st">"eta_2"</span>, <span class="st">"eta_3"</span>),</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">obs.names =</span> <span class="fu">c</span>(<span class="st">"y1"</span>, <span class="st">"y2"</span>, <span class="st">"y3"</span>)</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>dynr_measurement <span class="ot">&lt;-</span> dynr<span class="sc">::</span><span class="fu">prep.measurement</span>(</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.load =</span> <span class="fu">diag</span>(<span class="dv">3</span>),</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">params.load =</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="st">"fixed"</span>, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">3</span>),</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">state.names =</span> <span class="fu">c</span>(<span class="st">"eta_1"</span>, <span class="st">"eta_2"</span>, <span class="st">"eta_3"</span>),</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">obs.names =</span> <span class="fu">c</span>(<span class="st">"y1"</span>, <span class="st">"y2"</span>, <span class="st">"y3"</span>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="prepare-dynamic-process" class="level3">
 <h3 class="anchored" data-anchor-id="prepare-dynamic-process">Prepare Dynamic Process</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>dynr_dynamics <span class="ot">&lt;-</span> dynr<span class="sc">::</span><span class="fu">prep.formulaDynamics</span>(</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> <span class="fu">list</span>(</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    eta_1 <span class="sc">~</span> (phi_11 <span class="sc">*</span> (eta_1 <span class="sc">-</span> mu_1)) <span class="sc">+</span> (phi_12 <span class="sc">*</span> (eta_2 <span class="sc">-</span> mu_2)) <span class="sc">+</span> (phi_13 <span class="sc">*</span> (eta_3 <span class="sc">-</span> mu_3)),</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    eta_2 <span class="sc">~</span> (phi_21 <span class="sc">*</span> (eta_1 <span class="sc">-</span> mu_1)) <span class="sc">+</span> (phi_22 <span class="sc">*</span> (eta_2 <span class="sc">-</span> mu_2)) <span class="sc">+</span> (phi_23 <span class="sc">*</span> (eta_3 <span class="sc">-</span> mu_3)),</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    eta_3 <span class="sc">~</span> (phi_31 <span class="sc">*</span> (eta_1 <span class="sc">-</span> mu_1)) <span class="sc">+</span> (phi_32 <span class="sc">*</span> (eta_2 <span class="sc">-</span> mu_2)) <span class="sc">+</span> (phi_33 <span class="sc">*</span> (eta_3 <span class="sc">-</span> mu_3))</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">startval =</span> <span class="fu">c</span>(</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu_1 =</span> mu[<span class="dv">1</span>], <span class="at">mu_2 =</span> mu[<span class="dv">2</span>], <span class="at">mu_3 =</span> mu[<span class="dv">3</span>],</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">phi_11 =</span> phi[<span class="dv">1</span>, <span class="dv">1</span>], <span class="at">phi_12 =</span> phi[<span class="dv">1</span>, <span class="dv">2</span>], <span class="at">phi_13 =</span> phi[<span class="dv">1</span>, <span class="dv">3</span>],</span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">phi_21 =</span> phi[<span class="dv">2</span>, <span class="dv">1</span>], <span class="at">phi_22 =</span> phi[<span class="dv">2</span>, <span class="dv">2</span>], <span class="at">phi_23 =</span> phi[<span class="dv">2</span>, <span class="dv">3</span>],</span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">phi_31 =</span> phi[<span class="dv">3</span>, <span class="dv">1</span>], <span class="at">phi_32 =</span> phi[<span class="dv">3</span>, <span class="dv">2</span>], <span class="at">phi_33 =</span> phi[<span class="dv">3</span>, <span class="dv">3</span>]</span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">isContinuousTime =</span> <span class="cn">TRUE</span></span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>dynr_dynamics <span class="ot">&lt;-</span> dynr<span class="sc">::</span><span class="fu">prep.formulaDynamics</span>(</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> <span class="fu">list</span>(</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    eta_1 <span class="sc">~</span> (phi_1_1 <span class="sc">*</span> (eta_1 <span class="sc">-</span> mu_1_1)) <span class="sc">+</span> (phi_1_2 <span class="sc">*</span> (eta_2 <span class="sc">-</span> mu_2_1)) <span class="sc">+</span> (phi_1_3 <span class="sc">*</span> (eta_3 <span class="sc">-</span> mu_3_1)),</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    eta_2 <span class="sc">~</span> (phi_2_1 <span class="sc">*</span> (eta_1 <span class="sc">-</span> mu_1_1)) <span class="sc">+</span> (phi_2_2 <span class="sc">*</span> (eta_2 <span class="sc">-</span> mu_2_1)) <span class="sc">+</span> (phi_2_3 <span class="sc">*</span> (eta_3 <span class="sc">-</span> mu_3_1)),</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    eta_3 <span class="sc">~</span> (phi_3_1 <span class="sc">*</span> (eta_1 <span class="sc">-</span> mu_1_1)) <span class="sc">+</span> (phi_3_2 <span class="sc">*</span> (eta_2 <span class="sc">-</span> mu_2_1)) <span class="sc">+</span> (phi_3_3 <span class="sc">*</span> (eta_3 <span class="sc">-</span> mu_3_1))</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">startval =</span> <span class="fu">c</span>(</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu_1_1 =</span> mu[<span class="dv">1</span>], <span class="at">mu_2_1 =</span> mu[<span class="dv">2</span>], <span class="at">mu_3_1 =</span> mu[<span class="dv">3</span>],</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">phi_1_1 =</span> phi[<span class="dv">1</span>, <span class="dv">1</span>], <span class="at">phi_1_2 =</span> phi[<span class="dv">1</span>, <span class="dv">2</span>], <span class="at">phi_1_3 =</span> phi[<span class="dv">1</span>, <span class="dv">3</span>],</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">phi_2_1 =</span> phi[<span class="dv">2</span>, <span class="dv">1</span>], <span class="at">phi_2_2 =</span> phi[<span class="dv">2</span>, <span class="dv">2</span>], <span class="at">phi_2_3 =</span> phi[<span class="dv">2</span>, <span class="dv">3</span>],</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">phi_3_1 =</span> phi[<span class="dv">3</span>, <span class="dv">1</span>], <span class="at">phi_3_2 =</span> phi[<span class="dv">3</span>, <span class="dv">2</span>], <span class="at">phi_3_3 =</span> phi[<span class="dv">3</span>, <span class="dv">3</span>]</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">isContinuousTime =</span> <span class="cn">TRUE</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="prepare-process-noise" class="level3">
 <h3 class="anchored" data-anchor-id="prepare-process-noise">Prepare Process Noise</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>dynr_noise <span class="ot">&lt;-</span> dynr<span class="sc">::</span><span class="fu">prep.noise</span>(</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.latent =</span> sigma,</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">params.latent =</span> <span class="fu">matrix</span>(</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">c</span>(</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"sigma_11"</span>, <span class="st">"sigma_12"</span>, <span class="st">"sigma_13"</span>,</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"sigma_12"</span>, <span class="st">"sigma_22"</span>, <span class="st">"sigma_23"</span>,</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"sigma_13"</span>, <span class="st">"sigma_23"</span>, <span class="st">"sigma_33"</span></span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">nrow =</span> <span class="dv">3</span></span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.observed =</span> theta,</span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">params.observed =</span> <span class="fu">matrix</span>(</span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">c</span>(</span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">"theta_11"</span>, <span class="st">"fixed"</span>, <span class="st">"fixed"</span>,</span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>      <span class="st">"fixed"</span>, <span class="st">"theta_22"</span>, <span class="st">"fixed"</span>,</span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>      <span class="st">"fixed"</span>, <span class="st">"fixed"</span>, <span class="st">"theta_33"</span></span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">nrow =</span> <span class="dv">3</span></span>
-<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>dynr_noise <span class="ot">&lt;-</span> dynr<span class="sc">::</span><span class="fu">prep.noise</span>(</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.latent =</span> sigma,</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">params.latent =</span> <span class="fu">matrix</span>(</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">c</span>(</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"sigma_1_1"</span>, <span class="st">"sigma_2_1"</span>, <span class="st">"sigma_3_1"</span>,</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"sigma_2_1"</span>, <span class="st">"sigma_2_2"</span>, <span class="st">"sigma_3_2"</span>,</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"sigma_3_1"</span>, <span class="st">"sigma_3_2"</span>, <span class="st">"sigma_3_3"</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">nrow =</span> <span class="dv">3</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">values.observed =</span> theta,</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">params.observed =</span> <span class="fu">matrix</span>(</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">c</span>(</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">"theta_1_1"</span>, <span class="st">"fixed"</span>, <span class="st">"fixed"</span>,</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>      <span class="st">"fixed"</span>, <span class="st">"theta_2_2"</span>, <span class="st">"fixed"</span>,</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>      <span class="st">"fixed"</span>, <span class="st">"fixed"</span>, <span class="st">"theta_3_3"</span></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">nrow =</span> <span class="dv">3</span></span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="prepare-the-model" class="level3">
 <h3 class="anchored" data-anchor-id="prepare-the-model">Prepare the Model</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> dynr<span class="sc">::</span><span class="fu">dynr.model</span>(</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> dynr_data,</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">initial =</span> dynr_initial,</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">measurement =</span> dynr_measurement,</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dynamics =</span> dynr_dynamics,</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">noise =</span> dynr_noise,</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">outfile =</span> <span class="st">"ou.c"</span></span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> dynr<span class="sc">::</span><span class="fu">dynr.model</span>(</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> dynr_data,</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">initial =</span> dynr_initial,</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">measurement =</span> dynr_measurement,</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dynamics =</span> dynr_dynamics,</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">noise =</span> dynr_noise,</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">outfile =</span> <span class="st">"ou.c"</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Add lower and upper bounds to aid in the optimization.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>model<span class="sc">$</span>lb[</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_11"</span>,</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_12"</span>,</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_13"</span>,</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_21"</span>,</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_22"</span>,</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_23"</span>,</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_31"</span>,</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_32"</span>,</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_33"</span></span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>] <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">1.5</span></span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>model<span class="sc">$</span>ub[</span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_11"</span>,</span>
-<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_12"</span>,</span>
-<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_13"</span>,</span>
-<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_21"</span>,</span>
-<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_22"</span>,</span>
-<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_23"</span>,</span>
-<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_31"</span>,</span>
-<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_32"</span>,</span>
-<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_33"</span></span>
-<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a>] <span class="ot">&lt;-</span> <span class="sc">+</span><span class="fl">1.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>model<span class="sc">$</span>lb[</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_1_1"</span>,</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_1_2"</span>,</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_1_3"</span>,</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_2_1"</span>,</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_2_2"</span>,</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_2_3"</span>,</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_3_1"</span>,</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_3_2"</span>,</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_3_3"</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>] <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">1.5</span></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>model<span class="sc">$</span>ub[</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_1_1"</span>,</span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_1_2"</span>,</span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_1_3"</span>,</span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_2_1"</span>,</span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_2_2"</span>,</span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_2_3"</span>,</span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_3_1"</span>,</span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_3_2"</span>,</span>
+<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_3_3"</span></span>
+<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a>] <span class="ot">&lt;-</span> <span class="sc">+</span><span class="fl">1.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -766,41 +783,36 @@ window.Quarto = {
 <section id="fit-the-model" class="level3">
 <h3 class="anchored" data-anchor-id="fit-the-model">Fit the Model</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> dynr<span class="sc">::</span><span class="fu">dynr.cook</span>(</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  model,</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">debug_flag =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> dynr<span class="sc">::</span><span class="fu">dynr.cook</span>(</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  model,</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">debug_flag =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Get ready!!!!"
-using C compiler: ‘gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0’
+using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
 Optimization function called.
 Starting Hessian calculation ...
 Finished Hessian calculation.
 Original exit flag:  3 
 Modified exit flag:  3 
 Optimization terminated successfully: ftol_rel or ftol_abs was reached. 
-Original fitted parameters:  0.05485504 0.1965642 0.1128742 -0.2600782 
--0.2739041 0.02599383 0.7412146 -1.002955 0.2049505 -0.9824315 1.5 -1.091145 
--2.165581 0.1369349 0.1205417 -3.228082 0.03768164 -3.136258 -1.525 -1.617376 
--1.617816 0.007096018 -0.08813474 0.19355 -1.572231 -0.3089916 0.7340555 
--0.8958999 -1.792513 -19.57305 
+Original fitted parameters:  0.05480875 0.0970006 0.04993973 -0.434506 
+0.02467277 -0.05454905 0.8417982 -0.6017518 0.1099265 -0.3702948 0.6609449 
+-0.6606183 -1.381888 0.08161089 -0.2479494 -2.480951 0.1751864 -2.810068 
+-1.625097 -1.682562 -1.597112 -0.3660337 -0.4092527 0.2149727 -0.7538976 
+0.6368556 0.4928618 -0.5914103 0.6108847 -2.103637 
 
-Transformed fitted parameters:  0.05485504 0.1965642 0.1128742 -0.2600782 
--0.2739041 0.02599383 0.7412146 -1.002955 0.2049505 -0.9824315 1.5 -1.091145 
-0.1146833 0.01570415 0.01382413 0.04178387 0.003386458 0.04516774 0.2176211 
-0.1984187 0.1983315 0.007096018 -0.08813474 0.19355 0.2075815 -0.06414093 
-0.1523763 0.4280591 -0.7788586 1.42357 
+Transformed fitted parameters:  0.05480875 0.0970006 0.04993973 -0.434506 
+0.02467277 -0.05454905 0.8417982 -0.6017518 0.1099265 -0.3702948 0.6609449 
+-0.6606183 0.2511041 0.02049283 -0.0622611 0.08533609 0.009575553 0.07820615 
+0.1968925 0.1858971 0.2024804 -0.3660337 -0.4092527 0.2149727 0.470529 
+0.2996591 0.2319058 0.7443856 0.4858433 0.4428818 
 
-Doing end processing</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in sqrt(diag(x$inv.hessian)): NaNs produced</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Successful trial
-Total Time: 23.86955 
-Backend Time: 23.39969 </code></pre>
+Doing end processing
+Successful trial
+Total Time: 4.004598 
+Backend Time: 3.997083 </code></pre>
 </div>
 </div>
 </section>
@@ -811,48 +823,48 @@ Backend Time: 23.39969 </code></pre>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Coefficients:
-           Estimate Std. Error t value  ci.lower  ci.upper Pr(&gt;|t|)    
-mu_1       0.054855   0.106835   0.513 -0.154538  0.264248   0.3039    
-mu_2       0.196564   0.096105   2.045  0.008202  0.384926   0.0207 *  
-mu_3       0.112874   0.081009   1.393 -0.045901  0.271649   0.0821 .  
-phi_11    -0.260078   0.288558  -0.901 -0.825641  0.305485   0.1839    
-phi_12    -0.273904   0.336839  -0.813 -0.934096  0.386288   0.2083    
-phi_13     0.025994   0.243493   0.107 -0.451244  0.503231   0.4575    
-phi_21     0.741215   0.207232   3.577  0.335047  1.147382   0.0002 ***
-phi_22    -1.002955   0.235198  -4.264 -1.463935 -0.541976   &lt;2e-16 ***
-phi_23     0.204950   0.195182   1.050 -0.177599  0.587500   0.1471    
-phi_31    -0.982431   0.270772  -3.628 -1.513134 -0.451729   0.0002 ***
-phi_32     1.500000   0.314152   4.775  0.884273  2.115727   &lt;2e-16 ***
-phi_33    -1.091145   0.261609  -4.171 -1.603890 -0.578400   &lt;2e-16 ***
-sigma_11   0.114683   0.045976   2.494  0.024572  0.204795   0.0065 ** 
-sigma_12   0.015704   0.020872   0.752 -0.025204  0.056612   0.2261    
-sigma_13   0.013824   0.028047   0.493 -0.041147  0.068796   0.3112    
-sigma_22   0.041784   0.020217   2.067  0.002160  0.081408   0.0197 *  
-sigma_23   0.003386   0.020082   0.169 -0.035973  0.042745   0.4331    
-sigma_33   0.045168   0.039737   1.137 -0.032715  0.123050   0.1281    
-theta_11   0.217621   0.016232  13.407  0.185808  0.249435   &lt;2e-16 ***
-theta_22   0.198419   0.013582  14.608  0.171798  0.225040   &lt;2e-16 ***
-theta_33   0.198331   0.014608  13.577  0.169701  0.226962   &lt;2e-16 ***
-mu0_1      0.007096   0.230500   0.031 -0.444676  0.458868   0.4877    
-mu0_2     -0.088135   0.308098  -0.286 -0.691996  0.515727   0.3875    
-mu0_3      0.193550   0.544578   0.355 -0.873803  1.260903   0.3612    
-sigma0_11  0.207581   0.166659   1.246 -0.119064  0.534227   0.1068    
-sigma0_12 -0.064141   0.164276  -0.390 -0.386115  0.257833   0.3482    
-sigma0_13  0.152376   0.297928   0.511 -0.431551  0.736304   0.3046    
-sigma0_22  0.428059   0.316653   1.352 -0.192569  1.048687   0.0885 .  
-sigma0_23 -0.778859   0.524908  -1.484 -1.807659  0.249942   0.0693 .  
-sigma0_33  1.423570   0.954929   1.491 -0.448056  3.295196   0.0683 .  
+            Estimate Std. Error t value  ci.lower  ci.upper Pr(&gt;|t|)    
+mu_1_1      0.054809   0.051341   1.068 -0.045818  0.155436   0.1429    
+mu_2_1      0.097001   0.086113   1.126 -0.071777  0.265778   0.1300    
+mu_3_1      0.049940   0.057135   0.874 -0.062042  0.161922   0.1911    
+phi_1_1    -0.434506   0.180354  -2.409 -0.787994 -0.081018   0.0080 ** 
+phi_1_2     0.024673   0.154258   0.160 -0.277668  0.327013   0.4365    
+phi_1_3    -0.054549   0.126095  -0.433 -0.301690  0.192592   0.3327    
+phi_2_1     0.841798   0.116934   7.199  0.612611  1.070985   &lt;2e-16 ***
+phi_2_2    -0.601752   0.102169  -5.890 -0.802000 -0.401504   &lt;2e-16 ***
+phi_2_3     0.109926   0.083850   1.311 -0.054416  0.274269   0.0950 .  
+phi_3_1    -0.370295   0.114555  -3.232 -0.594819 -0.145771   0.0006 ***
+phi_3_2     0.660945   0.099134   6.667  0.466647  0.855243   &lt;2e-16 ***
+phi_3_3    -0.660618   0.081176  -8.138 -0.819720 -0.501517   &lt;2e-16 ***
+sigma_1_1   0.251104   0.031869   7.879  0.188642  0.313566   &lt;2e-16 ***
+sigma_2_1   0.020493   0.012759   1.606 -0.004513  0.045499   0.0541 .  
+sigma_3_1  -0.062261   0.012982  -4.796 -0.087706 -0.036816   &lt;2e-16 ***
+sigma_2_2   0.085336   0.010363   8.234  0.065024  0.105648   &lt;2e-16 ***
+sigma_3_2   0.009576   0.006803   1.408 -0.003758  0.022909   0.0797 .  
+sigma_3_3   0.078206   0.009743   8.027  0.059110  0.097303   &lt;2e-16 ***
+theta_1_1   0.196892   0.005250  37.504  0.186603  0.207182   &lt;2e-16 ***
+theta_2_2   0.185897   0.004255  43.687  0.177557  0.194237   &lt;2e-16 ***
+theta_3_3   0.202480   0.004592  44.090  0.193479  0.211481   &lt;2e-16 ***
+mu0_1_1    -0.366034   0.327590  -1.117 -1.008099  0.276031   0.1319    
+mu0_2_1    -0.409253   0.397704  -1.029 -1.188738  0.370233   0.1518    
+mu0_3_1     0.214973   0.314431   0.684 -0.401300  0.831246   0.2471    
+sigma0_1_1  0.470529   0.340595   1.381 -0.197025  1.138083   0.0836 .  
+sigma0_2_1  0.299659   0.323106   0.927 -0.333617  0.932935   0.1769    
+sigma0_3_1  0.231906   0.254674   0.911 -0.267246  0.731058   0.1813    
+sigma0_2_2  0.744386   0.505722   1.472 -0.246811  1.735582   0.0706 .  
+sigma0_3_2  0.485843   0.352649   1.378 -0.205336  1.177023   0.0842 .  
+sigma0_3_3  0.442882   0.313556   1.412 -0.171676  1.057439   0.0789 .  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
--2 log-likelihood value at convergence = 2088.54
-AIC = 2148.54
-BIC = 2274.97</code></pre>
+-2 log-likelihood value at convergence = 21202.41
+AIC = 21262.41
+BIC = 21457.92</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  0.007096018 -0.088134745  0.193550032</code></pre>
+<pre><code>[1] -0.3660337 -0.4092527  0.2149727</code></pre>
 </div>
 </div>
 <section id="parameter-estimates" class="level3">
@@ -860,40 +872,40 @@ BIC = 2274.97</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>mu_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.05485504 0.19656423 0.11287416</code></pre>
+<pre><code>[1] 0.05480875 0.09700060 0.04993973</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>phi_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           [,1]       [,2]        [,3]
-[1,] -0.2600782 -0.2739041  0.02599383
-[2,]  0.7412146 -1.0029554  0.20495046
-[3,] -0.9824315  1.5000000 -1.09114523</code></pre>
+<pre><code>           [,1]        [,2]        [,3]
+[1,] -0.4345060  0.02467277 -0.05454905
+[2,]  0.8417982 -0.60175178  0.10992650
+[3,] -0.3702948  0.66094491 -0.66061828</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>sigma_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           [,1]        [,2]        [,3]
-[1,] 0.11468333 0.015704147 0.013824128
-[2,] 0.01570415 0.041783870 0.003386458
-[3,] 0.01382413 0.003386458 0.045167741</code></pre>
+<pre><code>            [,1]        [,2]         [,3]
+[1,]  0.25110408 0.020492828 -0.062261099
+[2,]  0.02049283 0.085336089  0.009575553
+[3,] -0.06226110 0.009575553  0.078206146</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>mu0_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  0.007096018 -0.088134745  0.193550032</code></pre>
+<pre><code>[1] -0.3660337 -0.4092527  0.2149727</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>sigma0_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>            [,1]        [,2]       [,3]
-[1,]  0.20758149 -0.06414093  0.1523763
-[2,] -0.06414093  0.42805907 -0.7788586
-[3,]  0.15237633 -0.77885855  1.4235698</code></pre>
+<pre><code>          [,1]      [,2]      [,3]
+[1,] 0.4705290 0.2996591 0.2319058
+[2,] 0.2996591 0.7443856 0.4858433
+[3,] 0.2319058 0.4858433 0.4428818</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>beta_var1_hat <span class="ot">&lt;-</span> expm<span class="sc">::</span><span class="fu">expm</span>(phi_hat)</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>beta_var1_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           [,1]       [,2]         [,3]
-[1,]  0.7085381 -0.1409337 0.0006113401
-[2,]  0.3590318  0.3792894 0.0770293603
-[3,] -0.2586161  0.5936355 0.3894687885</code></pre>
+<pre><code>            [,1]        [,2]        [,3]
+[1,]  0.65704464 0.004621693 -0.03138432
+[2,]  0.49886539 0.570658931  0.04636742
+[3,] -0.05872866 0.355366244  0.53861155</code></pre>
 </div>
 </div>
 
@@ -937,18 +949,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -980,7 +981,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/jeksterslab\.github\.io\/dynr-wiki\/index\.html");
@@ -988,7 +1011,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
