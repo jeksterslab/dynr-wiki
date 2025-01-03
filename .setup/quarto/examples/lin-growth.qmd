@@ -213,6 +213,7 @@ sim <- SimSSMLinGrowth(
 )
 data <- as.data.frame(sim)
 head(data)
+summary(data)
 plot(sim)
 ```
 
@@ -429,6 +430,11 @@ theta_hat <- unname(
 mu0_hat
 sigma0_hat
 theta_hat
+```
+
+```{r}
+#| include = FALSE
+unlink(c("lin-growth.c", "lin-growth.s", "lin-growth.so"))
 ```
 
 ```{r}
