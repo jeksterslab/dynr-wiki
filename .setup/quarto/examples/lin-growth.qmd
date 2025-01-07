@@ -178,9 +178,9 @@ n
 time
 mu0
 sigma0
-sigma0_l
+sigma0_l # sigma0_l <- t(chol(sigma0))
 theta
-theta_l
+theta_l # theta_l <- t(chol(theta))
 ```
 
 ### Visualizing the Dynamics Without Measurement Error (n = 5 with Different Initial Condition)
