@@ -434,7 +434,7 @@ theta_hat
 
 ```{r}
 #| include = FALSE
-unlink(c("lin-growth.c", "lin-growth.s", "lin-growth.so"))
+unlink(c("lin-growth.c", "lin-growth.s", "lin-growth.so", "lin-growth.o"))
 ```
 
 ```{r}

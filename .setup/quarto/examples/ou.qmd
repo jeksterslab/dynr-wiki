@@ -611,7 +611,7 @@ beta_var1_hat
 
 ```{r}
 #| include = FALSE
-unlink(c("ou.c", "ou.s", "ou.so"))
+unlink(c("ou.c", "ou.s", "ou.so", "ou.o"))
 ```
 
 ```{r}

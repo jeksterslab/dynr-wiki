@@ -473,7 +473,7 @@ sigma0_hat
 
 ```{r}
 #| include = FALSE
-unlink(c("var.c", "var.s", "var.so"))
+unlink(c("var.c", "var.s", "var.so", "var.o"))
 ```
 
 ```{r}
